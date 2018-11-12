@@ -624,16 +624,6 @@ const foodProfileSchema = mongoose.Schema({
       notes: { type: String }
     },
     // Correct Prices
-    sweetPotato: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
-      measurementUnit: { type: String, default: "Pounds" },
-      active: { type: Boolean, default: false },
-      amount: { type: Number },
-      notes: { type: String }
-    },
-    // Correct Prices
     greenBeans: {
       basePrice: { type: Number, default: 00 },
       lowPrice: { type: Number, default: 00 },
