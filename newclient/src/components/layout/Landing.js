@@ -18,15 +18,15 @@ class Landing extends Component {
                 machine learning to predict and deliver your groceries without
                 you having to think about it.
               </p>
-              <a
+              <Link
                 className="has-text-centered-mobile signup-link"
-                href="register.html"
+                to="/register"
               >
                 <div>
                   <p id="signup-text">Sign up to be part of our first batch!</p>
                   <img src="images/right-arrow.png" alt="" />
                 </div>
-              </a>
+              </Link>
               <img className="down-arrow" src="images/down-arrow.png" alt="" />
             </div>
             <div className="right-hero column ">

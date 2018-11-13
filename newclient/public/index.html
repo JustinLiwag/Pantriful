@@ -41,19 +41,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => { // Get all "navbar-burger"
-elements const $navbarBurgers = Array.prototype.slice.call(
-document.querySelectorAll('.navbar-burger'), 0 ); // Check if there are any
-navbar burgers if ($navbarBurgers.length > 0) { // Add a click event on each of
-them $navbarBurgers.forEach(el => { el.addEventListener('click', () => { // Get
-the target from the "data-target" attribute const target = el.dataset.target;
-const $target = document.getElementById(target); // Toggle the "is-active" class
-on both the "navbar-burger" and the "navbar-menu"
-el.classList.toggle('is-active'); $target.classList.toggle('is-active'); }); });
-} }); // How $(function() { $('#tabs').tabs({ show: { effect: 'blind',
-direction: 'right', duration: 300 } }); $('#accordion').accordion(); var btn =
-$('#accordion li a'); var wrapper = $('#accordion li'); $(btn).on('click',
-function() { $(btn).removeClass('active'); $(btn) .parent() .find('.addon')
+    document.addEventListener('DOMContentLoaded', () => { const $navbarBurgers =
+Array.prototype.slice.call( document.querySelectorAll('.navbar-burger'), 0 ); if
+($navbarBurgers.length > 0) { $navbarBurgers.forEach(el => {
+el.addEventListener('click', () => { const target = el.dataset.target; const
+$target = document.getElementById(target); el.classList.toggle('is-active');
+$target.classList.toggle('is-active'); }); }); } }); $(function() {
+$('#tabs').tabs({ show: { effect: 'blind', direction: 'right', duration: 300 }
+}); $('#accordion').accordion(); var btn = $('#accordion li a'); var wrapper =
+$('#accordion li'); $(btn).on('click', function() {
+$(btn).removeClass('active'); $(btn) .parent() .find('.addon')
 .removeClass('fadein'); $(this).addClass('active'); $(this) .parent()
 .find('.addon') .addClass('fadein'); }); });
 </script>
