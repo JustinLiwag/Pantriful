@@ -14,9 +14,9 @@ class Landing extends Component {
                 Forget Shopping Carts Forever.
               </h1>
               <p className="has-text-centered-mobile">
-                Pantriful takes the effort out of shopping for you food by using
-                machine learning to predict and deliver your groceries without
-                you having to think about it.
+                Pantriful takes the effort out of shopping for your food by
+                using machine learning to predict and deliver your groceries
+                without you having to think about it.
               </p>
               <Link
                 className="has-text-centered-mobile signup-link"
