@@ -1,8 +1,44 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Register extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "",
+      lastName: "",
+      email: "",
+      password: "",
+      password2: "",
+      errors: {}
+    };
+  }
+
+  onChange = e => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  onSubmit = e => {
+    e.preventDefault();
+
+    const newUser = {
+      name: this.state.name,
+      lastName: this.state.lastName,
+      email: this.state.email,
+      password: this.state.password,
+      password2: this.state.password2
+    };
+
+    axios
+      .post("/api/users/register", newUser)
+      .then(res => console.log(res.data))
+      .catch(err => this.setState({ errors: err.response.data }));
+  };
+
   render() {
+    const { errors } = this.state;
+
     return (
       <section className="register container">
         <div className="reg-form container">
@@ -11,14 +47,69 @@ class Register extends Component {
             Enter your personal details and start your new grocery experience
             with us.
           </p>
-          <input className="name" type="text" placeholder="First Name" />
-          <input type="text" placeholder="Last Name" />
-          <input type="email" placeholder="Email" />
-          <input type="password" placeholder="Password" />
-          <input type="password" placeholder="Confirm Password" />
-          <button className="reg-submit" type="submit">
-            Submit
-          </button>
+          <form onSubmit={this.onSubmit}>
+            <input
+              type="text"
+              placeholder="First Name"
+              name="name"
+              value={this.state.name}
+              onChange={this.onChange}
+            />
+            {errors.name ? (
+              <div className="error-message">{errors.name}</div>
+            ) : (
+              <div />
+            )}
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="lastName"
+              value={this.state.lastName}
+              onChange={this.onChange}
+            />
+            {errors.lastName ? (
+              <div className="error-message">{errors.lastName}</div>
+            ) : (
+              <div />
+            )}
+            <input
+              type="email"
+              placeholder="Email"
+              name="email"
+              value={this.state.email}
+              onChange={this.onChange}
+            />
+            {errors.email ? (
+              <div className="error-message">{errors.email}</div>
+            ) : (
+              <div />
+            )}
+            <input
+              type="password"
+              placeholder="Password"
+              name="password"
+              value={this.state.password}
+              onChange={this.onChange}
+            />
+            {errors.password ? (
+              <div className="error-message">{errors.password}</div>
+            ) : (
+              <div />
+            )}
+            <input
+              type="password"
+              placeholder="Confirm Password"
+              name="password2"
+              value={this.state.password2}
+              onChange={this.onChange}
+            />
+            {errors.password2 ? (
+              <div className="error-message">{errors.password2}</div>
+            ) : (
+              <div />
+            )}
+            <input type="submit" className="reg-submit" />
+          </form>
           <p id="member-login">
             <Link to="/login">
               Already a member?{" "}
@@ -32,57 +123,6 @@ class Register extends Component {
           alt=""
         />
       </section>
-      // <div className="register">
-      //   <div className="container">
-      //     <div className="row">
-      //       <div className="col-md-8 m-auto">
-      //         <h1 className="display-6 mb-2 text-center">Sign Up</h1>
-      //         <p className="lead mb-3 text-center">
-      //           Create your Pantriful account
-      //         </p>
-      //         <form action="create-profile.html" className="mb-5">
-      //           <div className="form-group">
-      //             <input
-      //               type="text"
-      //               className="form-control mb-4 form-control-lg"
-      //               placeholder="Name"
-      //               name="name"
-      //               required
-      //             />
-      //           </div>
-      //           <div className="form-group">
-      //             <input
-      //               type="email"
-      //               className="form-control mb-4 form-control-lg"
-      //               placeholder="Email Address"
-      //               name="email"
-      //             />
-      //           </div>
-      //           <div className="form-group">
-      //             <input
-      //               type="password"
-      //               className="form-control mb-4 form-control-lg"
-      //               placeholder="Password"
-      //               name="password"
-      //             />
-      //           </div>
-      //           <div className="form-group">
-      //             <input
-      //               type="password"
-      //               className="form-control mb-4 form-control-lg"
-      //               placeholder="Confirm Password"
-      //               name="password2"
-      //             />
-      //           </div>
-      //           <input
-      //             type="submit"
-      //             className="btn p-3 btn-info btn-block mt-4"
-      //           />
-      //         </form>
-      //       </div>
-      //     </div>
-      //   </div>
-      // </div>
     );
   }
 }

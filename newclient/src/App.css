@@ -40,6 +40,11 @@ body {
   border-radius: 5px;
 }
 
+.error-message {
+  text-align: left;
+  color: red;
+}
+
 /*----NAVIGATION----*/
 
 .flexnav {
@@ -645,7 +650,6 @@ footer p {
   padding: 10px 20px;
   margin: 5px 0;
   font-size: 25px;
-  color: #626262;
   outline: none;
 }
 
