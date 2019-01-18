@@ -1,96 +1,38 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const passport = require("passport");
+
+const users = require("./routes/api/users");
+const profile = require("./routes/api/profile");
 
 const app = express();
-const mongoose = require('mongoose');
-require('dotenv').config();
 
-mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_URI)
-
-app.use(bodyParser.urlencoded({extended:true}));
+// Body Parser Middleware
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
 
-app.use(express.static('client/build'))
+// DB config
+const db = require("./config/keys").mongoURI;
 
-// Models
-const { User } = require('./models/user');
+// Connect to MongoDB
+mongoose
+  .connect(db)
+  .then(() => console.log("MongoDB Connected"))
+  .catch(err => console.log(err));
 
-// Middlewares
-const { auth } = require('./middleware/auth');
-const { admin } = require('./middleware/admin');
+// Passport middleware
+app.use(passport.initialize());
 
+// Passport Config
+require("./config/passport")(passport);
 
-//=================================
-//              USERS
-//=================================
+// Use Routes
+app.use("/api/users", users);
+app.use("/api/profile", profile);
 
-app.get('/api/users/auth',auth,(req,res)=>{
-        res.status(200).json({
-            isAdmin: req.user.role === 0 ? false : true,
-            isAuth: true,
-            email: req.user.email,
-            name: req.user.name,
-            lastname: req.user.lastname,
-            role: req.user.role,
-            cart: req.user.cart,
-            history: req.user.history
-        })
-})
+const port = process.env.PORT || 5000;
 
-app.post('/api/users/register',(req,res)=>{
-    const user = new User(req.body);
-
-    user.save((err,doc)=>{
-        if(err) return res.json({success:false,err});
-        res.status(200).json({
-            success: true
-        })
-    })
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
-
-app.post('/api/users/login',(req,res)=>{
-    User.findOne({'email':req.body.email},(err,user)=>{
-        if(!user) return res.json({loginSuccess:false,message:'Auth failed, email not found'});
-
-        user.comparePassword(req.body.password,(err,isMatch)=>{
-            if(!isMatch) return res.json({loginSuccess:false,message:'Wrong password'});
-
-            user.generateToken((err,user)=>{
-                if(err) return res.status(400).send(err);
-                res.cookie('w_auth',user.token).status(200).json({
-                    loginSuccess: true
-                })
-            })
-        })
-    })
-})
-
-
-app.get('/api/users/logout',auth,(req,res)=>{
-    User.findOneAndUpdate(
-        { _id:req.user._id },
-        { token: '' },
-        (err,doc)=>{
-            if(err) return res.json({success:false,err});
-            return res.status(200).send({
-                success: true
-            })
-        }
-    )
-})
-
-// DEFAULT
-if(process.env.NODE_ENV === 'production') {
-  const path = require('path');
-  app.get('/*', (req, res) => {
-    res.sendfile(path.resolve(__dirnanme, '../client', 'build', 'index.html'))
-  })
-}
-
-
-const port = process.env.PORT || 3002;
-
-app.listen(port, () => console.log(`Server running on port ${port}`);)
