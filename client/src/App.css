@@ -703,3 +703,14 @@ footer p {
     width: 100%;
   }
 }
+
+.dashboard {
+  height: 70vh;
+}
+
+.dashboard p {
+  width: 70%;
+  margin: auto;
+  font-size: 1.5rem;
+  line-height: 44px;
+}

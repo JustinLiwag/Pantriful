@@ -7,7 +7,7 @@
     "client-install": "npm install --prefix newclient",
     "start": "node server/newServer.js",
     "server": "nodemon server/newServer.js",
-    "client": "npm run start --prefix newclient",
+    "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },

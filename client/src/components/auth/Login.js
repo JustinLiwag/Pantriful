@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
@@ -15,18 +18,36 @@ class Login extends Component {
     this.setState({ [e.target.name]: e.target.value });
   };
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
+
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+  }
+
   onSubmit = e => {
     e.preventDefault();
 
-    const userLogin = {
+    const userData = {
       email: this.state.email,
       password: this.state.password
     };
 
-    console.log(userLogin);
+    this.props.loginUser(userData);
   };
 
   render() {
+    const { errors } = this.state;
+
     return (
       <section className="register login container">
         <img className="container" src="images/login-img.png" alt="" />
@@ -41,6 +62,11 @@ class Login extends Component {
               value={this.state.email}
               onChange={this.onChange}
             />
+            {errors.email ? (
+              <div className="error-message">{errors.email}</div>
+            ) : (
+              <div />
+            )}
             <input
               type="password"
               placeholder="Password"
@@ -48,11 +74,17 @@ class Login extends Component {
               value={this.state.password}
               onChange={this.onChange}
             />
+            {errors.password ? (
+              <div className="error-message">{errors.password}</div>
+            ) : (
+              <div />
+            )}
             <input className="reg-submit" type="submit" />
           </form>
           <p id="member-login">
             <Link to="/register">
-              Not a member?<span className="pantriful-orange"> Sign up</span>
+              Not a member?
+              <span className="pantriful-orange"> Sign up</span>
             </Link>
           </p>
         </div>
@@ -61,4 +93,18 @@ class Login extends Component {
   }
 }
 
-export default Login;
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser }
+)(Login);
