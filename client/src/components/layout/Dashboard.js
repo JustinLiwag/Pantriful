@@ -1,6 +1,19 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Dashboard extends Component {
+  componentDidMount() {
+    if (!this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
+
+  componentDidUpdate() {
+    if (!this.props.auth.isAuthenticated) {
+      this.props.history.push("/");
+    }
+  }
+
   render() {
     return (
       <div className="container dashboard">
@@ -17,4 +30,9 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps)(Dashboard);
