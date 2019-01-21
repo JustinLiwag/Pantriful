@@ -695,12 +695,24 @@ footer p {
 @media screen and (max-width: 600px) {
   .reg-form h1 {
     text-align: center;
+    font-size: 2rem;
   }
   .reg-form p {
     text-align: center;
+    font-size: 1.2rem;
   }
   .register {
     width: 100%;
+  }
+  .reg-form input {
+    width: 100%;
+    padding: 10px 20px;
+    margin: 5px 0;
+    font-size: 18px;
+    outline: none;
+  }
+  .register {
+    margin-bottom: 500px;
   }
 }
 
@@ -713,4 +725,18 @@ footer p {
   margin: auto;
   font-size: 1.5rem;
   line-height: 44px;
+}
+
+@media screen and (max-width: 600px) {
+  .dashboard h1 {
+    font-size: 1.8rem;
+  }
+
+  .dashboard p {
+    width: 90%;
+    margin: auto;
+    font-size: 1.2rem;
+    line-height: 44px;
+    margin-bottom: 500px;
+  }
 }
