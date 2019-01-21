@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
+import TextFieldGroup from "../common/textFieldGroup";
 
 class Login extends Component {
   constructor() {
@@ -55,30 +56,22 @@ class Login extends Component {
           <h1>Login</h1>
           <p>Welcome Back.</p>
           <form onSubmit={this.onSubmit}>
-            <input
-              type="email"
+            <TextFieldGroup
               placeholder="Email"
               name="email"
+              type="email"
               value={this.state.email}
               onChange={this.onChange}
+              error={errors.email}
             />
-            {errors.email ? (
-              <div className="error-message">{errors.email}</div>
-            ) : (
-              <div />
-            )}
-            <input
+            <TextFieldGroup
               type="password"
               placeholder="Password"
               name="password"
               value={this.state.password}
               onChange={this.onChange}
+              error={errors.password}
             />
-            {errors.password ? (
-              <div className="error-message">{errors.password}</div>
-            ) : (
-              <div />
-            )}
             <input className="reg-submit" type="submit" />
           </form>
           <p id="member-login">

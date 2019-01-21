@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
+import TextFieldGroup from "../common/textFieldGroup";
 
 class Register extends Component {
   constructor() {
@@ -60,66 +61,46 @@ class Register extends Component {
             with us.
           </p>
           <form onSubmit={this.onSubmit}>
-            <input
+            <TextFieldGroup
               type="text"
               placeholder="First Name"
               name="name"
               value={this.state.name}
               onChange={this.onChange}
+              error={errors.name}
             />
-            {errors.name ? (
-              <div className="error-message">{errors.name}</div>
-            ) : (
-              <div />
-            )}
-            <input
+            <TextFieldGroup
               type="text"
               placeholder="Last Name"
               name="lastName"
               value={this.state.lastName}
               onChange={this.onChange}
+              error={errors.lastName}
             />
-            {errors.lastName ? (
-              <div className="error-message">{errors.lastName}</div>
-            ) : (
-              <div />
-            )}
-            <input
+            <TextFieldGroup
               type="email"
               placeholder="Email"
               name="email"
               value={this.state.email}
               onChange={this.onChange}
+              error={errors.email}
             />
-            {errors.email ? (
-              <div className="error-message">{errors.email}</div>
-            ) : (
-              <div />
-            )}
-            <input
+            <TextFieldGroup
               type="password"
               placeholder="Password"
               name="password"
               value={this.state.password}
               onChange={this.onChange}
+              error={errors.password}
             />
-            {errors.password ? (
-              <div className="error-message">{errors.password}</div>
-            ) : (
-              <div />
-            )}
-            <input
+            <TextFieldGroup
               type="password"
               placeholder="Confirm Password"
               name="password2"
               value={this.state.password2}
               onChange={this.onChange}
+              error={errors.password2}
             />
-            {errors.password2 ? (
-              <div className="error-message">{errors.password2}</div>
-            ) : (
-              <div />
-            )}
             <input type="submit" className="reg-submit" />
           </form>
           <p id="member-login">
