@@ -16,7 +16,7 @@ import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
-import CreateProfile from "./components/create-food-profile/CreateProfile";
+import CreateFoodProfile from "./components/create-food-profile/CreateFoodProfileContainer";
 
 import "./App.css";
 
@@ -56,8 +56,8 @@ class App extends Component {
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute
                   exact
-                  path="/create-profile"
-                  component={CreateProfile}
+                  path="/create-food-profile"
+                  component={CreateFoodProfile}
                 />
               </Switch>
             </div>

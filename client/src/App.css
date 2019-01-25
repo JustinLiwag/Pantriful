@@ -727,6 +727,13 @@ footer p {
   line-height: 44px;
 }
 
+.dashboard-welcome-p {
+  width: 50%;
+  margin: auto;
+  font-size: 1.2rem;
+  line-height: 36px;
+}
+
 @media screen and (max-width: 600px) {
   .dashboard h1 {
     font-size: 1.8rem;
@@ -739,4 +746,28 @@ footer p {
     line-height: 44px;
     margin-bottom: 500px;
   }
+}
+
+/* TEMP CSS FOR TOGGLE */
+
+.toggle-container {
+  /* border: 1px solid #ddd; */
+  padding: 1em;
+}
+.toggle-container .toggle-section {
+  /* border: 1px solid #d9d9d9; */
+  margin-bottom: 0.5em;
+  padding: 0.5em;
+}
+.toggle-container .toggle-section .toggle-header {
+  background-color: #e97961;
+  padding: 0.5em 0;
+}
+.toggle-container .toggle-section .toggle-content {
+  display: none;
+}
+.toggle-container .toggle-section .toggle-content.showing {
+  display: block;
+  background-color: #fab4a4;
+  padding: 25px;
 }

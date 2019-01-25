@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
+import DashboardContent from "./DashboardContent";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -21,15 +22,21 @@ class Dashboard extends Component {
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <h4>TODO: DISPLAY PROFILE</h4>;
+        dashboardContent = <DashboardContent profile={profile} />;
       } else {
         // User is logged in but has no profile
         dashboardContent = (
           <div>
-            <h2>Welcome {user.name}</h2>
-            <p>You have not yet setup a profile, please add some info</p>
-            <Link to="/create-profile" className="button about-button">
-              Create your food Profile
+            <h2>
+              Welcome {user.name} {user.lastName}
+            </h2>
+            <p className="dashboard-welcome-p">
+              Let’s make your food profile. Your food profile will help us
+              generate custom shopping lists for you as well as give you a great
+              snapshot of what your diet looks like.
+            </p>
+            <Link to="/create-food-profile" className="button about-button">
+              Get Started!
             </Link>
           </div>
         );
