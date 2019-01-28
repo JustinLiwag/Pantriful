@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
-const sslRedirect = require(‘heroku-ssl-redirect’);
+const sslRedirect = require("heroku-ssl-redirect");
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
