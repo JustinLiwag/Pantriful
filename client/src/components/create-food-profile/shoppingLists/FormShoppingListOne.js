@@ -21,14 +21,24 @@ class FormShoppingListOne extends Component {
     return result;
   };
 
+  formatContent = data => {
+    let result = [];
+    for (var i = 0; i < data.length; i++) {
+      result.push(<p key={i}>{data[i]}</p>);
+      console.log(result[i].props.children);
+    }
+    return result;
+  };
+
   render() {
     let data = this.props.values;
-
-    console.log(this.getKey(data, true));
+    const selectedData = this.getKey(data, true);
+    console.log(data.age);
     return (
       <div>
         <h1>Form Shopping List One</h1>
 
+        {this.formatContent(selectedData)}
         <button onClick={this.back}>Back</button>
         <button onClick={this.continue}>Continue</button>
       </div>

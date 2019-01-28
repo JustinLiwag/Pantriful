@@ -1,5 +1,5 @@
-import React, { Component, PureComponent } from "react";
-import CheckboxFieldGroup from "../../common/checkboxFieldGroup.js";
+import React, { PureComponent } from "react";
+// import CheckboxFieldGroup from "../../common/checkboxFieldGroup.js";
 
 import Chicken from "./foodCategories/Chicken";
 import Beef from "./foodCategories/Beef";

@@ -558,9 +558,9 @@ const foodProfileData = {
   vegetables: {
     // Correct Prices
     potato: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -568,9 +568,9 @@ const foodProfileData = {
     },
     // Correct Prices
     sweetPotato: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -578,9 +578,9 @@ const foodProfileData = {
     },
     // Correct Prices
     pumpkin: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -588,9 +588,9 @@ const foodProfileData = {
     },
     // Correct Prices
     cauliflower: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -598,9 +598,9 @@ const foodProfileData = {
     },
     // Correct Prices
     greenBeans: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -608,9 +608,9 @@ const foodProfileData = {
     },
     // Correct Prices
     spinach: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -618,9 +618,9 @@ const foodProfileData = {
     },
     // Correct Prices
     cabbage: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -628,9 +628,9 @@ const foodProfileData = {
     },
     // Correct Prices
     brusselSprouts: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -638,9 +638,9 @@ const foodProfileData = {
     },
     // Correct Prices
     peas: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -648,9 +648,9 @@ const foodProfileData = {
     },
     // Correct Prices
     broccoli: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -658,9 +658,9 @@ const foodProfileData = {
     },
     // Correct Prices
     carrots: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -668,9 +668,9 @@ const foodProfileData = {
     },
     // Correct Prices
     zucchini: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -678,9 +678,9 @@ const foodProfileData = {
     },
     // Correct Prices
     eggplant: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -688,9 +688,9 @@ const foodProfileData = {
     },
     // Correct Prices
     squash: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -698,9 +698,9 @@ const foodProfileData = {
     },
     // Correct Prices
     bellPeppers: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -708,9 +708,9 @@ const foodProfileData = {
     },
     // Correct Prices
     corn: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -718,9 +718,9 @@ const foodProfileData = {
     },
     // Correct Prices
     mushrooms: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -728,9 +728,9 @@ const foodProfileData = {
     },
     // Correct Prices
     tomatoes: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -738,9 +738,9 @@ const foodProfileData = {
     },
     // Correct Prices
     lettuce: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -748,9 +748,9 @@ const foodProfileData = {
     },
     // Correct Prices
     celery: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -758,9 +758,9 @@ const foodProfileData = {
     },
     // Correct Prices
     avocado: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -768,9 +768,9 @@ const foodProfileData = {
     },
     // Correct Prices
     onions: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -778,9 +778,9 @@ const foodProfileData = {
     },
     // Correct Prices
     bokChoy: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -788,9 +788,9 @@ const foodProfileData = {
     },
     // Correct Prices
     asparagus: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -800,9 +800,9 @@ const foodProfileData = {
   fruits: {
     // Correct Prices
     apples: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -810,9 +810,9 @@ const foodProfileData = {
     },
     // Correct Prices
     pears: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -820,9 +820,9 @@ const foodProfileData = {
     },
     // Correct Prices
     oranges: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -830,9 +830,9 @@ const foodProfileData = {
     },
     // Correct Prices
     grapfruit: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -840,9 +840,9 @@ const foodProfileData = {
     },
     // Correct Prices
     banana: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -850,9 +850,9 @@ const foodProfileData = {
     },
     // Correct Prices
     peach: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -860,9 +860,9 @@ const foodProfileData = {
     },
     // Correct Prices
     plum: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -870,9 +870,9 @@ const foodProfileData = {
     },
     // Correct Prices
     nectarine: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -880,9 +880,9 @@ const foodProfileData = {
     },
     // Correct Prices
     apricot: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -890,9 +890,9 @@ const foodProfileData = {
     },
     // Correct Prices
     mango: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -900,9 +900,9 @@ const foodProfileData = {
     },
     // Correct Prices
     pineapple: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -910,9 +910,9 @@ const foodProfileData = {
     },
     // Correct Prices
     grapes: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -920,9 +920,9 @@ const foodProfileData = {
     },
     // Correct Prices
     strawberries: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -930,9 +930,9 @@ const foodProfileData = {
     },
     // Correct Prices
     blueberries: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -940,9 +940,9 @@ const foodProfileData = {
     },
     // Correct Prices
     watermelon: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -950,9 +950,9 @@ const foodProfileData = {
     },
     // Correct Prices
     cantelope: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -962,9 +962,9 @@ const foodProfileData = {
   grains: {
     // Correct Prices
     slicedBread: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -972,9 +972,9 @@ const foodProfileData = {
     },
     // Correct Prices
     bagels: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -982,9 +982,9 @@ const foodProfileData = {
     },
     // Correct Prices
     oatmeal: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -992,9 +992,9 @@ const foodProfileData = {
     },
     // Correct Prices
     porridge: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1002,9 +1002,9 @@ const foodProfileData = {
     },
     // Correct Prices
     pitaBread: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1012,9 +1012,9 @@ const foodProfileData = {
     },
     // Correct Prices
     tortillas: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1022,9 +1022,9 @@ const foodProfileData = {
     },
     // Correct Prices
     pasta: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1032,9 +1032,9 @@ const foodProfileData = {
     },
     // Correct Prices
     noodles: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1042,9 +1042,9 @@ const foodProfileData = {
     },
     // Correct Prices
     muffins: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1052,9 +1052,9 @@ const foodProfileData = {
     },
     // Correct Prices
     cereal: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1062,9 +1062,9 @@ const foodProfileData = {
     },
     // Correct Prices
     quinoa: {
-      basePrice: { type: Number, default: 00 },
-      lowPrice: { type: Number, default: 00 },
-      upperPrice: { type: Number, default: 00 },
+      basePrice: { type: Number, default: 0 },
+      lowPrice: { type: Number, default: 0 },
+      upperPrice: { type: Number, default: 0 },
       measurementUnit: { type: String, default: "Bag" },
       active: { type: Boolean, default: false },
       amount: { type: Number },
@@ -1131,10 +1131,26 @@ const foodProfileData = {
   }
 };
 
+const selectedFoods = (selectedFoods, foodProfileData) => {
+  const raw = {
+    item1: { key: "sdfd", value: "sdfd" },
+    item2: { key: "sdfd", value: "sdfd" },
+    item3: { key: "sdfd", value: "sdfd" }
+  };
 
-const selectedFoods = (data) => {
-  return (
+  const allowed = ["item1", "item3"];
 
+  const filtered = Object.keys(raw)
+    .filter(key => allowed.includes(key))
+    .reduce((obj, key) => {
+      return {
+        ...obj,
+        [key]: raw[key]
+      };
+    }, {});
+
+  console.log(filtered);
+  return filtered;
 };
 
 export default selectedFoods;

@@ -4,93 +4,34 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 
 // Load Profile Model
-const Profile = require("../../models/FoodProfile");
+const MasterFoodProfile = require("../../models/MasterFoodProfile");
 // Load User Model
 const User = require("../../models/User");
 
 // Load Validations
 const validateProfileInput = require("../../validation/profile");
 
-// @route   GET api/profile/
+// @route   GET api/master-food-profile/
 // @desc    Get current users profile
-// @access  Private
-router.get(
-  "/",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    const errors = {};
-
-    Profile.findOne({ user: req.user.id })
-      .populate("user", ["name", "lastName"])
-      .then(profile => {
-        if (!profile) {
-          errors.noprofile = "There is no profile for this user";
-          return res.status(404).json(errors);
-        }
-        res.json(profile);
-      })
-      .catch(err => res.status(404).json(err));
-  }
-);
-
-// @route   GET api/profile/handle/:handle
-// @desc    Get profile by handle
-// @access  public
-router.get("/handle/:handle", (req, res) => {
+// @access  Public
+router.get("/", (req, res) => {
   const errors = {};
-  Profile.findOne({ username: req.params.handle })
+
+  MasterFoodProfile.findOne({ user: req.user.id })
     .populate("user", ["name", "lastName"])
     .then(profile => {
       if (!profile) {
         errors.noprofile = "There is no profile for this user";
-        res.status(404).json(errors);
+        return res.status(404).json(errors);
       }
-
       res.json(profile);
     })
     .catch(err => res.status(404).json(err));
 });
 
-// @route   GET api/profile/user/:user_id
-// @desc    Get profile by userID
-// @access  public
-router.get("/user/:user_id", (req, res) => {
-  const errors = {};
-  Profile.findOne({ user: req.params.user_id })
-    .populate("user", ["name", "lastName"])
-    .then(profile => {
-      if (!profile) {
-        errors.noprofile = "There is no profile for this user";
-        res.status(404).json(errors);
-      }
-
-      res.json(profile);
-    })
-    .catch(err =>
-      res.status(404).json({ profile: "There is no profile for this user" })
-    );
-});
-
-// @route   GET api/profile/all
-// @desc    Get all profile
-// @access  public
-router.get("/all", (req, res) => {
-  Profile.find()
-    .populate("user", ["name", "lastName"])
-    .then(profiles => {
-      if (!profiles) {
-        errors.noprofile = "There are no profiles";
-        return res.status(404).json(errors);
-      }
-
-      res.json(profiles);
-    })
-    .catch(err => res.status(404).json({ profile: "There are no profiles" }));
-});
-
 // @route   POST api/profile/
-// @desc    Create user profile
-// @access  Private
+// @desc    Create/Update Master Food Profile
+// @access  Public
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
@@ -119,6 +60,7 @@ router.post(
     if (req.body.completed) {
       profileFields.completed = req.body.completed;
     }
+
     // Diet Infromation
 
     // ------------------
@@ -420,7 +362,7 @@ router.post(
     if (req.body.cheeseSpread === "true")
       profileFields.dairy.cheeseSpread.active = true;
 
-    console.log(req.body);
+    console.log(profileFields.completed);
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {

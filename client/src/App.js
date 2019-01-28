@@ -17,6 +17,7 @@ import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateFoodProfile from "./components/create-food-profile/CreateFoodProfileContainer";
+import CreateFoodProfileTest from "./components/createFoodProfile/FormContainer";
 
 import "./App.css";
 
@@ -58,6 +59,11 @@ class App extends Component {
                   exact
                   path="/create-food-profile"
                   component={CreateFoodProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/create-food-profile-test"
+                  component={CreateFoodProfileTest}
                 />
               </Switch>
             </div>

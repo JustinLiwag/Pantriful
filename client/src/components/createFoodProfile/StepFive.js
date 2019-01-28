@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class FormShoppingListTwo extends Component {
+class StepFive extends Component {
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -14,7 +14,7 @@ class FormShoppingListTwo extends Component {
   render() {
     return (
       <div>
-        <h1>Form Shopping List Two</h1>
+        <h1>Step Five: Your Second shopping list!</h1>
         <button onClick={this.back}>Back</button>
         <button onClick={this.continue}>Continue</button>
       </div>
@@ -22,4 +22,4 @@ class FormShoppingListTwo extends Component {
   }
 }
 
-export default FormShoppingListTwo;
+export default StepFive;

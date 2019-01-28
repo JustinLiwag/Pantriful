@@ -34,20 +34,6 @@ class FormBasicInformation extends Component {
             onChange={handleChange("weight")}
             value={values.weight}
           />
-          <TextFieldGroup
-            type="text"
-            placeholder="Diet Orientation"
-            name="dietOrientation"
-            onChange={handleChange("dietOrientation")}
-            value={values.dietOrientation}
-          />
-          <TextFieldGroup
-            type="text"
-            placeholder="Dietary Restrictions"
-            name="dietaryRestrictions"
-            onChange={handleChange("dietaryRestrictions")}
-            value={values.dietaryRestrictions}
-          />
           <input type="submit" className="reg-submit" onClick={this.continue} />
         </form>
       </div>
