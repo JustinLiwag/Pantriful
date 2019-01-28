@@ -3,11 +3,15 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const path = require("path");
+const sslRedirect = require(‘heroku-ssl-redirect’);
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 
 const app = express();
+
+// SSL REDIRECT
+app.use(sslRedirect());
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({ extended: false }));
