@@ -368,9 +368,9 @@ const foodProfileSchema = mongoose.Schema({
     // Lamb / Turkey
     // Correct Prices
     lambChops: {
-      basePrice: { type: Number, default: 0 },
-      lowPrice: { type: Number, default: 0 },
-      upperPrice: { type: Number, default: 0 },
+      basePrice: { type: Number, default: 7.5 },
+      lowPrice: { type: Number, default: 7.25 },
+      upperPrice: { type: Number, default: 8 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       category: { type: String, default: "Lamb" },
@@ -379,9 +379,9 @@ const foodProfileSchema = mongoose.Schema({
     },
     // Correct Prices
     legofLamb: {
-      basePrice: { type: Number, default: 0 },
-      lowPrice: { type: Number, default: 0 },
-      upperPrice: { type: Number, default: 0 },
+      basePrice: { type: Number, default: 8.85 },
+      lowPrice: { type: Number, default: 8.5 },
+      upperPrice: { type: Number, default: 9.0 },
       measurementUnit: { type: String, default: "Pounds" },
       active: { type: Boolean, default: false },
       category: { type: String, default: "Lamb" },

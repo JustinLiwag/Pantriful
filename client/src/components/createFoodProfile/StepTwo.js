@@ -37,7 +37,55 @@ class StepTwo extends Component {
     return selected;
   };
 
+  getCategoryItems = (array, value) => {
+    const result = array.filter(item => item.category.indexOf(value) !== -1);
+    return result;
+  };
+
+  createCheckboxItems = array => {
+    let result = [];
+    for (var i = 0; i < array.length; i++) {
+      result.push({
+        name: array[i].item_id,
+        label: array[i].name
+      });
+    }
+    console.log(result);
+    return result;
+  };
+
   render() {
+    const chickenItemsSorted = this.getCategoryItems(
+      this.props.foodProfile,
+      "Chicken"
+    );
+
+    const beefItemsSorted = this.getCategoryItems(
+      this.props.foodProfile,
+      "Beef"
+    );
+
+    const porkItemsSorted = this.getCategoryItems(
+      this.props.foodProfile,
+      "Pork"
+    );
+
+    const lambItemsSorted = this.getCategoryItems(
+      this.props.foodProfile,
+      "Lamb"
+    );
+
+    const turkeyItemsSorted = this.getCategoryItems(
+      this.props.foodProfile,
+      "Turkey"
+    );
+
+    const seafoodItemsSorted = this.getCategoryItems(
+      this.props.foodProfile,
+      "Seafood"
+    );
+
+    let result = chickenItemsSorted.map(a => a.name);
     const { values, handleChange } = this.props;
     return (
       <div className="">
@@ -61,8 +109,115 @@ class StepTwo extends Component {
                   : "toggle-content"
               }
             >
-              {values.checkboxes.protein.chicken.map(item => (
-                <label key={item.key}>
+              {this.createCheckboxItems(chickenItemsSorted).map(item => (
+                <label key={item.name}>
+                  <Checkbox
+                    type={"checkbox"}
+                    name={item.name}
+                    checked={values.checkedItems.get(item.name)}
+                    onChange={handleChange}
+                  />
+                  {item.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <div className="toggle-section">
+            <div onClick={() => this.clickOpen(2)} className="toggle-header">
+              Beef
+            </div>
+            <div
+              className={
+                this.state.shownIndex === 2
+                  ? "toggle-content showing"
+                  : "toggle-content"
+              }
+            >
+              {this.createCheckboxItems(beefItemsSorted).map(item => (
+                <label key={item.name}>
+                  <Checkbox
+                    type={"checkbox"}
+                    name={item.name}
+                    checked={values.checkedItems.get(item.name)}
+                    onChange={handleChange}
+                  />
+                  {item.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <div className="toggle-section">
+            <div onClick={() => this.clickOpen(3)} className="toggle-header">
+              Pork
+            </div>
+            <div
+              className={
+                this.state.shownIndex === 3
+                  ? "toggle-content showing"
+                  : "toggle-content"
+              }
+            >
+              {this.createCheckboxItems(porkItemsSorted).map(item => (
+                <label key={item.name}>
+                  <Checkbox
+                    type={"checkbox"}
+                    name={item.name}
+                    checked={values.checkedItems.get(item.name)}
+                    onChange={handleChange}
+                  />
+                  {item.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <div className="toggle-section">
+            <div onClick={() => this.clickOpen(4)} className="toggle-header">
+              Lamb/Turkey
+            </div>
+            <div
+              className={
+                this.state.shownIndex === 4
+                  ? "toggle-content showing"
+                  : "toggle-content"
+              }
+            >
+              {this.createCheckboxItems(lambItemsSorted).map(item => (
+                <label key={item.name}>
+                  <Checkbox
+                    type={"checkbox"}
+                    name={item.name}
+                    checked={values.checkedItems.get(item.name)}
+                    onChange={handleChange}
+                  />
+                  {item.label}
+                </label>
+              ))}
+              {this.createCheckboxItems(turkeyItemsSorted).map(item => (
+                <label key={item.name}>
+                  <Checkbox
+                    type={"checkbox"}
+                    name={item.name}
+                    checked={values.checkedItems.get(item.name)}
+                    onChange={handleChange}
+                  />
+                  {item.label}
+                </label>
+              ))}
+            </div>
+          </div>
+          <div className="toggle-section">
+            <div onClick={() => this.clickOpen(5)} className="toggle-header">
+              Seafood
+            </div>
+            <div
+              className={
+                this.state.shownIndex === 5
+                  ? "toggle-content showing"
+                  : "toggle-content"
+              }
+            >
+              {this.createCheckboxItems(seafoodItemsSorted).map(item => (
+                <label key={item.name}>
                   <Checkbox
                     type={"checkbox"}
                     name={item.name}

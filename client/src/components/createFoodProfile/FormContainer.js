@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getFoodProfile } from "../../actions/foodProfileActions";
 
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
@@ -7,8 +8,6 @@ import StepThree from "./StepThree";
 import StepFour from "./StepFour";
 import StepFive from "./StepFive";
 import StepSix from "./StepSix";
-
-import checkboxes from "./checkboxes";
 
 class CreateProfile extends Component {
   state = {
@@ -21,9 +20,12 @@ class CreateProfile extends Component {
     checkedItems: new Map()
   };
 
+  componentDidMount = () => {
+    this.props.getFoodProfile();
+  };
+
   shouldComponentUpdate = () => {
     if (this.getByValue(this.state.checkedItems, true)) {
-      console.log(this.getByValue(this.state.checkedItems, true));
       return true;
     }
   };
@@ -70,6 +72,8 @@ class CreateProfile extends Component {
   };
 
   render() {
+    const { foodProfile, loading } = this.props.foodProfile;
+
     const { step } = this.state;
     const {
       age,
@@ -85,70 +89,81 @@ class CreateProfile extends Component {
       weight,
       dietOrientation,
       dietaryRestrictions,
-      checkedItems,
-      // Checkboxes loaded into components via values variable
-      checkboxes
+      checkedItems
     };
-    switch (step) {
-      case 1:
-        return (
-          <StepOne
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 2:
-        return (
-          <StepTwo
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleCheckboxChange}
-            values={values}
-          />
-        );
-      case 3:
-        return (
-          <StepThree
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 4:
-        return (
-          <StepFour
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 5:
-        return (
-          <StepFive
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-          />
-        );
-      case 6:
-        return (
-          <StepSix
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleChange}
-            values={values}
-            selectedValues={this.getByValue(this.state.checkedItems, true)}
-          />
-        );
-      default:
-        return null;
+
+    if (foodProfile === null || loading) {
+      return <h1>Loading...</h1>;
+    } else {
+      switch (step) {
+        case 1:
+          return (
+            <StepOne
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
+        case 2:
+          return (
+            <StepTwo
+              foodProfile={foodProfile}
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleCheckboxChange}
+              values={values}
+            />
+          );
+        case 3:
+          return (
+            <StepThree
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
+        case 4:
+          return (
+            <StepFour
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
+        case 5:
+          return (
+            <StepFive
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+            />
+          );
+        case 6:
+          return (
+            <StepSix
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              handleChange={this.handleChange}
+              values={values}
+              selectedValues={this.getByValue(this.state.checkedItems, true)}
+            />
+          );
+        default:
+          return null;
+      }
     }
   }
 }
 
-export default connect(null)(CreateProfile);
+const mapStateToProps = state => ({
+  foodProfile: state.foodProfile
+});
+
+export default connect(
+  mapStateToProps,
+  { getFoodProfile }
+)(CreateProfile);
