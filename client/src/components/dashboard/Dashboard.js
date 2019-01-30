@@ -38,23 +38,12 @@ class Dashboard extends Component {
             <Link to="/create-food-profile" className="button about-button">
               Get Started!
             </Link>
-            <Link
-              to="/create-food-profile-test"
-              className="button about-button"
-            >
-              Test Food Profile
-            </Link>
           </div>
         );
       }
     }
 
-    return (
-      <div className="container">
-        <h1>Dashboard</h1>
-        {dashboardContent}
-      </div>
-    );
+    return <div className="container">{dashboardContent}</div>;
   }
 }
 

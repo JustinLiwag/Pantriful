@@ -17,7 +17,11 @@ class CreateProfile extends Component {
     weight: "",
     dietOrientation: "",
     dietaryRestrictions: "",
-    checkedItems: new Map()
+    checkedItems: new Map(),
+    checkedShoppingItemsOne: new Map(),
+    checkedShoppingItemsTwo: new Map(),
+    shoppingListOne: [],
+    shoppingListTwo: []
   };
 
   componentDidMount = () => {
@@ -46,17 +50,49 @@ class CreateProfile extends Component {
     });
   };
 
-  // Handle fields change
+  // Handle text fields change
   handleChange = input => e => {
     this.setState({ [input]: e.target.value });
   };
 
-  // Handle Checkbox Action
+  // Handle checkbox fields change
   handleCheckboxChange = e => {
     const item = e.target.name;
     const isChecked = e.target.checked;
+    if (!isChecked) {
+      this.setState(prevState => ({
+        checkedShoppingItemsOne: prevState.checkedShoppingItemsOne.set(
+          item,
+          false
+        )
+      }));
+    }
     this.setState(prevState => ({
       checkedItems: prevState.checkedItems.set(item, isChecked)
+    }));
+  };
+
+  // Handle checkbox fields change for Shopping List One
+  handleCheckboxChangeShoppingListOne = e => {
+    const item = e.target.name;
+    const isChecked = e.target.checked;
+    this.setState(prevState => ({
+      checkedShoppingItemsOne: prevState.checkedShoppingItemsOne.set(
+        item,
+        isChecked
+      )
+    }));
+  };
+
+  // Handle checkbox fields change for Shopping List Two
+  handleCheckboxChangeShoppingListTwo = e => {
+    const item = e.target.name;
+    const isChecked = e.target.checked;
+    this.setState(prevState => ({
+      checkedShoppingItemsTwo: prevState.checkedShoppingItemsTwo.set(
+        item,
+        isChecked
+      )
     }));
   };
 
@@ -71,6 +107,34 @@ class CreateProfile extends Component {
     return selected;
   };
 
+  // Filters through Food Profile for all items within  a category (eg. Chicken, Beef)
+  getCategoryItems = (array, value) => {
+    const result = array.filter(item => item.category.indexOf(value) !== -1);
+    return result;
+  };
+
+  // Create pantry of selected items
+  createPantry = (masterFoodProfile, checkedItems) => {
+    const result = [];
+    checkedItems.map(e => {
+      const object = masterFoodProfile.filter(item => item.item_id === e);
+      result.push(object);
+    });
+    return result;
+  };
+
+  // Create Checkbox Items
+  createCheckboxItems = array => {
+    let result = [];
+    for (var i = 0; i < array.length; i++) {
+      result.push({
+        name: array[i].item_id,
+        label: array[i].name
+      });
+    }
+    return result;
+  };
+
   render() {
     const { foodProfile, loading } = this.props.foodProfile;
 
@@ -81,7 +145,11 @@ class CreateProfile extends Component {
       weight,
       dietOrientation,
       dietaryRestrictions,
-      checkedItems
+      checkedItems,
+      shoppingListOne,
+      shoppingListTwo,
+      checkedShoppingItemsOne,
+      checkedShoppingItemsTwo
     } = this.state;
     const values = {
       age,
@@ -89,7 +157,11 @@ class CreateProfile extends Component {
       weight,
       dietOrientation,
       dietaryRestrictions,
-      checkedItems
+      checkedItems,
+      shoppingListOne,
+      shoppingListTwo,
+      checkedShoppingItemsOne,
+      checkedShoppingItemsTwo
     };
 
     if (foodProfile === null || loading) {
@@ -98,58 +170,81 @@ class CreateProfile extends Component {
       switch (step) {
         case 1:
           return (
+            // Get Basic Information for Food Profile (Age, Height, Weight)
+            // TODO: Diet Orientation and Dietary Restrictions
             <StepOne
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleChange}
               values={values}
+              handleChange={this.handleChange}
             />
           );
         case 2:
           return (
+            // Build your Pantry. Contains Proteins
             <StepTwo
-              foodProfile={foodProfile}
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleCheckboxChange}
               values={values}
+              createCheckboxItems={this.createCheckboxItems}
+              getCategoryItems={this.getCategoryItems}
+              foodProfile={foodProfile}
+              handleCheckboxChange={this.handleCheckboxChange}
             />
           );
         case 3:
+          // Continue building your Pantry. Contains the rest of the Food Profile
           return (
             <StepThree
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleChange}
               values={values}
+              createCheckboxItems={this.createCheckboxItems}
+              getCategoryItems={this.getCategoryItems}
+              foodProfile={foodProfile}
+              handleCheckboxChange={this.handleCheckboxChange}
             />
           );
         case 4:
           return (
+            // Build your first shopping list with your Pantry
             <StepFour
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleChange}
               values={values}
+              handleCheckboxChangeShoppingListOne={
+                this.handleCheckboxChangeShoppingListOne
+              }
+              getCategoryItems={this.getCategoryItems}
+              createCheckboxItems={this.createCheckboxItems}
+              foodProfile={foodProfile}
+              pantry={this.createPantry(
+                foodProfile,
+                this.getByValue(this.state.checkedItems, true)
+              )}
+              getByValue={this.getByValue}
+              selectedValues={this.getByValue(checkedShoppingItemsOne, true)}
             />
           );
         case 5:
+          // Build your second shopping list with your Pantry
           return (
             <StepFive
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleChange}
               values={values}
+              handleChange={this.handleChange}
             />
           );
         case 6:
           return (
+            // Confirmation and submit profile
             <StepSix
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              handleChange={this.handleChange}
               values={values}
-              selectedValues={this.getByValue(this.state.checkedItems, true)}
+              handleChange={this.handleChange}
+              selectedValues={this.getByValue(checkedItems, true)}
             />
           );
         default:

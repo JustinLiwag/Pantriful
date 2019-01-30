@@ -26,6 +26,7 @@ class StepOne extends Component {
     this.props.prevStep();
   };
 
+  // Builds the input forms
   buildForm = fields => {
     const { values, handleChange } = this.props;
     const result = [];
