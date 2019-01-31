@@ -66,6 +66,14 @@ class CreateProfile extends Component {
           false
         )
       }));
+      var array = [...this.state.shoppingListOne]; // make a separate copy of the array
+      var index = array.indexOf(
+        this.getNameItem(this.state.shoppingListOne, e.target.name)[0]
+      );
+      if (index !== -1) {
+        array.splice(index, 1);
+        this.setState({ shoppingListOne: array });
+      }
     }
     this.setState(prevState => ({
       checkedItems: prevState.checkedItems.set(item, isChecked)
@@ -73,7 +81,7 @@ class CreateProfile extends Component {
   };
 
   // Handle checkbox fields change for Shopping List One
-  handleCheckboxChangeShoppingListOne = e => {
+  handleCheckboxChangeShoppingListOneTest = e => {
     const item = e.target.name;
     const isChecked = e.target.checked;
     this.setState(prevState => ({
@@ -82,6 +90,37 @@ class CreateProfile extends Component {
         isChecked
       )
     }));
+  };
+
+  handleCheckboxChangeShoppingListOne = e => {
+    if (e.target.checked) {
+      const rawData = this.getNameItem(
+        this.props.foodProfile.foodProfile,
+        e.target.name
+      );
+      const shoppingListObject = {
+        item_id: rawData[0].item_id,
+        name: rawData[0].name,
+        measurementUnit: rawData[0].measurementUnit,
+        notes: "",
+        basePrice: rawData[0].basePrice,
+        lowPrice: rawData[0].lowPrice,
+        upperPrice: rawData[0].upperPrice,
+        amount: ""
+      };
+      var newArray = this.state.shoppingListOne.concat(shoppingListObject);
+      this.setState({ shoppingListOne: newArray });
+    }
+    if (!e.target.checked) {
+      var array = [...this.state.shoppingListOne]; // make a separate copy of the array
+      var index = array.indexOf(
+        this.getNameItem(this.state.shoppingListOne, e.target.name)[0]
+      );
+      if (index !== -1) {
+        array.splice(index, 1);
+        this.setState({ shoppingListOne: array });
+      }
+    }
   };
 
   // Handle checkbox fields change for Shopping List Two
@@ -113,6 +152,11 @@ class CreateProfile extends Component {
     return result;
   };
 
+  getNameItem = (array, item_id) => {
+    const result = array.filter(item => item.item_id.indexOf(item_id) !== -1);
+    return result;
+  };
+
   // Create pantry of selected items
   createPantry = (masterFoodProfile, checkedItems) => {
     const result = [];
@@ -135,9 +179,34 @@ class CreateProfile extends Component {
     return result;
   };
 
+  // Selected Items will be {{item}, {item2}, ...}
+  // Food Profile is [{item1}, {item2}]
+  createShoppingListOne = (selectedItems, foodProfile) => {
+    const result = [];
+    for (var i = 0; i < selectedItems.length; i++) {
+      const NewObject = [];
+      const rawData = this.getNameItem(foodProfile, selectedItems[i]);
+      console.log("RAW DATA:", rawData);
+      const shoppingListObject = {
+        item_id: rawData[0].item_id,
+        name: rawData[0].name,
+        measurementUnit: rawData[0].measurementUnit,
+        notes: "",
+        basePrice: rawData[0].basePrice,
+        lowPrice: rawData[0].lowPrice,
+        upperPrice: rawData[0].upperPrice,
+        amount: ""
+      };
+      console.log("ITEM TO BE PUSHED TO STATE: ", shoppingListObject);
+      console.log("STATE: ", this.state);
+      result.push(shoppingListObject);
+    }
+    console.log("RESULT: ", result);
+    return result;
+  };
+
   render() {
     const { foodProfile, loading } = this.props.foodProfile;
-
     const { step } = this.state;
     const {
       age,
@@ -163,6 +232,8 @@ class CreateProfile extends Component {
       checkedShoppingItemsOne,
       checkedShoppingItemsTwo
     };
+
+    const selectedItemsState = this.getByValue(checkedShoppingItemsOne, true);
 
     if (foodProfile === null || loading) {
       return <h1>Loading...</h1>;
@@ -223,6 +294,7 @@ class CreateProfile extends Component {
                 this.getByValue(this.state.checkedItems, true)
               )}
               getByValue={this.getByValue}
+              getNameItem={this.getNameItem}
               selectedValues={this.getByValue(checkedShoppingItemsOne, true)}
             />
           );

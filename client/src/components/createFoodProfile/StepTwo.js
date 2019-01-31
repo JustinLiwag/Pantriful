@@ -34,7 +34,6 @@ class StepTwo extends Component {
       createCheckboxItems,
       getCategoryItems
     } = this.props;
-
     return (
       <div className="">
         <h1>Step Two: Building your Food Profile</h1>

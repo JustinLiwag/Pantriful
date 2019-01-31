@@ -33,7 +33,53 @@ class StepFour extends Component {
     return result;
   };
 
+  shoppingListChecked = (shoppingList, item) => {
+    console.log("SHOPPING LIST STATE:", shoppingList);
+    console.log("ITEM: ", item);
+    console.log(this.props.getNameItem(shoppingList, item));
+    if (this.props.getNameItem(shoppingList, item).length < 1) {
+      return false;
+    }
+    if (this.props.getNameItem(shoppingList, item)) {
+      console.log(this.props.getNameItem(shoppingList, item)[0]);
+      return true;
+    }
+    return false;
+  };
+
+  buildShoppingList = selectedPantryItems => {
+    const result = [];
+    for (var i = 0; i < selectedPantryItems.length; i++) {
+      result.push(
+        <div key={i}>
+          <input
+            className="shopping-cart-input"
+            type="text"
+            placeholder="Qty"
+          />
+          <p className="shopping-cart-p shopping-cart-description">
+            {selectedPantryItems[i].measurementUnit} of{" "}
+            {selectedPantryItems[i].name}
+          </p>
+          <p className="shopping-cart-p shopping-cart-price">
+            $ {selectedPantryItems[i].lowPrice} - ${" "}
+            {selectedPantryItems[i].upperPrice}
+            <span className="arrow down" />
+            {/*<span className="arrow left" />*/}
+          </p>
+          <input
+            id="shopping-cart-input-2"
+            type="text"
+            placeholder="Notes (e.g. I want fuji Apples)"
+          />
+        </div>
+      );
+    }
+    return result;
+  };
+
   render() {
+    console.log(this);
     const {
       foodProfile,
       selectedValues,
@@ -41,10 +87,9 @@ class StepFour extends Component {
       pantry,
       values,
       handleCheckboxChangeShoppingListOne,
-      getCategoryItems
+      getCategoryItems,
+      shoppingListOne
     } = this.props;
-    console.log(this.processPantryItems(pantry));
-    console.log(pantry);
     const { checkedShoppingItemsOne } = this.props.values;
     return (
       <div>
@@ -72,7 +117,10 @@ class StepFour extends Component {
                       key={item.item_id}
                       type={"checkbox"}
                       name={item.name}
-                      checked={values.checkedShoppingItemsOne.get(item.name)}
+                      checked={this.shoppingListChecked(
+                        values.shoppingListOne,
+                        item.name
+                      )}
                       onChange={handleCheckboxChangeShoppingListOne}
                     />
                     {item.label}
@@ -83,8 +131,11 @@ class StepFour extends Component {
           </div>
           <div />
         </div>
-        <div>
+        <div className="container">
           <h1>Shopping List</h1>
+          <div className="shopping-cart-container">
+            {this.buildShoppingList(values.shoppingListOne)}
+          </div>
           <p>{selectedValues}</p>
         </div>
         <button onClick={this.back}>Back</button>
