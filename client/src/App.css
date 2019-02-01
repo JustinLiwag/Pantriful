@@ -816,7 +816,7 @@ span {
   outline: none;
 }
 
-.shopping-cart-input-2-display {
+#shopping-cart-input-2-display {
   display: none;
 }
 
@@ -846,4 +846,8 @@ span {
   border-right: 10px solid transparent;
   border-bottom: 10px solid transparent;
   border-left: 10px solid #e97961;
+}
+
+.notes-highlight {
+  color: red;
 }

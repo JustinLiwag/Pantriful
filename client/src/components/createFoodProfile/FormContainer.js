@@ -18,8 +18,6 @@ class CreateProfile extends Component {
     dietOrientation: "",
     dietaryRestrictions: "",
     checkedItems: new Map(),
-    checkedShoppingItemsOne: new Map(),
-    checkedShoppingItemsTwo: new Map(),
     shoppingListOne: [],
     shoppingListTwo: []
   };
@@ -55,16 +53,30 @@ class CreateProfile extends Component {
     this.setState({ [input]: e.target.value });
   };
 
+  handleShoppingCartAmountChange = input => e => {
+    const { name, value } = e.target;
+    var data = [...this.state.shoppingListOne];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].amount = value;
+    this.setState({ data });
+    console.log(this.state.shoppingListOne);
+  };
+
+  handleShoppingCartNotesChange = input => e => {
+    const { name, value } = e.target;
+    var data = [...this.state.shoppingListOne];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].notes = value;
+    this.setState({ data });
+  };
+
   // Handle checkbox fields change
   handleCheckboxChange = e => {
     const item = e.target.name;
     const isChecked = e.target.checked;
     if (!isChecked) {
       this.setState(prevState => ({
-        checkedShoppingItemsOne: prevState.checkedShoppingItemsOne.set(
-          item,
-          false
-        )
+        checkedItems: prevState.checkedItems.set(item, false)
       }));
       var array = [...this.state.shoppingListOne]; // make a separate copy of the array
       var index = array.indexOf(
@@ -106,7 +118,7 @@ class CreateProfile extends Component {
         basePrice: rawData[0].basePrice,
         lowPrice: rawData[0].lowPrice,
         upperPrice: rawData[0].upperPrice,
-        amount: ""
+        amount: 1
       };
       var newArray = this.state.shoppingListOne.concat(shoppingListObject);
       this.setState({ shoppingListOne: newArray });
@@ -157,6 +169,11 @@ class CreateProfile extends Component {
     return result;
   };
 
+  getNotesItem = (array, value) => {
+    const result = array.filter(item => item.item_ids.indexOf(value) !== -1);
+    return result;
+  };
+
   // Create pantry of selected items
   createPantry = (masterFoodProfile, checkedItems) => {
     const result = [];
@@ -195,7 +212,7 @@ class CreateProfile extends Component {
         basePrice: rawData[0].basePrice,
         lowPrice: rawData[0].lowPrice,
         upperPrice: rawData[0].upperPrice,
-        amount: ""
+        amount: 1
       };
       console.log("ITEM TO BE PUSHED TO STATE: ", shoppingListObject);
       console.log("STATE: ", this.state);
@@ -205,7 +222,22 @@ class CreateProfile extends Component {
     return result;
   };
 
+  getTotal = list => {
+    let lower = 0;
+    let upper = 0;
+    for (var i = 0; i < this.state[list].length; i++) {
+      lower += this.state[list][i].amount * this.state[list][i].lowPrice;
+      upper += this.state[list][i].amount * this.state[list][i].upperPrice;
+    }
+    return (
+      <p key="total">
+        Estimated Total: $ {lower} - $ {upper}
+      </p>
+    );
+  };
+
   render() {
+    console.log(this.state.shoppingListOne);
     const { foodProfile, loading } = this.props.foodProfile;
     const { step } = this.state;
     const {
@@ -232,8 +264,6 @@ class CreateProfile extends Component {
       checkedShoppingItemsOne,
       checkedShoppingItemsTwo
     };
-
-    const selectedItemsState = this.getByValue(checkedShoppingItemsOne, true);
 
     if (foodProfile === null || loading) {
       return <h1>Loading...</h1>;
@@ -295,7 +325,12 @@ class CreateProfile extends Component {
               )}
               getByValue={this.getByValue}
               getNameItem={this.getNameItem}
-              selectedValues={this.getByValue(checkedShoppingItemsOne, true)}
+              getNotesItem={this.getNotesItem}
+              handleShoppingCartAmountChange={
+                this.handleShoppingCartAmountChange
+              }
+              handleShoppingCartNotesChange={this.handleShoppingCartNotesChange}
+              getTotal={this.getTotal}
             />
           );
         case 5:

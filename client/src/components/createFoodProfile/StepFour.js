@@ -3,7 +3,8 @@ import Checkbox from "./Checkbox";
 
 class StepFour extends Component {
   state = {
-    shownIndex: 1
+    shownIndex: 1,
+    shoppingListOpenIndex: 0
   };
 
   continue = e => {
@@ -17,11 +18,22 @@ class StepFour extends Component {
   };
 
   clickOpen = i => {
+    console.log(i);
     if (this.state.shownIndex !== i) {
       this.setState({ shownIndex: i });
     }
     if (this.state.shownIndex === i) {
       this.setState({ shownIndex: -1 });
+    }
+  };
+
+  // Handle Item Container Open/Close
+  clickOpenShoppingList = i => {
+    if (this.state.shoppingListOpenIndex !== i) {
+      this.setState({ shoppingListOpenIndex: i });
+    }
+    if (this.state.shoppingListOpenIndex === i) {
+      this.setState({ shoppingListOpenIndex: -1 });
     }
   };
 
@@ -34,14 +46,10 @@ class StepFour extends Component {
   };
 
   shoppingListChecked = (shoppingList, item) => {
-    console.log("SHOPPING LIST STATE:", shoppingList);
-    console.log("ITEM: ", item);
-    console.log(this.props.getNameItem(shoppingList, item));
     if (this.props.getNameItem(shoppingList, item).length < 1) {
       return false;
     }
     if (this.props.getNameItem(shoppingList, item)) {
-      console.log(this.props.getNameItem(shoppingList, item)[0]);
       return true;
     }
     return false;
@@ -49,26 +57,73 @@ class StepFour extends Component {
 
   buildShoppingList = selectedPantryItems => {
     const result = [];
-    for (var i = 0; i < selectedPantryItems.length; i++) {
+
+    for (let i = 0; i < selectedPantryItems.length; i++) {
       result.push(
-        <div key={i}>
+        <div key={selectedPantryItems[i].name + "container"}>
           <input
+            key={i}
+            name={selectedPantryItems[i].name}
+            onChange={this.props.handleShoppingCartAmountChange(
+              selectedPantryItems[i].name
+            )}
+            value={
+              this.props.getNameItem(
+                this.props.values.shoppingListOne,
+                selectedPantryItems[i].item_id
+              )[0].amount
+            }
             className="shopping-cart-input"
             type="text"
             placeholder="Qty"
           />
-          <p className="shopping-cart-p shopping-cart-description">
+          <p
+            key={selectedPantryItems[i].name + "desc"}
+            className="shopping-cart-p shopping-cart-description"
+            onClick={() => this.clickOpenShoppingList(i)}
+          >
             {selectedPantryItems[i].measurementUnit} of{" "}
-            {selectedPantryItems[i].name}
+            {selectedPantryItems[i].name}{" "}
+            {this.props.getNameItem(
+              this.props.values.shoppingListOne,
+              selectedPantryItems[i].item_id
+            )[0].notes ? (
+              <span className="notes-highlight"> (Notes)</span>
+            ) : null}
           </p>
-          <p className="shopping-cart-p shopping-cart-price">
-            $ {selectedPantryItems[i].lowPrice} - ${" "}
-            {selectedPantryItems[i].upperPrice}
-            <span className="arrow down" />
-            {/*<span className="arrow left" />*/}
+          <p
+            className="shopping-cart-p shopping-cart-price"
+            onClick={() => this.clickOpenShoppingList(i)}
+          >
+            $ {selectedPantryItems[i].lowPrice * selectedPantryItems[i].amount}{" "}
+            - ${" "}
+            {selectedPantryItems[i].upperPrice * selectedPantryItems[i].amount}
+            <span
+              onClick={() => this.clickOpenShoppingList(i)}
+              className={
+                this.state.shoppingListOpenIndex === i
+                  ? "arrow down"
+                  : "arrow left"
+              }
+            />
           </p>
           <input
-            id="shopping-cart-input-2"
+            key={selectedPantryItems[i].name + "notes"}
+            name={selectedPantryItems[i].name}
+            onChange={this.props.handleShoppingCartNotesChange(
+              selectedPantryItems[i].name
+            )}
+            value={
+              this.props.getNameItem(
+                this.props.values.shoppingListOne,
+                selectedPantryItems[i].item_id
+              )[0].notes
+            }
+            id={
+              this.state.shoppingListOpenIndex === i
+                ? "shopping-cart-input-2"
+                : "shopping-cart-input-2-display"
+            }
             type="text"
             placeholder="Notes (e.g. I want fuji Apples)"
           />
@@ -79,7 +134,6 @@ class StepFour extends Component {
   };
 
   render() {
-    console.log(this);
     const {
       foodProfile,
       selectedValues,
@@ -137,6 +191,7 @@ class StepFour extends Component {
             {this.buildShoppingList(values.shoppingListOne)}
           </div>
           <p>{selectedValues}</p>
+          {this.props.getTotal("shoppingListOne")}
         </div>
         <button onClick={this.back}>Back</button>
         <button onClick={this.continue}>Continue</button>
