@@ -3,6 +3,11 @@ import TextFieldGroup from "../common/textFieldGroup";
 
 const FIELDS = [
   {
+    placeholder: "Username",
+    name: "username",
+    type: "text"
+  },
+  {
     placeholder: "Age",
     name: "age",
     type: "number"

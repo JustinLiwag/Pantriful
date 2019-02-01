@@ -5,11 +5,116 @@ const passport = require("passport");
 
 // Load Profile Model
 const Profile = require("../../models/FoodProfile");
+const ProfileTest = require("../../models/Profile");
 // Load User Model
 const User = require("../../models/User");
 
 // Load Validations
 const validateProfileInput = require("../../validation/profile");
+
+// ----------------------------------
+//  NEW PROFILE ROUTES
+// ----------------------------------
+
+// @route   POST api/profile/food-profile-test
+// @desc    Create users profile
+// @access  Private
+router.post(
+  "/food-profile-test",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("USER: ", req.user);
+    console.log("BODY: ", req.body);
+
+    const profileFields = {};
+    profileFields.user = req.user.id;
+    if (req.body.username) profileFields.username = req.body.username;
+    if (req.body.age) profileFields.age = req.body.age;
+    if (req.body.height) profileFields.height = req.body.height;
+    if (req.body.weight) profileFields.weight = req.body.weight;
+
+    console.log("PROFILE FIELDS: ", profileFields);
+
+    ProfileTest.findOne({ user: req.user.id }).then(profile => {
+      // If profile exists...
+      if (profile) {
+        // Update the profile
+        res.json({ profileExists: true });
+      } else {
+        // Create new profile
+        ProfileTest.findOne({ username: profileFields.username })
+          .populate("user", ["name"])
+          .then(profile => {
+            if (profile) {
+              res.status(400).json({ error: "Username already exists" });
+            }
+
+            new ProfileTest(profileFields)
+              .save()
+              .then(profile => res.json(profile));
+          });
+      }
+    });
+  }
+);
+
+// @route   POST api/profile/food-profile-test/foodProfile
+// @desc    Add pantry to users profile
+// @access  Private
+router.post(
+  "/food-profile-test/foodProfile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    ProfileTest.findOne({ user: req.user.id })
+      .then(profile => {
+        profile.length = 0;
+        // If multiple items in food profile
+        if (req.body.foodProfile.length > 0) {
+          var foodProfileData = req.body.foodProfile;
+          console.log(foodProfileData);
+          for (var i = 0; i < foodProfileData.length; i++) {
+            const newFoodProfileItem = {
+              name: foodProfileData[i].name,
+              item_id: foodProfileData[i].item_id,
+              category: foodProfileData[i].category,
+              measurementUnit: foodProfileData[i].measurementUnit,
+              basePrice: foodProfileData[i].basePrice,
+              lowPrice: foodProfileData[i].lowPrice,
+              upperPrice: foodProfileData[i].upperPrice
+            };
+            profile.foodProfile.push(newFoodProfileItem);
+          }
+          profile
+            .save()
+            .then(profile => res.json(profile))
+            .catch(err => res.json(err));
+        } else {
+          // If single item in food profile
+          const newFoodProfileItem = {
+            name: req.body.name,
+            item_id: req.body.item_id,
+            category: req.body.category,
+            measurementUnit: req.body.measurementUnit,
+            basePrice: req.body.basePrice,
+            lowPrice: req.body.lowPrice,
+            upperPrice: req.body.upperPrice
+          };
+          // Add to food item to array
+          profile.foodProfile.push(newFoodProfileItem);
+
+          profile
+            .save()
+            .then(profile => res.json(profile))
+            .catch(err => res.json(err));
+        }
+      })
+      .catch(err => res.json(err));
+  }
+);
+
+// ----------------------------------
+//  ORIGINAL PROFILE ROUTES
+// ----------------------------------
 
 // @route   GET api/profile/
 // @desc    Get current users profile

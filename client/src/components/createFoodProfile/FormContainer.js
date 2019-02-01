@@ -12,6 +12,7 @@ import StepSix from "./StepSix";
 class CreateProfile extends Component {
   state = {
     step: 1,
+    username: "",
     age: "",
     height: "",
     weight: "",
@@ -264,6 +265,14 @@ class CreateProfile extends Component {
       checkedShoppingItemsOne,
       checkedShoppingItemsTwo
     };
+
+    console.log(
+      "PANTRY: ",
+      this.createPantry(
+        foodProfile,
+        this.getByValue(this.state.checkedItems, true)
+      )
+    );
 
     if (foodProfile === null || loading) {
       return <h1>Loading...</h1>;
