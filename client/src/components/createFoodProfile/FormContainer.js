@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getFoodProfile } from "../../actions/foodProfileActions";
+import {
+  getFoodProfile,
+  sendFoodProfile
+} from "../../actions/foodProfileActions";
 
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
@@ -54,18 +57,33 @@ class CreateProfile extends Component {
     this.setState({ [input]: e.target.value });
   };
 
-  handleShoppingCartAmountChange = input => e => {
+  handleShoppingCartAmountChangeOne = input => e => {
     const { name, value } = e.target;
     var data = [...this.state.shoppingListOne];
     var index = data.findIndex(obj => obj.name === name);
     data[index].amount = value;
     this.setState({ data });
-    console.log(this.state.shoppingListOne);
   };
 
-  handleShoppingCartNotesChange = input => e => {
+  handleShoppingCartAmountChangeTwo = input => e => {
+    const { name, value } = e.target;
+    var data = [...this.state.shoppingListTwo];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].amount = value;
+    this.setState({ data });
+  };
+
+  handleShoppingCartNotesChangeOne = input => e => {
     const { name, value } = e.target;
     var data = [...this.state.shoppingListOne];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].notes = value;
+    this.setState({ data });
+  };
+
+  handleShoppingCartNotesChangeTwo = input => e => {
+    const { name, value } = e.target;
+    var data = [...this.state.shoppingListTwo];
     var index = data.findIndex(obj => obj.name === name);
     data[index].notes = value;
     this.setState({ data });
@@ -136,16 +154,35 @@ class CreateProfile extends Component {
     }
   };
 
-  // Handle checkbox fields change for Shopping List Two
   handleCheckboxChangeShoppingListTwo = e => {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    this.setState(prevState => ({
-      checkedShoppingItemsTwo: prevState.checkedShoppingItemsTwo.set(
-        item,
-        isChecked
-      )
-    }));
+    if (e.target.checked) {
+      const rawData = this.getNameItem(
+        this.props.foodProfile.foodProfile,
+        e.target.name
+      );
+      const shoppingListObject = {
+        item_id: rawData[0].item_id,
+        name: rawData[0].name,
+        measurementUnit: rawData[0].measurementUnit,
+        notes: "",
+        basePrice: rawData[0].basePrice,
+        lowPrice: rawData[0].lowPrice,
+        upperPrice: rawData[0].upperPrice,
+        amount: 1
+      };
+      var newArray = this.state.shoppingListTwo.concat(shoppingListObject);
+      this.setState({ shoppingListTwo: newArray });
+    }
+    if (!e.target.checked) {
+      var array = [...this.state.shoppingListTwo]; // make a separate copy of the array
+      var index = array.indexOf(
+        this.getNameItem(this.state.shoppingListTwo, e.target.name)[0]
+      );
+      if (index !== -1) {
+        array.splice(index, 1);
+        this.setState({ shoppingListTwo: array });
+      }
+    }
   };
 
   // Get selected checkboxes
@@ -231,17 +268,37 @@ class CreateProfile extends Component {
       upper += this.state[list][i].amount * this.state[list][i].upperPrice;
     }
     return (
-      <p key="total">
+      <p className="total" key="total">
         Estimated Total: $ {lower} - $ {upper}
       </p>
     );
   };
 
+  createSubmit = () => {
+    const foodProfileData = this.createPantry(
+      this.props.foodProfile.foodProfile,
+      this.getByValue(this.state.checkedItems, true)
+    );
+    // Temp fix for array nested within another array
+    const foodProfileCond = [];
+    for (var i = 0; i < foodProfileData.length; i++) {
+      foodProfileCond.push(foodProfileData[i][0]);
+    }
+    const payload = {
+      username: this.state.username,
+      age: this.state.age,
+      height: this.state.height,
+      weight: this.state.weight,
+      foodProfile: foodProfileCond
+    };
+    this.props.sendFoodProfile(payload, this.props.history);
+  };
+
   render() {
-    console.log(this.state.shoppingListOne);
     const { foodProfile, loading } = this.props.foodProfile;
     const { step } = this.state;
     const {
+      username,
       age,
       height,
       weight,
@@ -254,6 +311,7 @@ class CreateProfile extends Component {
       checkedShoppingItemsTwo
     } = this.state;
     const values = {
+      username,
       age,
       height,
       weight,
@@ -265,14 +323,6 @@ class CreateProfile extends Component {
       checkedShoppingItemsOne,
       checkedShoppingItemsTwo
     };
-
-    console.log(
-      "PANTRY: ",
-      this.createPantry(
-        foodProfile,
-        this.getByValue(this.state.checkedItems, true)
-      )
-    );
 
     if (foodProfile === null || loading) {
       return <h1>Loading...</h1>;
@@ -287,6 +337,7 @@ class CreateProfile extends Component {
               prevStep={this.prevStep}
               values={values}
               handleChange={this.handleChange}
+              user={this.props.auth}
             />
           );
         case 2:
@@ -336,9 +387,11 @@ class CreateProfile extends Component {
               getNameItem={this.getNameItem}
               getNotesItem={this.getNotesItem}
               handleShoppingCartAmountChange={
-                this.handleShoppingCartAmountChange
+                this.handleShoppingCartAmountChangeOne
               }
-              handleShoppingCartNotesChange={this.handleShoppingCartNotesChange}
+              handleShoppingCartNotesChange={
+                this.handleShoppingCartNotesChangeOne
+              }
               getTotal={this.getTotal}
             />
           );
@@ -349,7 +402,26 @@ class CreateProfile extends Component {
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
-              handleChange={this.handleChange}
+              handleCheckboxChangeShoppingListTwo={
+                this.handleCheckboxChangeShoppingListTwo
+              }
+              getCategoryItems={this.getCategoryItems}
+              createCheckboxItems={this.createCheckboxItems}
+              foodProfile={foodProfile}
+              pantry={this.createPantry(
+                foodProfile,
+                this.getByValue(this.state.checkedItems, true)
+              )}
+              getByValue={this.getByValue}
+              getNameItem={this.getNameItem}
+              getNotesItem={this.getNotesItem}
+              handleShoppingCartAmountChange={
+                this.handleShoppingCartAmountChangeTwo
+              }
+              handleShoppingCartNotesChange={
+                this.handleShoppingCartNotesChangeTwo
+              }
+              getTotal={this.getTotal}
             />
           );
         case 6:
@@ -361,6 +433,7 @@ class CreateProfile extends Component {
               values={values}
               handleChange={this.handleChange}
               selectedValues={this.getByValue(checkedItems, true)}
+              createSubmit={this.createSubmit}
             />
           );
         default:
@@ -371,10 +444,11 @@ class CreateProfile extends Component {
 }
 
 const mapStateToProps = state => ({
-  foodProfile: state.foodProfile
+  foodProfile: state.foodProfile,
+  auth: state.auth
 });
 
 export default connect(
   mapStateToProps,
-  { getFoodProfile }
+  { getFoodProfile, sendFoodProfile }
 )(CreateProfile);

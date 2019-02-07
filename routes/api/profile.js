@@ -65,50 +65,36 @@ router.post(
   "/food-profile-test/foodProfile",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    ProfileTest.findOne({ user: req.user.id })
-      .then(profile => {
-        profile.length = 0;
-        // If multiple items in food profile
-        if (req.body.foodProfile.length > 0) {
-          var foodProfileData = req.body.foodProfile;
-          console.log(foodProfileData);
-          for (var i = 0; i < foodProfileData.length; i++) {
-            const newFoodProfileItem = {
-              name: foodProfileData[i].name,
-              item_id: foodProfileData[i].item_id,
-              category: foodProfileData[i].category,
-              measurementUnit: foodProfileData[i].measurementUnit,
-              basePrice: foodProfileData[i].basePrice,
-              lowPrice: foodProfileData[i].lowPrice,
-              upperPrice: foodProfileData[i].upperPrice
-            };
-            profile.foodProfile.push(newFoodProfileItem);
-          }
-          profile
-            .save()
-            .then(profile => res.json(profile))
-            .catch(err => res.json(err));
-        } else {
-          // If single item in food profile
+    // Find Profile
+    ProfileTest.findOne({ user: req.user.id }).then(profile => {
+      // If no profile
+      if (profile === null) {
+        const foodProfileArray = [];
+        var foodProfileData = req.body.foodProfile;
+        for (var i = 0; i < foodProfileData.length; i++) {
           const newFoodProfileItem = {
-            name: req.body.name,
-            item_id: req.body.item_id,
-            category: req.body.category,
-            measurementUnit: req.body.measurementUnit,
-            basePrice: req.body.basePrice,
-            lowPrice: req.body.lowPrice,
-            upperPrice: req.body.upperPrice
+            name: foodProfileData[i].name,
+            item_id: foodProfileData[i].item_id,
+            category: foodProfileData[i].category,
+            measurementUnit: foodProfileData[i].measurementUnit,
+            basePrice: foodProfileData[i].basePrice,
+            lowPrice: foodProfileData[i].lowPrice,
+            upperPrice: foodProfileData[i].upperPrice
           };
-          // Add to food item to array
-          profile.foodProfile.push(newFoodProfileItem);
-
-          profile
-            .save()
-            .then(profile => res.json(profile))
-            .catch(err => res.json(err));
+          foodProfileArray.push(newFoodProfileItem);
         }
-      })
-      .catch(err => res.json(err));
+        var profileData = {
+          user: req.user.id,
+          username: req.body.username,
+          age: req.body.age,
+          height: req.body.height,
+          weight: req.body.weight,
+          foodProfile: foodProfileArray
+        };
+
+        new ProfileTest(profileData).save().then(profile => res.json(profile));
+      }
+    });
   }
 );
 

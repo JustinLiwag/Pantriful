@@ -18,7 +18,8 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateFoodProfile from "./components/createFoodProfile/FormContainer";
 
-import "./App.css";
+import "./css/App.css";
+import "./css/On-boarding.css";
 
 // Check for token
 if (localStorage.jwtToken) {

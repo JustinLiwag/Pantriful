@@ -6,6 +6,10 @@ class StepThree extends Component {
     shownIndex: 1
   };
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -36,51 +40,57 @@ class StepThree extends Component {
     } = this.props;
 
     return (
-      <div className="">
-        <h1>Step Three: Building your Food Profile</h1>
-        <p>
-          Nam dapibus nisl vitae elit fringilla rutrum. Aenean sollicitudin,
-          erat a elementum rutrum, neque sem pretium metus, quis mollis nisl
-          nunc et massa. Vestibulum sed metus in lorem tristique ullamcorper id
-          vitae erat.
+      <div className="on-boarding-container">
+        <img
+          className="on-boarding-steps"
+          src="images/on-boarding-3.jpg"
+          alt=""
+        />
+        <a onClick={this.back} className="back-button" href="">
+          &lt; Back
+        </a>
+        <h1 className="on-boarding-title">Finish building your Pantry</h1>
+        <p className="on-boarding-description">
+          Here is the rest of the items for you to fill out. Once complete, your
+          pantry will let us really tailor Pantriful to you and provide a truly
+          customized service.
         </p>
 
         <div className="toggle-container">
-          {/*
-            Grains Food Profile Section
-          */}
+          {/* Grains */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(1)} className="toggle-header">
               Grains
             </div>
             <div
-              key="gtains-container"
+              key="grains-container"
               className={
                 this.state.shownIndex === 1
-                  ? "toggle-content showing"
-                  : "toggle-content"
+                  ? "toggle-content showing checkbox-container"
+                  : "toggle-content checkbox-container"
               }
             >
               {createCheckboxItems(getCategoryItems(foodProfile, "Grains")).map(
                 item => (
-                  <label key={item.name}>
+                  <div>
                     <Checkbox
+                      id={item.name}
                       key={item.item_id}
                       type={"checkbox"}
                       name={item.name}
                       checked={values.checkedItems.get(item.name)}
                       onChange={handleCheckboxChange}
                     />
-                    {item.label}
-                  </label>
+                    <label for={item.name} key={item.name}>
+                      {item.label}
+                    </label>
+                  </div>
                 )
               )}
             </div>
           </div>
 
-          {/*
-            Dairy Food Profile Section
-          */}
+          {/* Dairy */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(2)} className="toggle-header">
               Dairy
@@ -89,30 +99,31 @@ class StepThree extends Component {
               key="dairy-container"
               className={
                 this.state.shownIndex === 2
-                  ? "toggle-content showing"
-                  : "toggle-content"
+                  ? "toggle-content showing checkbox-container"
+                  : "toggle-content checkbox-container"
               }
             >
               {createCheckboxItems(getCategoryItems(foodProfile, "Dairy")).map(
                 item => (
-                  <label key={item.name}>
+                  <div>
                     <Checkbox
+                      id={item.name}
                       key={item.item_id}
                       type={"checkbox"}
                       name={item.name}
                       checked={values.checkedItems.get(item.name)}
                       onChange={handleCheckboxChange}
                     />
-                    {item.label}
-                  </label>
+                    <label for={item.name} key={item.name}>
+                      {item.label}
+                    </label>
+                  </div>
                 )
               )}
             </div>
           </div>
 
-          {/*
-            Alternative Protein Food Profile Section
-          */}
+          {/* Alternative Protein */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(3)} className="toggle-header">
               Alternative Protein
@@ -121,97 +132,103 @@ class StepThree extends Component {
               key="alternative-protein-container"
               className={
                 this.state.shownIndex === 3
-                  ? "toggle-content showing"
-                  : "toggle-content"
+                  ? "toggle-content showing checkbox-container"
+                  : "toggle-content checkbox-container"
               }
             >
               {createCheckboxItems(
                 getCategoryItems(foodProfile, "Alternative Protein")
               ).map(item => (
-                <label key={item.name}>
+                <div>
                   <Checkbox
+                    id={item.name}
                     key={item.item_id}
                     type={"checkbox"}
                     name={item.name}
                     checked={values.checkedItems.get(item.name)}
                     onChange={handleCheckboxChange}
                   />
-                  {item.label}
-                </label>
+                  <label for={item.name} key={item.name}>
+                    {item.label}
+                  </label>
+                </div>
               ))}
             </div>
           </div>
 
-          {/*
-            Vegetables Food Profile Section
-          */}
+          {/* Vegetables */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(4)} className="toggle-header">
               Vegetables
             </div>
             <div
-              key="vegetables-container"
+              key="vegetabls-container"
               className={
                 this.state.shownIndex === 4
-                  ? "toggle-content showing"
-                  : "toggle-content"
+                  ? "toggle-content showing checkbox-container"
+                  : "toggle-content checkbox-container"
               }
             >
               {createCheckboxItems(
                 getCategoryItems(foodProfile, "Vegetables")
               ).map(item => (
-                <label key={item.name}>
+                <div>
                   <Checkbox
+                    id={item.name}
                     key={item.item_id}
                     type={"checkbox"}
                     name={item.name}
                     checked={values.checkedItems.get(item.name)}
                     onChange={handleCheckboxChange}
                   />
-                  {item.label}
-                </label>
+                  <label for={item.name} key={item.name}>
+                    {item.label}
+                  </label>
+                </div>
               ))}
             </div>
           </div>
 
-          {/*
-            Fruit Food Profile Section
-          */}
+          {/* Fruit */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(5)} className="toggle-header">
               Fruit
             </div>
             <div
-              key="Fruit-container"
+              key="fruit-container"
               className={
                 this.state.shownIndex === 5
-                  ? "toggle-content showing"
-                  : "toggle-content"
+                  ? "toggle-content showing checkbox-container"
+                  : "toggle-content checkbox-container"
               }
             >
               {createCheckboxItems(getCategoryItems(foodProfile, "Fruit")).map(
                 item => (
-                  <label key={item.name}>
+                  <div>
                     <Checkbox
+                      id={item.name}
                       key={item.item_id}
                       type={"checkbox"}
                       name={item.name}
                       checked={values.checkedItems.get(item.name)}
                       onChange={handleCheckboxChange}
                     />
-                    {item.label}
-                  </label>
+                    <label for={item.name} key={item.name}>
+                      {item.label}
+                    </label>
+                  </div>
                 )
               )}
             </div>
           </div>
-
-          {/*
-            End of Food Profile Section
-          */}
         </div>
-        <button onClick={this.back}>Back</button>
-        <button onClick={this.continue}>Continue</button>
+
+        <button className="on-boarding-button-back" onClick={this.back}>
+          Back
+        </button>
+        <button className="on-boarding-button" onClick={this.continue}>
+          Continue
+        </button>
       </div>
     );
   }

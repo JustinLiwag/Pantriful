@@ -21,6 +21,14 @@ export const getFoodProfile = () => dispatch => {
     );
 };
 
+// Send in Food Profile to API
+export const sendFoodProfile = (userData, history) => dispatch => {
+  axios
+    .post("/api/profile/food-profile-test/foodProfile", userData)
+    .then(res => history.push("/dashboard"))
+    .catch(err => console.log(err));
+};
+
 //  Profile loading
 export const setFoodProfileLoading = () => {
   return {

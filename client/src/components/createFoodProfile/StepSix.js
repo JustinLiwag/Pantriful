@@ -11,13 +11,18 @@ class StepSix extends Component {
     this.props.prevStep();
   };
 
+  submit = e => {
+    e.preventDefault();
+    this.props.createSubmit();
+  };
+
   render() {
     return (
       <div>
         <h1>Step Six: You are all done!</h1>
         <div>{this.props.selectedValues}</div>
         <button onClick={this.back}>Back</button>
-        <button onClick={this.continue}>Continue</button>
+        <button onClick={this.submit}>Submit</button>
       </div>
     );
   }

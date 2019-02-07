@@ -52,10 +52,21 @@ class StepOne extends Component {
 
   render() {
     return (
-      <div>
-        <h1>Step One: Basic Information</h1>
-        {this.buildForm(FIELDS)}
-        <button onClick={this.continue}>Continue</button>
+      <div className="on-boarding-container">
+        <img
+          className="on-boarding-steps"
+          src="images/on-boarding-1.jpg"
+          alt=""
+        />
+        <h1 className="on-boarding-title">Basic Information</h1>
+        <p className="on-boarding-description">
+          Hello {this.props.user.user.name}! Let’s get some basic
+          information.
+        </p>
+        <div className="on-boarding-form">{this.buildForm(FIELDS)}</div>
+        <button className="on-boarding-button" onClick={this.continue}>
+          Continue
+        </button>
       </div>
     );
   }
