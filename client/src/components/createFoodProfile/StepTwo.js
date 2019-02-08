@@ -211,7 +211,7 @@ class StepTwo extends Component {
           {/* Seafood */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(5)} className="toggle-header">
-              Pork
+              Seafood
             </div>
             <div
               key="chicken-container"
