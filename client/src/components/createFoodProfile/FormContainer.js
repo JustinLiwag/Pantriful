@@ -26,7 +26,7 @@ class CreateProfile extends Component {
     shoppingListTwo: []
   };
 
-  componentDidMount = () => {
+  componentWillMount = () => {
     this.props.getFoodProfile();
   };
 
@@ -217,7 +217,7 @@ class CreateProfile extends Component {
     const result = [];
     checkedItems.map(e => {
       const object = masterFoodProfile.filter(item => item.item_id === e);
-      result.push(object);
+      return result.push(object);
     });
     return result;
   };

@@ -83,7 +83,7 @@ class StepTwo extends Component {
                     checked={values.checkedItems.get(item.name)}
                     onChange={handleCheckboxChange}
                   />
-                  <label for={item.name} key={item.name}>
+                  <label htmlFor={item.name} key={item.name}>
                     {item.label}
                   </label>
                 </div>
@@ -242,12 +242,14 @@ class StepTwo extends Component {
           </div>
         </div>
 
-        <button className="on-boarding-button-back" onClick={this.back}>
+        <div className="on-boarding-button-container">
+          <button className="on-boarding-button-back" onClick={this.back}>
           Back
-        </button>
-        <button className="on-boarding-button" onClick={this.continue}>
-          Continue
-        </button>
+          </button>
+          <button className="on-boarding-button" onClick={this.continue}>
+            Continue
+          </button>
+        </div>
       </div>
     );
   }

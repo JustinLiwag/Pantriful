@@ -81,7 +81,7 @@ class StepFive extends Component {
               )[0].amount
             }
             className="shopping-cart-input"
-            type="text"
+            type="number"
             placeholder="Qty"
           />
           <p
@@ -142,16 +142,13 @@ class StepFive extends Component {
 
   render() {
     const {
-      foodProfile,
       selectedValues,
       createCheckboxItems,
       pantry,
       values,
       handleCheckboxChangeShoppingListTwo,
-      getCategoryItems,
-      shoppingListTwo
+      getCategoryItems
     } = this.props;
-    const { checkedShoppingItemsOne } = this.props.values;
     return (
       <div className="on-boarding-container">
         <img
@@ -159,16 +156,13 @@ class StepFive extends Component {
           src="images/on-boarding-4.jpg"
           alt=""
         />
-        <a onClick={this.back} className="back-button" href="">
+        <a onClick={this.back} className="back-button" href="#">
           &lt; Back
         </a>
         <h1 className="on-boarding-title">Your second shopping lists!</h1>
         <p className="on-boarding-description">
-          Now that you have built your pantry, let’s create two shopping lists.
-          This will help us determine how your diet breaks down on a week to
-          week basis and lets us know how you typically eat. You can update the
-          quantity and leave us a note on each item if you have anything you
-          would like us to know about your item.
+          Your second shopping list will give us a good idea of how your list changes from week to week. It will tell us
+          if you like to eat the same thing every week or mix it up. We will also be able to show you how your diet looks on a week to week basis and how it will change over time depending on you. Isn’ t that neat!
         </p>
 
         {/*Split sections*/}
@@ -617,12 +611,14 @@ class StepFive extends Component {
           {/*Shopping cart container end*/}
         </div>
 
-        <button className="on-boarding-button-back" onClick={this.back}>
+        <div className="on-boarding-button-container">
+          <button className="on-boarding-button-back" onClick={this.back}>
           Back
-        </button>
-        <button className="on-boarding-button" onClick={this.continue}>
-          Continue
-        </button>
+          </button>
+          <button className="on-boarding-button" onClick={this.continue}>
+            Continue
+          </button>
+        </div>
       </div>
     );
   }

@@ -23,33 +23,11 @@ const DashboardContent = ({ profile }) => {
       }
     }, []);
 
-  // const findNestedValue = value =>
-  //   findProp(profile, "protein.chickenLegQuarters").value;
-
-  const value = findProp(profile, "protein.chickenLegQuarters");
-
-  const chickenLegQuarters = keyify(profile.protein.chickenLegQuarters);
-  const chickenLegQuartersDisplay = chickenLegQuarters.map(item => (
-    <p key={item}>
-      {item}: {value[item].toString()}
-    </p>
-  ));
 
   return (
-    <div>
-      <div>
-        <h1>Basic Details</h1>
-        <p>Username: {profile.username}</p>
-        <p>Age: {profile.age}</p>
-        <p>Height: {profile.height}</p>
-        <p>Weight: {profile.weight}</p>
-        <p>Diet Orientation: {profile.dietOrientation}</p>
-      </div>
-      <div>
-        <h1>Food Profile</h1>
-        <h2>Chicken Leg Quarters</h2>
-        <p>{chickenLegQuartersDisplay}</p>
-      </div>
+    <div className="dashboard-container">
+      <h1>Dashboard coming soon....</h1>
+      <img className="dashboard-img" src="images/dashboard-mock-up.png" alt="" />
     </div>
   );
 };

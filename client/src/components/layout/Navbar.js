@@ -16,7 +16,7 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <ul>
+      <ul className="navbar-login-link">
         <li>
           <a href="#" onClick={this.onLogoutClick.bind(this)}>
             Welcome, {user.name} | Logout

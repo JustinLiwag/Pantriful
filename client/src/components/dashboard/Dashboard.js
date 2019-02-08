@@ -12,7 +12,7 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { user } = this.props.auth;
+    // const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
 
     let dashboardContent;
@@ -26,14 +26,14 @@ class Dashboard extends Component {
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div>
-            <h2>
-              Welcome {user.name} {user.lastName}
+          <div className="on-boarding-container">
+            <h2 className="dashboard-welcome-title">
+              Welcome to Pantriful!
             </h2>
-            <p className="dashboard-welcome-p">
-              Let’s make your food profile. Your food profile will help us
-              generate custom shopping lists for you as well as give you a great
-              snapshot of what your diet looks like.
+            <p className="dashboard-welcome-description">
+              Before getting into the great features we have to offer we need to help you create a customized pantry. <br></br><br></br>
+
+              This pantry will help us figure out what your diet looks like and give you a great snapshot where you are today.
             </p>
             <Link to="/create-food-profile" className="button about-button">
               Get Started!

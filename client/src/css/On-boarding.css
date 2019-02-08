@@ -1,5 +1,9 @@
 .on-boarding-container {
-  margin-bottom: 250px;
+  margin-bottom: 350px;
+}
+
+.on-boarding-form {
+  margin-bottom: 25px;
 }
 
 .on-boarding-form input {
@@ -71,6 +75,14 @@
 @media screen and (max-width: 500px) {
   .back-button {
     font-size: 15px;
+  }
+}
+
+@media screen and (max-width: 590px) {
+  .on-boarding-button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse
   }
 }
 
@@ -290,6 +302,15 @@ span {
   outline: none;
   text-align: center;
   font-size: 18px;
+}
+
+/* HIDES INPUT NUMBER SPINNER */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  -webkit-appearance: none;
+  margin: 0;
+  /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 #shopping-cart-input-2 {

@@ -81,7 +81,7 @@ class StepFour extends Component {
               )[0].amount
             }
             className="shopping-cart-input"
-            type="text"
+            type="number"
             placeholder="Qty"
           />
           <p
@@ -95,7 +95,7 @@ class StepFour extends Component {
               this.props.values.shoppingListOne,
               selectedPantryItems[i].item_id
             )[0].notes ? (
-              <span className="notes-highlight"> (Notes)</span>
+              <span className="notes-highlight"> (N)</span>
             ) : null}
           </p>
           <p
@@ -142,16 +142,13 @@ class StepFour extends Component {
 
   render() {
     const {
-      foodProfile,
       selectedValues,
       createCheckboxItems,
       pantry,
       values,
       handleCheckboxChangeShoppingListOne,
-      getCategoryItems,
-      shoppingListOne
+      getCategoryItems
     } = this.props;
-    const { checkedShoppingItemsOne } = this.props.values;
     return (
       <div className="on-boarding-container">
         <img
@@ -617,12 +614,14 @@ class StepFour extends Component {
           {/*Shopping cart container end*/}
         </div>
 
-        <button className="on-boarding-button-back" onClick={this.back}>
+        <div className="on-boarding-button-container">
+          <button className="on-boarding-button-back" onClick={this.back}>
           Back
-        </button>
-        <button className="on-boarding-button" onClick={this.continue}>
-          Continue
-        </button>
+          </button>
+          <button className="on-boarding-button" onClick={this.continue}>
+            Continue
+          </button>
+        </div>
       </div>
     );
   }
