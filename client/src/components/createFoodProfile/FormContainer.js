@@ -269,7 +269,7 @@ class CreateProfile extends Component {
     }
     return (
       <p className="total" key="total">
-        Estimated Total: $ {lower} - $ {upper}
+        Estimated Total: $ {lower.toFixed(2)} - $ {upper.toFixed(2)}
       </p>
     );
   };

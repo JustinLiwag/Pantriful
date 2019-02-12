@@ -102,9 +102,9 @@ class StepFour extends Component {
             className="shopping-cart-p shopping-cart-price"
             onClick={() => this.clickOpenShoppingList(i)}
           >
-            $ {selectedPantryItems[i].lowPrice * selectedPantryItems[i].amount}{" "}
+            $ {(selectedPantryItems[i].lowPrice * selectedPantryItems[i].amount).toFixed(2)}{" "}
             - ${" "}
-            {selectedPantryItems[i].upperPrice * selectedPantryItems[i].amount}
+            {(selectedPantryItems[i].upperPrice * selectedPantryItems[i].amount).toFixed(2)}
             <span
               onClick={() => this.clickOpenShoppingList(i)}
               className={
@@ -571,7 +571,7 @@ class StepFour extends Component {
                   {createCheckboxItems(
                     getCategoryItems(
                       this.processPantryItems(pantry),
-                      "Alternative Protein"
+                      "Fruit"
                     )
                   ).map(item => (
                     <div>
