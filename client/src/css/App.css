@@ -777,3 +777,9 @@ footer p {
     display: none;
   }
 }
+
+/* LOGIN AND REGISTER BUTTON FIXES */
+
+#login-submit, #register-submit {
+  padding: 20px 20px;
+}

@@ -101,7 +101,7 @@ class Register extends Component {
               onChange={this.onChange}
               error={errors.password2}
             />
-            <input type="submit" className="reg-submit" />
+            <input id="register-submit" type="submit" className="reg-submit" />
           </form>
           <p id="member-login">
             <Link to="/login">

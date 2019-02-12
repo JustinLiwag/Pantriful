@@ -72,7 +72,7 @@ class Login extends Component {
               onChange={this.onChange}
               error={errors.password}
             />
-            <input className="reg-submit" type="submit" />
+            <input id="login-submit" className="reg-submit" type="submit" />
           </form>
           <p id="member-login">
             <Link to="/register">
