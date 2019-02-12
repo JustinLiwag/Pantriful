@@ -57,10 +57,10 @@ class StepThree extends Component {
         </p>
 
         <div className="toggle-container">
-          {/* Grains */}
+          {/* Fruits */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(1)} className="toggle-header">
-              Grains
+              Fruits
             </div>
             <div
               key="grains-container"
@@ -70,7 +70,7 @@ class StepThree extends Component {
                   : "toggle-content checkbox-container"
               }
             >
-              {createCheckboxItems(getCategoryItems(foodProfile, "Grains")).map(
+              {createCheckboxItems(getCategoryItems(foodProfile, "Fruit")).map(
                 item => (
                   <div>
                     <Checkbox
@@ -90,10 +90,10 @@ class StepThree extends Component {
             </div>
           </div>
 
-          {/* Dairy */}
+          {/* Vegetables */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(2)} className="toggle-header">
-              Dairy
+              Vegetables
             </div>
             <div
               key="dairy-container"
@@ -103,7 +103,7 @@ class StepThree extends Component {
                   : "toggle-content checkbox-container"
               }
             >
-              {createCheckboxItems(getCategoryItems(foodProfile, "Dairy")).map(
+              {createCheckboxItems(getCategoryItems(foodProfile, "Vegetables")).map(
                 item => (
                   <div>
                     <Checkbox
@@ -156,10 +156,10 @@ class StepThree extends Component {
             </div>
           </div>
 
-          {/* Vegetables */}
+          {/* Grains */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(4)} className="toggle-header">
-              Vegetables
+              Grains
             </div>
             <div
               key="vegetabls-container"
@@ -170,7 +170,7 @@ class StepThree extends Component {
               }
             >
               {createCheckboxItems(
-                getCategoryItems(foodProfile, "Vegetables")
+                getCategoryItems(foodProfile, "Grains")
               ).map(item => (
                 <div>
                   <Checkbox
@@ -189,10 +189,10 @@ class StepThree extends Component {
             </div>
           </div>
 
-          {/* Fruit */}
+          {/* Dairy */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(5)} className="toggle-header">
-              Fruit
+              Dairy
             </div>
             <div
               key="fruit-container"
@@ -202,7 +202,7 @@ class StepThree extends Component {
                   : "toggle-content checkbox-container"
               }
             >
-              {createCheckboxItems(getCategoryItems(foodProfile, "Fruit")).map(
+              {createCheckboxItems(getCategoryItems(foodProfile, "Dairy")).map(
                 item => (
                   <div>
                     <Checkbox

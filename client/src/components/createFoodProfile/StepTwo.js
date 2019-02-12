@@ -58,10 +58,10 @@ class StepTwo extends Component {
         </p>
 
         <div className="toggle-container">
-          {/* CHICKEN */}
+          {/* CHICKEN and Turkey */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(1)} className="toggle-header">
-              Chicken
+              Chicken and Turkey
             </div>
             <div
               key="chicken-container"
@@ -73,6 +73,24 @@ class StepTwo extends Component {
             >
               {createCheckboxItems(
                 getCategoryItems(foodProfile, "Chicken")
+              ).map(item => (
+                <div>
+                  <Checkbox
+                    id={item.name}
+                    key={item.item_id}
+                    type={"checkbox"}
+                    name={item.name}
+                    checked={values.checkedItems.get(item.name)}
+                    onChange={handleCheckboxChange}
+                  />
+                  <label htmlFor={item.name} key={item.name}>
+                    {item.label}
+                  </label>
+                </div>
+              ))}
+
+              {createCheckboxItems(
+                getCategoryItems(foodProfile, "Turkey")
               ).map(item => (
                 <div>
                   <Checkbox
@@ -157,10 +175,10 @@ class StepTwo extends Component {
             </div>
           </div>
 
-          {/* Lamb and Turkey */}
+          {/* Lamb */}
           <div className="toggle-section">
             <div onClick={() => this.clickOpen(4)} className="toggle-header">
-              Lamb and Turkey
+              Lamb
             </div>
             <div
               key="chicken-container"
@@ -171,24 +189,6 @@ class StepTwo extends Component {
               }
             >
               {createCheckboxItems(getCategoryItems(foodProfile, "Lamb")).map(
-                item => (
-                  <div>
-                    <Checkbox
-                      id={item.name}
-                      key={item.item_id}
-                      type={"checkbox"}
-                      name={item.name}
-                      checked={values.checkedItems.get(item.name)}
-                      onChange={handleCheckboxChange}
-                    />
-                    <label for={item.name} key={item.name}>
-                      {item.label}
-                    </label>
-                  </div>
-                )
-              )}
-
-              {createCheckboxItems(getCategoryItems(foodProfile, "Turkey")).map(
                 item => (
                   <div>
                     <Checkbox
