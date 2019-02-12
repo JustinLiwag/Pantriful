@@ -568,7 +568,7 @@ class StepFive extends Component {
                   {createCheckboxItems(
                     getCategoryItems(
                       this.processPantryItems(pantry),
-                      "Alternative Protein"
+                      "Fruit"
                     )
                   ).map(item => (
                     <div>

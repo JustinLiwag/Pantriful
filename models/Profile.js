@@ -61,7 +61,8 @@ const profileSchema = mongoose.Schema({
     type: [String]
   },
   foodProfile: [foodProfileSchema],
-  groceryLists: [],
+  shoppingListOne: [],
+  shoppingListTwo: [],
   dateCreated: {
     type: Date,
     default: Date.now

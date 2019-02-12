@@ -284,12 +284,16 @@ class CreateProfile extends Component {
     for (var i = 0; i < foodProfileData.length; i++) {
       foodProfileCond.push(foodProfileData[i][0]);
     }
+
+    console.log(this.state.shoppingListOne)
     const payload = {
       username: this.state.username,
       age: this.state.age,
       height: this.state.height,
       weight: this.state.weight,
-      foodProfile: foodProfileCond
+      foodProfile: foodProfileCond,
+      shoppingListOne: this.state.shoppingListOne,
+      shoppingListTwo: this.state.shoppingListTwo
     };
     this.props.sendFoodProfile(payload, this.props.history);
   };
