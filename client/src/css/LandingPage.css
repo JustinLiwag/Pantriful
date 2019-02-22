@@ -62,7 +62,7 @@ body {
 /*----HERO----*/
 
 .hero {
-    min-height: 670px;
+    min-height: 600px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -70,6 +70,12 @@ body {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
+}
+
+@media screen and (max-height: 800px) {
+    .hero {
+        min-height: 525px;
+    }
 }
 
 .hero-inner {

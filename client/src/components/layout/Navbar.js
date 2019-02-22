@@ -43,7 +43,7 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="flexnav">
+      <nav className="flexnav container">
         <Link className="logo" to="/">
           <img src="images/pantriful-logo-orange.png" alt="" />
         </Link>
