@@ -52,7 +52,7 @@ class StepOne extends Component {
 
   render() {
     return (
-      <div className="on-boarding-container">
+      <div className="on-boarding-container container">
         <img
           className="on-boarding-steps"
           src="images/on-boarding-1.jpg"

@@ -39,7 +39,7 @@ class StepTwo extends Component {
       getCategoryItems
     } = this.props;
     return (
-      <div className="on-boarding-container">
+      <div className="on-boarding-container container">
         <img
           className="on-boarding-steps"
           src="images/on-boarding-2.jpg"

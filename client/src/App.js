@@ -18,7 +18,10 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateFoodProfile from "./components/createFoodProfile/FormContainer";
 
+import "./css/font.css";
 import "./css/App.css";
+import "./css/LandingPage.css";
+import "./css/Dashboard.css";
 import "./css/On-boarding.css";
 
 // Check for token
@@ -43,6 +46,7 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
+  
   render() {
     return (
       <Provider store={store}>
@@ -50,7 +54,7 @@ class App extends Component {
           <div className="App">
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <div className="container">
+            <div>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Switch>

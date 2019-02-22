@@ -40,7 +40,7 @@ class StepThree extends Component {
     } = this.props;
 
     return (
-      <div className="on-boarding-container">
+      <div className="on-boarding-container container">
         <img
           className="on-boarding-steps"
           src="images/on-boarding-3.jpg"

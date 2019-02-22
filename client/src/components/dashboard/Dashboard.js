@@ -22,11 +22,11 @@ class Dashboard extends Component {
     } else {
       // Check if logged in user has profile data
       if (Object.keys(profile).length > 0) {
-        dashboardContent = <DashboardContent profile={profile} />;
+        dashboardContent = <DashboardContent profile={profile} auth={this.props.auth}/>;
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div className="on-boarding-container">
+          <div className="on-boarding-container container">
             <h2 className="dashboard-welcome-title">
               Welcome to Pantriful!
             </h2>
@@ -43,7 +43,7 @@ class Dashboard extends Component {
       }
     }
 
-    return <div className="container">{dashboardContent}</div>;
+    return <div>{dashboardContent}</div>;
   }
 }
 

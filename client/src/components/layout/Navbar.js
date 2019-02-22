@@ -16,10 +16,16 @@ class Navbar extends Component {
     const { isAuthenticated, user } = this.props.auth;
 
     const authLinks = (
-      <ul className="navbar-login-link">
+      <ul>
+        <li>
+          <Link className="navbar-auth-links" to="/"><img src="./images/explore-icon.png"></img>Explore</Link>
+        </li>
+        <li>
+          <Link className="navbar-auth-links" to="/"><img src="./images/customize-icon.png"></img>Customize Pantry</Link>
+        </li>
         <li>
           <a href="#" onClick={this.onLogoutClick.bind(this)}>
-            Welcome, {user.name} | Logout
+             Logout
           </a>
         </li>
       </ul>
@@ -37,9 +43,9 @@ class Navbar extends Component {
     );
 
     return (
-      <nav className="flexnav container">
+      <nav className="flexnav">
         <Link className="logo" to="/">
-          <img src="images/pantriful-logo.jpg" alt="" />
+          <img src="images/pantriful-logo-orange.png" alt="" />
         </Link>
         {isAuthenticated ? authLinks : guestLinks}
       </nav>
