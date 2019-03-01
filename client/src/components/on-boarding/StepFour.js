@@ -14,10 +14,24 @@ const PROFILE = [
 ]
 
 class StepFour extends Component {
+    state = {
+        error: false
+    }
+
     continue = e => {
-    e.preventDefault();
-    console.log(this.props.values.dietProfile);
-    this.props.nextStep();
+        e.preventDefault();
+
+        this.setState({error: false})
+
+        console.log(this.props.getByValue(this.props.values.dietProfile, false));
+        console.log(this.props.getByValue(this.props.values.dietProfile, true));
+        if ((this.props.getByValue(this.props.values.dietProfile, true).length > 0)) {
+            return this.props.nextStep();
+        }
+        this.setState({
+            error: "You must select a Diet Profile"
+        })
+        return null
     };
 
     back = e => {
@@ -57,6 +71,7 @@ class StepFour extends Component {
         <div className="on-boarding-container container">
         <h2>Great! Now let's select a diet profile.</h2>
             <p>You can select a diet profile or build one from scratch. These help us personalize your lists around the needs of a specific diet.</p>
+            {this.state.error ? <div className="error-message">{this.state.error}</div> : null} 
             <ul className="checkbox-grid">
                 {this.createCheckboxes(PROFILE)}
             </ul>

@@ -44,8 +44,8 @@ class Vegetables extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Vegetables</h2>
-            <p>Select Vegetables</p>
+            <h2>Select your favorites (Vegetables)</h2>
+            <p>Here you can select your favorite Vvgetables. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
                 {this.createCheckboxesFromApi(this.props.foodProfile, "Vegetables")}
             </ul>

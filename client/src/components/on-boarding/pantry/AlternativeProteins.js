@@ -44,8 +44,8 @@ class AlternativeProteins extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>AlternativeProteins</h2>
-            <p>Select AlternativeProteins</p>
+            <h2>Select your favorites (Alternative Proteins)</h2>
+            <p>Here you can select your favorite Alternative Protein options. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
                 {this.createCheckboxesFromApi(this.props.foodProfile, "Alternative Protein")}
             </ul>

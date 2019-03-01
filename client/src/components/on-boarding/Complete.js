@@ -12,6 +12,11 @@ class Complete extends Component {
     this.props.prevStep();
   };
 
+  submit = e => {
+    e.preventDefault();
+    this.props.createSubmit();
+  };
+
   render() {
     return (
       <div>
@@ -23,10 +28,10 @@ class Complete extends Component {
         </div>
 
         <div className="on-boarding-container container stepOne">
-          <img src="./images/on-boarding-one.png"/>
+          <img src="./images/on-boarding-complete.png"/>
           <h2>Awesome! Your Pantry is all set!</h2>
-          <p> This will help us figure out what you like to eat so that we can create a service tailored to you. This will be something you can change whenever you want. <br/><br/>Lets go to your homepage. </p>
-          <button className="main-button onward-button" onClick={this.continue}>Onward!</button>
+          <p> This will help us figure out what you like to eat so that we can create a service tailored to you. This will be something you can change whenever you want. <br/><br/>Let's go to your Dashboard. </p>
+          <button className="main-button onward-button" onClick={this.submit}>Onward!</button>
         </div>
       </div>
     );

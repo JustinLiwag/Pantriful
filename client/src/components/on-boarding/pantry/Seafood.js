@@ -44,8 +44,8 @@ class Seafood extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Seafood</h2>
-            <p>Select Seafood</p>
+            <h2>Select your favorites (Seafood)</h2>
+            <p>Here you can select your favorite Seafood items. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
                 {this.createCheckboxesFromApi(this.props.foodProfile, "Seafood")}
             </ul>

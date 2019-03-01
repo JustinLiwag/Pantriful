@@ -23,13 +23,11 @@ class Checkup extends Component {
             </Link>
         </div>
 
-        <div className="on-boarding-container container">
-            <h2>Checkup</h2>
-            <p>Checkup</p>
-        </div>
-
-        <div className="on-boarding-footer">
-            <button onClick={this.continue}>Next</button>
+        <div className="on-boarding-container container stepOne">
+            <img src="./images/on-boarding-checkup.png"/>
+            <h2>You're doing great! Almost there.</h2>
+            <p>For this last part we will just have you build the last part of your pantry. This includes things like vegetables and fruits!</p>
+            <button className="main-button" onClick={this.continue}>Keep Going!</button>
         </div>
         </div>
     );

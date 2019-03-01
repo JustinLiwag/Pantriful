@@ -263,7 +263,8 @@ nav ul li a {
 
 /* Error Message */
 .error-message {
+  margin-top: 10px;
   font-size: 12px;
   color: red;
-  text-align: left;
+  text-align: center;
 }

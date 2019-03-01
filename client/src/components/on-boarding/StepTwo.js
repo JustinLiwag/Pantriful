@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
 import TextFieldGroup from "./utilities/formFieldGroup";
+import isEmpty from "../../validation/is-empty";
 
 // Fields for the input form
 const FIELDS = [{
@@ -26,8 +27,50 @@ const FIELDS = [{
 ];
 
 class StepTwo extends Component {
+    state = {
+        username: false,
+        age: false,
+        height: false,
+        weight: false
+    }
+
     continue = e => {
     e.preventDefault();
+
+    // Validation for Text Form
+    const {username, age, height, weight} = this.props.values
+    this.setState({
+        username: false,
+        age: false,
+        height: false,
+        weight: false 
+    })
+
+    // // Username Regex 
+    // const regex = /^([a-zA-Z ]){6,20}$/;
+    // if (username.length <= 6 || age <= 0 || height.length <= 0 || weight <= 0 ) {
+    //     if (!regex.test(username)) {
+    //         this.setState({username: "Invalid Username due to regex"})
+    //     }
+    //     if (isEmpty(username)) {
+    //         this.setState({username: "Must enter username"})
+    //     }
+    //     if (isEmpty(age)) {
+    //         this.setState({age: "Must enter age"})
+    //     }
+    //     if (isEmpty(height)) {
+    //         this.setState({height: "Must enter height"})
+    //     }
+    //     if (isEmpty(weight)) {
+    //         this.setState({weight: "Must enter weight"})
+    //     }
+    //     if (username.length < 6) {
+    //         this.setState({username: "Username needs to be longer than 6 characters"})
+    //     }
+    //     return null
+    // }
+
+    // Go to next step
     this.props.nextStep();
     };
 
@@ -49,6 +92,7 @@ class StepTwo extends Component {
             name={fields[i].name}
             value={values[fields[i].name]}
             onChange={handleChange(fields[i].name)}
+            error={this.state[fields[i].name]}
         />
         );
     }

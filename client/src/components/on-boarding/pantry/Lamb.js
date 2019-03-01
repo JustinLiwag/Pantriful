@@ -44,8 +44,8 @@ class Lamb extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Lamb</h2>
-            <p>Select Lamb</p>
+            <h2>Select your favorites (Lamb)</h2>
+            <p>Here you can select your favorite cuts of Lamb. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
                 {this.createCheckboxesFromApi(this.props.foodProfile, "Lamb")}
             </ul>

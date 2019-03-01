@@ -176,17 +176,14 @@ class CreateProfile extends Component {
     for (var i = 0; i < foodProfileData.length; i++) {
       foodProfileCond.push(foodProfileData[i][0]);
     }
-
-    console.log(this.state.shoppingListOne)
     const payload = {
       username: this.state.username,
       age: this.state.age,
       height: this.state.height,
       weight: this.state.weight,
-      foodProfile: foodProfileCond,
-      shoppingListOne: this.state.shoppingListOne,
-      shoppingListTwo: this.state.shoppingListTwo
+      foodProfile: foodProfileCond
     };
+    console.log(payload)
     this.props.sendFoodProfile(payload, this.props.history);
   };
 
@@ -259,6 +256,7 @@ class CreateProfile extends Component {
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
                 values={values}
+                getByValue={this.getByValue}
                 handleChange={this.handleDietProfileCheckboxChange}
             />            
           );

@@ -44,8 +44,8 @@ class Grains extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Grains</h2>
-            <p>Select Grains</p>
+            <h2>Select your favorites (Grains)</h2>
+            <p>Here you can select your favorite Grain items. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
                 {this.createCheckboxesFromApi(this.props.foodProfile, "Grains")}
             </ul>
