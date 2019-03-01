@@ -18,6 +18,10 @@ const INTOLERANCES = [
 ]
 
 class StepThree extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     continue = e => {
     e.preventDefault();
     this.props.nextStep();

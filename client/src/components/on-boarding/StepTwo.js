@@ -34,6 +34,10 @@ class StepTwo extends Component {
         weight: false
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     continue = e => {
     e.preventDefault();
 
@@ -46,29 +50,29 @@ class StepTwo extends Component {
         weight: false 
     })
 
-    // // Username Regex 
-    // const regex = /^([a-zA-Z ]){6,20}$/;
-    // if (username.length <= 6 || age <= 0 || height.length <= 0 || weight <= 0 ) {
-    //     if (!regex.test(username)) {
-    //         this.setState({username: "Invalid Username due to regex"})
-    //     }
-    //     if (isEmpty(username)) {
-    //         this.setState({username: "Must enter username"})
-    //     }
-    //     if (isEmpty(age)) {
-    //         this.setState({age: "Must enter age"})
-    //     }
-    //     if (isEmpty(height)) {
-    //         this.setState({height: "Must enter height"})
-    //     }
-    //     if (isEmpty(weight)) {
-    //         this.setState({weight: "Must enter weight"})
-    //     }
-    //     if (username.length < 6) {
-    //         this.setState({username: "Username needs to be longer than 6 characters"})
-    //     }
-    //     return null
-    // }
+    // Username Regex 
+    const regex = /^([a-zA-Z ]){6,20}$/;
+    if (username.length <= 6 || age <= 0 || height.length <= 0 || weight <= 0 ) {
+        if (!regex.test(username)) {
+            this.setState({username: "Invalid Username due to regex"})
+        }
+        if (isEmpty(username)) {
+            this.setState({username: "Must enter username"})
+        }
+        if (isEmpty(age)) {
+            this.setState({age: "Must enter age"})
+        }
+        if (isEmpty(height)) {
+            this.setState({height: "Must enter height"})
+        }
+        if (isEmpty(weight)) {
+            this.setState({weight: "Must enter weight"})
+        }
+        if (username.length < 6) {
+            this.setState({username: "Username needs to be longer than 6 characters"})
+        }
+        return null
+    }
 
     // Go to next step
     this.props.nextStep();

@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom"
 
 class Complete extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   continue = e => {
     e.preventDefault();
     this.props.nextStep();

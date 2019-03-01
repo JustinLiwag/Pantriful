@@ -3,6 +3,10 @@ import {Link} from "react-router-dom";
 import Checkbox from "../utilities/Checkbox";
 
 class AlternativeProteins extends Component {
+      componentDidMount() {
+          window.scrollTo(0, 0);
+      }
+
     continue = e => {
     e.preventDefault();
     this.props.nextStep();

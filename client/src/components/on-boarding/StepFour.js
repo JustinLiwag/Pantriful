@@ -18,6 +18,10 @@ class StepFour extends Component {
         error: false
     }
 
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    }
+
     continue = e => {
         e.preventDefault();
 
