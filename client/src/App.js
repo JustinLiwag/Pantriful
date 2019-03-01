@@ -16,7 +16,7 @@ import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
-import CreateFoodProfile from "./components/createFoodProfile/FormContainer";
+import CreateFoodProfile from "./components/on-boarding/onBoardingContainer";
 
 import "./css/font.css";
 import "./css/App.css";
@@ -52,21 +52,23 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
-            <Route exact path="/" component={Landing} />
-            <div>
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-              <Switch>
-                <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                <PrivateRoute
-                  exact
-                  path="/create-food-profile"
-                  component={CreateFoodProfile}
-                />
-              </Switch>
-            </div>
-            <Footer />
+            {/* Hide navbar on create profile */}
+            <Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Navbar /> }/>
+              <Route exact path="/" component={Landing} />
+              <div>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <Switch key="Dashboard">
+                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute
+                    exact
+                    path="/create-food-profile"
+                    component = {CreateFoodProfile}
+                  />
+                </Switch>
+              </div>
+            {/* Hide Footer on create profile */}
+            <Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Footer /> }/>
           </div>
         </Router>
       </Provider>

@@ -26,7 +26,7 @@ class Dashboard extends Component {
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div className="on-boarding-container container">
+          <div className="welcome container">
             <h2 className="dashboard-welcome-title">
               Welcome to Pantriful!
             </h2>

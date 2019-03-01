@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom"
 import TextFieldGroup from "../common/textFieldGroup";
 
 const FIELDS = [
@@ -53,6 +54,7 @@ class StepOne extends Component {
   render() {
     return (
       <div className="on-boarding-container container">
+      
         <img
           className="on-boarding-steps"
           src="images/on-boarding-1.jpg"
