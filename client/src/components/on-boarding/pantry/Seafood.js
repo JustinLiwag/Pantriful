@@ -21,7 +21,7 @@ class Seafood extends Component {
         const filteredList = this.props.getCategoryItems(items, category)
         let result = []
         filteredList.map(
-            item => {
+            item => (
                 result.push(
                     <Checkbox
                         id={item.name}
@@ -32,7 +32,7 @@ class Seafood extends Component {
                         onChange={this.props.handleCheckboxChange}
                     />
                 )
-            }
+            )
             )
             return result
     } 

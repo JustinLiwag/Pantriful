@@ -6,8 +6,6 @@ import {
 } from "../../actions/foodProfileActions";
 import Spinner from '../common/Spinner';
 
-import Checkbox from "./utilities/Checkbox";
-
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";

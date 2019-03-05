@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const DashboardContent = ({ profile, auth }) => {
 
@@ -13,29 +13,29 @@ const DashboardContent = ({ profile, auth }) => {
                         <p>Hi, {auth.user.name} {auth.user.lastName}</p>
                         <p>({profile.username})</p>
                         <p>You haven't set up your shopping lists yet. Go ahead and do that next!</p>
-                        <a href="#">Edit Profile</a>
+                        <Link to="/dashboard">Edit Profile</Link>
                     </div>
                 </div>
                 <div className="getting-started">
                     <div>
                         <h3>Getting Started</h3>
                         <div className="getting-started-completed">
-                            <a href="#">
+                            <Link to="/dashboard">
                                 <h4>1. Create Pantry</h4>
                                 <p>so we can figure out what you like.</p>
-                            </a>
+                            </Link>
                         </div>
                         <div>
-                            <a href="#">
+                            <Link to="/dashboard">
                                 <h4>2. Create example shopping lists</h4>
                                 <p>to let us know how often you eat things.</p>
-                            </a>
+                            </Link>
                         </div>
                         <div>
-                            <a href="#">
+                            <Link to="/dashboard">
                                 <h4>3. Enter in delivery details</h4>
                                 <p>so we can figure out where to send your food.</p>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -47,11 +47,11 @@ const DashboardContent = ({ profile, auth }) => {
                 <div>
       
                 <ul className="dashboard-tab-menu">
-                    <li className="active-tab-menu"><a href="#">Home</a></li>
-                    <li><a href="#">Lists</a></li>
-                    <li><a href="#">Pantry</a></li>
-                    <li><a href="#">Tools</a></li>
-                    <li><a href="#">Settings</a></li>
+                    <li className="active-tab-menu"><Link href="#">Home</Link></li>
+                    <li><Link to="/dashboard">Lists</Link></li>
+                    <li><Link to="/dashboard">Pantry</Link></li>
+                    <li><Link to="/dashboard">Tools</Link></li>
+                    <li><Link to="/dashboard">Settings</Link></li>
                 </ul>
   
                 

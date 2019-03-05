@@ -14,20 +14,20 @@ class Navbar extends Component {
   }
 
   render() {
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     const authLinks = (
       <ul>
         <li>
-          <Link className="navbar-auth-links" to="/"><img src="./images/explore-icon.png"></img>Explore</Link>
+          <Link className="navbar-auth-links" to="/"><img src="./images/explore-icon.png" alt=""></img>Explore</Link>
         </li>
         <li>
-          <Link className="navbar-auth-links" to="/"><img src="./images/customize-icon.png"></img>Customize Pantry</Link>
+          <Link className="navbar-auth-links" to="/"><img src="./images/customize-icon.png" alt=""></img>Customize Pantry</Link>
         </li>
         <li>
-          <a href="#" onClick={this.onLogoutClick.bind(this)}>
+          <Link to="/" onClick={this.onLogoutClick.bind(this)}>
              Logout
-          </a>
+          </Link>
         </li>
       </ul>
     );
