@@ -5,7 +5,7 @@ class Footer extends Component {
   render() {
     return (
       <div>
-        <section class="quote container">
+        <section className="quote container">
               <p>“You don’t have to cook fancy or complicated masterpieces - just good food from fresh ingredients.”<br /><br />-
                   Julia Child</p>
         </section>

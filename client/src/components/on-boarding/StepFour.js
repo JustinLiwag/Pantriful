@@ -43,7 +43,7 @@ class StepFour extends Component {
     createCheckboxes = (items) => {
         let result = []
         items.map(
-            item => {
+            item => (
                 result.push(
                     <Checkbox
                         id={item.name}
@@ -54,7 +54,7 @@ class StepFour extends Component {
                         onChange={this.props.handleChange}
                     />
                 )
-            }
+            )
             )
             return result
     } 
