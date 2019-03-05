@@ -52,9 +52,9 @@ class StepTwo extends Component {
 
     // Username Regex 
     const regex = /^([a-zA-Z ]){6,20}$/;
-    if (username.length <= 6 || age <= 0 || height.length <= 0 || weight <= 0 ) {
+    if (username.length <= 5 || age <= 0 || height.length <= 0 || weight <= 0 ) {
         if (!regex.test(username)) {
-            this.setState({username: "Invalid Username due to regex"})
+            this.setState({username: "Invalid characters"})
         }
         if (isEmpty(username)) {
             this.setState({username: "Must enter username"})
@@ -69,7 +69,7 @@ class StepTwo extends Component {
             this.setState({weight: "Must enter weight"})
         }
         if (username.length < 6) {
-            this.setState({username: "Username needs to be longer than 6 characters"})
+            this.setState({username: "Username needs to be at least 6 characters"})
         }
         return null
     }

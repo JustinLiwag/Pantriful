@@ -89,9 +89,9 @@ router.post(
           age: req.body.age,
           height: req.body.height,
           weight: req.body.weight,
-          foodProfile: foodProfileArray,
-          shoppingListOne: req.body.shoppingListOne,
-          shoppingListTwo: req.body.shoppingListTwo
+          foodProfile: req.body.foodProfile,
+          dietProfile: req.body.dietProfile,
+          dietaryRestrictions: req.body.dietaryRestrictions
         };
 
         new ProfileTest(profileData).save().then(profile => res.json(profile));

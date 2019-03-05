@@ -167,21 +167,18 @@ class CreateProfile extends Component {
 
   // Create payload for API when submitted   
   createSubmit = () => {
-    const foodProfileData = this.createPantry(
-      this.props.foodProfile.foodProfile,
-      this.getByValue(this.state.checkedItems, true)
-    );
-    // Temp fix for array nested within another array
-    const foodProfileCond = [];
-    for (var i = 0; i < foodProfileData.length; i++) {
-      foodProfileCond.push(foodProfileData[i][0]);
-    }
+    const dietProfileItems = this.getByValue(this.state.dietProfile, true);
+    const dietaryRestrictionsItems = this.getByValue(this.state.dietaryRestrictions, true);
+    const checkedItems = this.getByValue(this.state.checkedItems, true);
+
     const payload = {
       username: this.state.username,
       age: this.state.age,
       height: this.state.height,
       weight: this.state.weight,
-      foodProfile: foodProfileCond
+      foodProfile: checkedItems,
+      dietProfile: dietProfileItems,
+      dietaryRestrictions: dietaryRestrictionsItems
     };
     console.log(payload)
     this.props.sendFoodProfile(payload, this.props.history);

@@ -26,9 +26,6 @@ class StepFour extends Component {
         e.preventDefault();
 
         this.setState({error: false})
-
-        console.log(this.props.getByValue(this.props.values.dietProfile, false));
-        console.log(this.props.getByValue(this.props.values.dietProfile, true));
         if ((this.props.getByValue(this.props.values.dietProfile, true).length > 0)) {
             return this.props.nextStep();
         }
