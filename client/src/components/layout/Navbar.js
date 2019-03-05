@@ -3,11 +3,13 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import { clearCurrentProfile } from "../../actions/profileActions";
 
 class Navbar extends Component {
+  
   onLogoutClick(e) {
     e.preventDefault();
-
+    this.props.clearCurrentProfile();
     this.props.logoutUser(this.props.history);
   }
 
@@ -17,8 +19,14 @@ class Navbar extends Component {
     const authLinks = (
       <ul>
         <li>
+          <Link className="navbar-auth-links" to="/"><img src="./images/explore-icon.png"></img>Explore</Link>
+        </li>
+        <li>
+          <Link className="navbar-auth-links" to="/"><img src="./images/customize-icon.png"></img>Customize Pantry</Link>
+        </li>
+        <li>
           <a href="#" onClick={this.onLogoutClick.bind(this)}>
-            Welcome, {user.name} | Logout
+             Logout
           </a>
         </li>
       </ul>
@@ -38,7 +46,7 @@ class Navbar extends Component {
     return (
       <nav className="flexnav container">
         <Link className="logo" to="/">
-          <img src="images/pantriful-logo.jpg" alt="" />
+          <img src="images/pantriful-logo-orange.png" alt="" />
         </Link>
         {isAuthenticated ? authLinks : guestLinks}
       </nav>
@@ -57,5 +65,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { logoutUser }
+  { logoutUser, clearCurrentProfile }
 )(Navbar);

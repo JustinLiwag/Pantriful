@@ -1,0 +1,270 @@
+/*----NAVIGATION----*/
+
+.flexnav {
+  padding: 25px 0 25px;
+  display: flex;
+  flex-direction: columns;
+  min-height: 5em;
+  align-items: center;
+  z-index: 0
+}
+
+.on-boarding-nav {
+  position: absolute;
+  background: white;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  padding: 25px 0 25px;
+  display: flex;
+  flex-direction: columns;
+  min-height: 5em;
+  align-items: center;
+  z-index: 0;
+  border-bottom: 1px solid grey;
+}
+
+.flexnav-border {
+    padding: 25px 0 25px;
+    display: flex;
+    flex-direction: columns;
+    min-height: 5em;
+    align-items: center;
+    border-bottom: 1px solid #D5D5D5;
+    margin-bottom: 50px;
+}
+
+.logo {
+  margin-right: auto;
+  margin-left: 30px;
+  padding: 0;
+}
+
+.logo img {
+  max-width: 150px;
+}
+
+.flexnav ul li {
+  display: inline-block;
+  margin-right: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #EE9986;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-signup-button a {
+  color: white;
+  border-radius: 5px;
+  padding: 12px 60px;
+  background-color: #EE9986;
+  font-size: 20px;
+}
+
+@media screen and (max-width: 600px) {
+  .flexnav {
+    /* padding: 15px 0 20px; */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .flexnav ul li:nth-of-type(2) {
+    margin-right: 0px;
+  }
+
+  .logo {
+    margin: 10px 0 30px 0;
+  }
+
+  .logo img {
+    max-width: 200px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: #EE9986;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 5px 25px;
+    border: 2px solid #EE9986;
+    font-weight: bold;
+  }
+
+  .nav-signup-button a {
+    color: white;
+    border-radius: 5px;
+    padding: 5px 25px;
+    background-color: #EE9986;
+    font-size: 18px;
+  }
+}
+
+
+/* NAVBAR */
+
+.navbar-auth-links {
+  color: #676767;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.navbar-auth-links img {
+  padding-right: 8px;
+  width: 30px;
+  vertical-align: middle;
+}
+
+/* LOGIN AND REGISTER BUTTON FIXES */
+
+#login-submit, #register-submit {
+  padding: 20px 20px;
+}
+
+/* Login Component */
+
+.login-form>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.063em 0.313em 0 rgba(0, 0, 0, .07),
+    0 0.438em 1.063em 0 rgba(0, 0, 0, .1);
+  width: 630px;
+  height: 350px;
+  margin: 50px auto 300px;
+  padding: 0;
+  border-radius: 15px;
+}
+
+.login-form h2 {
+  margin-bottom: 25px;
+  font-size: 30px;
+}
+
+.login-form input {
+  border: none;
+  background-color: #F7F7F7;
+  margin: 5px 0;
+  font-size: 18px;
+  padding: 10px 50px 10px 25px;
+  display: inline-block;
+  outline: none;
+}
+
+.login-form input::placeholder {
+  color: #BABABA;
+}
+
+.login-form button {
+  display: block;
+  font-size: 15px;
+  padding: 10px 105px;
+  border: none;
+  background-color: #EE9986;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 15px auto 10px;
+}
+
+
+.login-form>div div:nth-of-type(2) img {
+  width: 300px;
+  margin-left: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0.938em 2.188em rgba(50, 50, 93, .1),
+    0 0.313em 0.938em rgba(0, 0, 0, .07);
+}
+
+.login-form div div p a {
+  text-decoration: none;
+  color: #4A4A4A;
+  font-size: 14px;
+}
+
+.login-form div div p a span {
+  color: #EE9986;
+}
+
+/* Register Component */
+
+.register-form>div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 0.063em 0.313em 0 rgba(0, 0, 0, .07),
+    0 0.438em 1.063em 0 rgba(0, 0, 0, .1);
+  width: 850px;
+  height: 550px;
+  margin: 50px auto 300px;
+  padding: 0;
+  border-radius: 15px;
+}
+
+.register-form h2 {
+  margin-bottom: 15px;
+  font-size: 30px;
+}
+
+.register-form p {
+  text-align: center;
+  width: 300px;
+  margin: auto;
+  margin-bottom: 15px;
+}
+
+.register-form input {
+  border: none;
+  background-color: #F7F7F7;
+  margin: 5px 0;
+  font-size: 18px;
+  padding: 10px 125px 10px 25px;
+  display: inline-block;
+  outline: none;
+}
+
+.register-form input::placeholder {
+  color: #BABABA;
+}
+
+.register-form button {
+  display: block;
+  font-size: 15px;
+  padding: 10px 105px;
+  border: none;
+  background-color: #EE9986;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 15px auto 10px;
+}
+
+
+.register-form>div div:nth-of-type(2) img {
+  width: 450px;
+  margin-left: 20px;
+  border-radius: 15px;
+  box-shadow: 0 0.938em 2.188em rgba(50, 50, 93, .1),
+    0 0.313em 0.938em rgba(0, 0, 0, .07);
+}
+
+.register-form div div p a {
+  text-decoration: none;
+  color: #4A4A4A;
+  font-size: 14px;
+}
+
+.register-form div div p a span {
+  color: #EE9986;
+}
+
+/* Error Message */
+.error-message {
+  margin-top: 10px;
+  font-size: 12px;
+  color: red;
+  text-align: center;
+}
