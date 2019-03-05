@@ -47,7 +47,7 @@ const DashboardContent = ({ profile, auth }) => {
                 <div>
       
                 <ul className="dashboard-tab-menu">
-                    <li className="active-tab-menu"><Link href="#">Home</Link></li>
+                    <li className="active-tab-menu"><Link to="/">Home</Link></li>
                     <li><Link to="/dashboard">Lists</Link></li>
                     <li><Link to="/dashboard">Pantry</Link></li>
                     <li><Link to="/dashboard">Tools</Link></li>
