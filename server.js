@@ -7,6 +7,7 @@ const sslRedirect = require("heroku-ssl-redirect");
 
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
+const masterFoodProfile = require("./routes/api/masterFoodProfile");
 
 const app = express();
 
@@ -14,7 +15,7 @@ const app = express();
 app.use(sslRedirect());
 
 // Body Parser Middleware
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // DB config
@@ -35,6 +36,7 @@ require("./config/passport")(passport);
 // Use Routes
 app.use("/api/users", users);
 app.use("/api/profile", profile);
+app.use("/api/master-food-profile", masterFoodProfile);
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder

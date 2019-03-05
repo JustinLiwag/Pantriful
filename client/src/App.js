@@ -1,20 +1,28 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+import { clearCurrentProfile } from "./actions/profileActions";
 
 import { Provider } from "react-redux";
 import store from "./store";
 
+import PrivateRoute from "./components/common/PrivateRoute";
+
 import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
-import Dashboard from "./components/layout/Dashboard";
 import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Dashboard from "./components/dashboard/Dashboard";
+import CreateFoodProfile from "./components/on-boarding/onBoardingContainer";
 
-import "./App.css";
+import "./css/font.css";
+import "./css/App.css";
+import "./css/LandingPage.css";
+import "./css/Dashboard.css";
+import "./css/On-boarding.css";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -30,26 +38,37 @@ if (localStorage.jwtToken) {
   if (decoded.exp < currentTime) {
     // Logout user
     store.dispatch(logoutUser());
-    // TODO: clear current profile
+    // Clear current profile
+    store.dispatch(clearCurrentProfile());
     // Redirect to login
     window.location.href = "/login";
   }
 }
 
 class App extends Component {
+  
   render() {
     return (
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
-            <Route exact path="/" component={Landing} />
-            <div className="container">
-              <Route exact path="/register" component={Register} />
-              <Route exact path="/login" component={Login} />
-            </div>
-            <Route exact path="/dashboard" component={Dashboard} />
-            <Footer />
+            {/* Hide navbar on create profile */}
+            <Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Navbar /> }/>
+              <Route exact path="/" component={Landing} />
+              <div>
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
+                <Switch key="Dashboard">
+                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute
+                    exact
+                    path="/create-food-profile"
+                    component = {CreateFoodProfile}
+                  />
+                </Switch>
+              </div>
+            {/* Hide Footer on create profile */}
+            <Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Footer /> }/>
           </div>
         </Router>
       </Provider>

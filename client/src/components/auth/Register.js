@@ -20,6 +20,8 @@ class Register extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0);
+
     if (this.props.auth.isAuthenticated) {
       this.props.history.push("/dashboard");
     }
@@ -53,68 +55,63 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <section className="register container">
-        <div className="reg-form container">
-          <h1>Register Here</h1>
-          <p>
-            Enter your personal details and start your new grocery experience
-            with us.
-          </p>
-          <form onSubmit={this.onSubmit}>
-            <TextFieldGroup
-              type="text"
-              placeholder="First Name"
-              name="name"
-              value={this.state.name}
-              onChange={this.onChange}
-              error={errors.name}
-            />
-            <TextFieldGroup
-              type="text"
-              placeholder="Last Name"
-              name="lastName"
-              value={this.state.lastName}
-              onChange={this.onChange}
-              error={errors.lastName}
-            />
-            <TextFieldGroup
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={this.state.email}
-              onChange={this.onChange}
-              error={errors.email}
-            />
-            <TextFieldGroup
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={this.state.password}
-              onChange={this.onChange}
-              error={errors.password}
-            />
-            <TextFieldGroup
-              type="password"
-              placeholder="Confirm Password"
-              name="password2"
-              value={this.state.password2}
-              onChange={this.onChange}
-              error={errors.password2}
-            />
-            <input type="submit" className="reg-submit" />
-          </form>
-          <p id="member-login">
-            <Link to="/login">
-              Already a member?{" "}
-              <span className="pantriful-orange">Sign in</span>
-            </Link>
-          </p>
+      <section className="register-form container">
+        <div>
+            <div>
+                <h2>Register Here</h2>
+                <p>
+                  Enter your personal details and start your new grocery experience
+                  with us.
+                </p>
+                <form onSubmit={this.onSubmit}>
+                  <TextFieldGroup
+                    type="text"
+                    placeholder="First Name"
+                    name="name"
+                    value={this.state.name}
+                    onChange={this.onChange}
+                    error={errors.name}
+                  />
+                  <TextFieldGroup
+                    type="text"
+                    placeholder="Last Name"
+                    name="lastName"
+                    value={this.state.lastName}
+                    onChange={this.onChange}
+                    error={errors.lastName}
+                  />
+                  <TextFieldGroup
+                    type="email"
+                    placeholder="Email"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.onChange}
+                    error={errors.email}
+                  />
+                  <TextFieldGroup
+                    type="password"
+                    placeholder="Password"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.onChange}
+                    error={errors.password}
+                  />
+                  <TextFieldGroup
+                    type="password"
+                    placeholder="Confirm Password"
+                    name="password2"
+                    value={this.state.password2}
+                    onChange={this.onChange}
+                    error={errors.password2}
+                  />
+                  <button type="submit">Submit</button>
+                </form>
+                <p><Link to="/login">Already a member? <span>Sign In</span></Link></p>
+            </div>
+            <div>
+                <img src="images/register-img.png" alt=""/>
+            </div>
         </div>
-        <img
-          className="container register-img"
-          src="images/register-img.png"
-          alt=""
-        />
       </section>
     );
   }
@@ -135,3 +132,4 @@ export default connect(
   mapStateToProps,
   { registerUser }
 )(withRouter(Register));
+

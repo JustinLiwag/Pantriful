@@ -5,11 +5,130 @@ const passport = require("passport");
 
 // Load Profile Model
 const Profile = require("../../models/FoodProfile");
+const ProfileTest = require("../../models/Profile");
 // Load User Model
 const User = require("../../models/User");
 
 // Load Validations
 const validateProfileInput = require("../../validation/profile");
+
+// ----------------------------------
+//  NEW PROFILE ROUTES
+// ----------------------------------
+
+// @route   POST api/profile/food-profile-test
+// @desc    Create users profile
+// @access  Private
+router.post(
+  "/food-profile-test",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    console.log("USER: ", req.user);
+    console.log("BODY: ", req.body);
+
+    const profileFields = {};
+    profileFields.user = req.user.id;
+    if (req.body.username) profileFields.username = req.body.username;
+    if (req.body.age) profileFields.age = req.body.age;
+    if (req.body.height) profileFields.height = req.body.height;
+    if (req.body.weight) profileFields.weight = req.body.weight;
+
+    console.log("PROFILE FIELDS: ", profileFields);
+
+    ProfileTest.findOne({ user: req.user.id }).then(profile => {
+      // If profile exists...
+      if (profile) {
+        // Update the profile
+        res.json({ profileExists: true });
+      } else {
+        // Create new profile
+        ProfileTest.findOne({ username: profileFields.username })
+          .populate("user", ["name"])
+          .then(profile => {
+            if (profile) {
+              res.status(400).json({ error: "Username already exists" });
+            }
+
+            new ProfileTest(profileFields)
+              .save()
+              .then(profile => res.json(profile));
+          });
+      }
+    });
+  }
+);
+
+// @route   POST api/profile/food-profile-test/foodProfile
+// @desc    Add pantry to users profile
+// @access  Private
+router.post(
+  "/food-profile-test/foodProfile",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    // Find Profile
+    ProfileTest.findOne({ user: req.user.id }).then(profile => {
+      // If no profile
+      if (profile === null) {
+        const foodProfileArray = [];
+        var foodProfileData = req.body.foodProfile;
+        for (var i = 0; i < foodProfileData.length; i++) {
+          const newFoodProfileItem = {
+            name: foodProfileData[i].name,
+            item_id: foodProfileData[i].item_id,
+            category: foodProfileData[i].category,
+            measurementUnit: foodProfileData[i].measurementUnit,
+            basePrice: foodProfileData[i].basePrice,
+            lowPrice: foodProfileData[i].lowPrice,
+            upperPrice: foodProfileData[i].upperPrice
+          };
+          foodProfileArray.push(newFoodProfileItem);
+        }
+        var profileData = {
+          user: req.user.id,
+          username: req.body.username,
+          age: req.body.age,
+          height: req.body.height,
+          weight: req.body.weight,
+          foodProfile: req.body.foodProfile,
+          dietProfile: req.body.dietProfile,
+          dietaryRestrictions: req.body.dietaryRestrictions
+        };
+
+        new ProfileTest(profileData).save().then(profile => res.json(profile));
+      }
+    });
+  }
+);
+
+// @route   GET api/profile/
+// @desc    Get current users profile
+// @access  Private
+router.get(
+  "/",
+  passport.authenticate("jwt", {
+    session: false
+  }),
+  (req, res) => {
+    const errors = {};
+
+    ProfileTest.findOne({
+        user: req.user.id
+      })
+      .populate("user", ["name", "lastName"])
+      .then(profile => {
+        if (!profile) {
+          errors.noprofile = "There is no profile for this user";
+          return res.status(404).json(errors);
+        }
+        res.json(profile);
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// ----------------------------------
+//  ORIGINAL PROFILE ROUTES
+// ----------------------------------
 
 // @route   GET api/profile/
 // @desc    Get current users profile
@@ -116,7 +235,9 @@ router.post(
       profileFields.dietOrientation = req.body.dietOrientation;
     if (req.body.dietaryRestrictions)
       profileFields.dietaryRestrictions = req.body.dietaryRestrictions;
-
+    if (req.body.completed) {
+      profileFields.completed = req.body.completed;
+    }
     // Diet Infromation
 
     // ------------------
@@ -418,7 +539,7 @@ router.post(
     if (req.body.cheeseSpread === "true")
       profileFields.dairy.cheeseSpread.active = true;
 
-    // console.log(profileFields);
+    console.log(req.body);
 
     Profile.findOne({ user: req.user.id }).then(profile => {
       if (profile) {
