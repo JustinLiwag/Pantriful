@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import Checkbox from "../utilities/Checkbox";
+import Checkbox from "../../utilities/Checkbox";
 
-class Lamb extends Component {
+class Beef extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
     }
@@ -48,10 +48,10 @@ class Lamb extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Select your favorites (Lamb)</h2>
-            <p>Here you can select your favorite cuts of Lamb. We recommend selecting things you eat on a regular basis.</p>
+            <h2>Select your favorites (Beef)</h2>
+            <p>Here you can select your favorite cuts of beef. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
-                {this.createCheckboxesFromApi(this.props.foodProfile, "Lamb")}
+                {this.createCheckboxesFromApi(this.props.foodProfile, "Beef")}
             </ul>
         </div>
 
@@ -63,4 +63,4 @@ class Lamb extends Component {
     }
 }
 
-export default Lamb;
+export default Beef;

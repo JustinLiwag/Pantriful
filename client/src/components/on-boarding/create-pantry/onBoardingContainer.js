@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import {
   getFoodProfile,
   sendFoodProfile
-} from "../../actions/foodProfileActions";
-import Spinner from '../common/Spinner';
+} from "../../../actions/foodProfileActions";
+import Spinner from '../../common/Spinner';
 
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";

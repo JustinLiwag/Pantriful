@@ -1,23 +1,8 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import Checkbox from "./utilities/Checkbox";
+import Checkbox from "../../utilities/Checkbox";
 
-// Non API Items 
-const INTOLERANCES = [
-    {name: "Peanuts"},
-    {name: "Gluten"},
-    {name: "Shellfish"},
-    {name: "Milk and Dairy"},
-    {name: "Soy"},
-    {name: "Seeds"},
-    {name: "Stone Fruit"},
-    {name: "Tree Nuts"},
-    {name: "Wheat"},
-    {name: "Eggs"},
-    {name: "Gelatin"},
-]
-
-class StepThree extends Component {
+class Grains extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
     }
@@ -32,9 +17,10 @@ class StepThree extends Component {
     this.props.prevStep();
     };
 
-    createCheckboxes = (items) => {
+    createCheckboxesFromApi = (items, category) => {
+        const filteredList = this.props.getCategoryItems(items, category)
         let result = []
-        items.map(
+        filteredList.map(
             item => (
                 result.push(
                     <Checkbox
@@ -42,8 +28,8 @@ class StepThree extends Component {
                         key={item.name}
                         type={"checkbox"}
                         name={item.name}
-                        checked={this.props.values.dietaryRestrictions.get(item.name)}
-                        onChange={this.props.handleChange}
+                        checked={this.props.values.checkedItems.get(item.name)}
+                        onChange={this.props.handleCheckboxChange}
                     />
                 )
             )
@@ -62,10 +48,10 @@ class StepThree extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Do you have any allergies or intolerances?</h2>
-            <p>Select any allergies or intolerances that you want us to be aware of.</p>
+            <h2>Select your favorites (Grains)</h2>
+            <p>Here you can select your favorite Grain items. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
-                {this.createCheckboxes(INTOLERANCES)}
+                {this.createCheckboxesFromApi(this.props.foodProfile, "Grains")}
             </ul>
         </div>
 
@@ -77,4 +63,4 @@ class StepThree extends Component {
     }
 }
 
-export default StepThree;
+export default Grains;

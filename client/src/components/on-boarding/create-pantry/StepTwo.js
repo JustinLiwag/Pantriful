@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import TextFieldGroup from "./utilities/formFieldGroup";
-import isEmpty from "../../validation/is-empty";
+import TextFieldGroup from "../utilities/formFieldGroup";
+import isEmpty from "../../../validation/is-empty";
 
 // Fields for the input form
 const FIELDS = [{

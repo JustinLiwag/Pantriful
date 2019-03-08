@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom";
-import Checkbox from "../utilities/Checkbox";
+import Checkbox from "../../utilities/Checkbox";
 
-class Seafood extends Component {
+class Chicken extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
     }
-
+    
     continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -48,10 +48,11 @@ class Seafood extends Component {
         </div>
 
         <div className="on-boarding-container container">
-            <h2>Select your favorites (Seafood)</h2>
-            <p>Here you can select your favorite Seafood items. We recommend selecting things you eat on a regular basis.</p>
+            <h2>Select Your favorites (Chicken)</h2>
+            <p>Here you can select your favorite cuts of chicken. We recommend selecting things you eat on a regular basis. </p>
             <ul className="checkbox-grid">
-                {this.createCheckboxesFromApi(this.props.foodProfile, "Seafood")}
+                {this.createCheckboxesFromApi(this.props.foodProfile, "Chicken")}
+                {this.createCheckboxesFromApi(this.props.foodProfile, "Turkey")}
             </ul>
         </div>
 
@@ -63,4 +64,4 @@ class Seafood extends Component {
     }
 }
 
-export default Seafood;
+export default Chicken;

@@ -16,7 +16,7 @@ import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
-import CreateFoodProfile from "./components/on-boarding/onBoardingContainer";
+import CreateFoodProfile from "./components/on-boarding/create-pantry/onBoardingContainer";
 
 import "./css/font.css";
 import "./css/App.css";
