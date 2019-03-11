@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import TextFieldGroup from "../common/textFieldGroup";
+import Navbar from "../layout/Navbar"
+import Footer from "../layout/Footer"
 
 class Register extends Component {
   constructor() {
@@ -55,7 +57,9 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <section className="register-form container">
+      <div>
+        <Navbar />
+        <section className="register-form container">
         <div>
             <div>
                 <h2>Register Here</h2>
@@ -111,8 +115,10 @@ class Register extends Component {
             <div>
                 <img src="images/register-img.png" alt=""/>
             </div>
-        </div>
-      </section>
+          </div>
+        </section>
+      <Footer />
+      </div>
     );
   }
 }

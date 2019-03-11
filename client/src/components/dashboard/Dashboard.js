@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import Spinner from "../common/Spinner";
 import DashboardContent from "./DashboardContent";
+import Navbar from "../layout/Navbar"
+import Footer from "../layout/Footer"
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -26,7 +28,9 @@ class Dashboard extends Component {
       } else {
         // User is logged in but has no profile
         dashboardContent = (
-          <div className="welcome container">
+          <div>
+            <Navbar />
+            <div className="welcome container">
             <h2 className="dashboard-welcome-title">
               Welcome to Pantriful!
             </h2>
@@ -37,7 +41,9 @@ class Dashboard extends Component {
             </p>
             <Link to="/create-food-profile" className="button about-button">
               Get Started!
-            </Link>
+              </Link>
+            </div>
+            <Footer />
           </div>
         );
       }

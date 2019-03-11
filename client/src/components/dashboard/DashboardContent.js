@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../layout/Navbar"
 
 const DashboardContent = ({ profile, auth }) => {
 
   return (
         
         <div>
+            <Navbar />
             <div className="dashboard-status">
                 <div className="status-update-container">
                     <img src="./images/profile.placeholder.png" alt=""/>
@@ -13,7 +15,7 @@ const DashboardContent = ({ profile, auth }) => {
                         <p>Hi, {auth.user.name} {auth.user.lastName}</p>
                         <p>({profile.username})</p>
                         <p>You haven't set up your shopping lists yet. Go ahead and do that next!</p>
-                        <Link to="/dashboard">Edit Profile</Link>
+                        <Link to="/create-shopping-list">Create Shopping List</Link>
                     </div>
                 </div>
                 <div className="getting-started">
@@ -26,7 +28,7 @@ const DashboardContent = ({ profile, auth }) => {
                             </Link>
                         </div>
                         <div>
-                            <Link to="/dashboard">
+                            <Link to="/create-shopping-list">
                                 <h4>2. Create example shopping lists</h4>
                                 <p>to let us know how often you eat things.</p>
                             </Link>

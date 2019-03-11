@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { PropTypes } from "prop-types";
 import { connect } from "react-redux";
+import Navbar from "./Navbar"
+import Footer from "./Footer"
 
 class Landing extends Component {
   componentDidMount() {
@@ -15,6 +17,7 @@ class Landing extends Component {
   render() {
     return (
       <div>
+      <Navbar />
       <section className="hero">
             <div className="hero-inner">
                 <h1 className="hero-title">Forget Shopping Carts Forever.</h1>
@@ -119,6 +122,7 @@ class Landing extends Component {
                 </div>
             </div>
         </div>
+        <Footer />
         </div>
     );
   }

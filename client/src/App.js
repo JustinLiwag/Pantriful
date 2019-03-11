@@ -10,13 +10,12 @@ import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 
-import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
-import Footer from "./components/layout/Footer";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateFoodProfile from "./components/on-boarding/create-pantry/onBoardingContainer";
+import CreateShoppingList from "./components/on-boarding/create-shopping-list/shoppingListContainer";
 
 import "./css/font.css";
 import "./css/App.css";
@@ -53,22 +52,27 @@ class App extends Component {
         <Router>
           <div className="App">
             {/* Hide navbar on create profile */}
-            <Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Navbar /> }/>
+            {/*<Route path="/" render={ ( props ) => ( props.location.pathname !== ("/create-food-profile")) && <Navbar /> }/>*/}
               <Route exact path="/" component={Landing} />
               <div>
                 <Route exact path="/register" component={Register} />
                 <Route exact path="/login" component={Login} />
                 <Switch key="Dashboard">
-                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                  <PrivateRoute exact path="/dashboard" component={Dashboard}/>
                   <PrivateRoute
                     exact
                     path="/create-food-profile"
                     component = {CreateFoodProfile}
                   />
+                  <PrivateRoute
+                    exact
+                    path="/create-shopping-list"
+                    component = {CreateShoppingList}
+                  />
                 </Switch>
               </div>
             {/* Hide Footer on create profile */}
-            <Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Footer /> }/>
+            {/*<Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Footer /> }/>*/}
           </div>
         </Router>
       </Provider>
