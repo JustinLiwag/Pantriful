@@ -6,7 +6,7 @@ import { GET_FOOD_PROFILE, FOOD_PROFILE_LOADING } from "./types";
 export const getFoodProfile = () => dispatch => {
   dispatch(setFoodProfileLoading());
   axios
-    .get("/api/master-food-profile/")
+    .get("/api/master-food-profile")
     .then(res =>
       dispatch({
         type: GET_FOOD_PROFILE,
@@ -16,7 +16,7 @@ export const getFoodProfile = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_FOOD_PROFILE,
-        payload: { error: true }
+        payload: {}
       })
     );
 };

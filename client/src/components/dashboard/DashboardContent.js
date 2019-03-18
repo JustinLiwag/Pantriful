@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from "../layout/Navbar"
+import Footer from "../layout/Footer"
 
 const DashboardContent = ({ profile, auth }) => {
 
@@ -117,7 +118,7 @@ const DashboardContent = ({ profile, auth }) => {
 
                 </div>
   
-
+                <Footer />
             </div>
         </div>
   );
