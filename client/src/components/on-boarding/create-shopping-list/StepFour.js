@@ -22,10 +22,13 @@ class StepFour extends Component {
           </Link>
         </div>
 
-        <div className="on-boarding-container container stepOne">
-          <h2>Step Four: Create Your Shopping Lists</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend metus quam, at auctor lorem pulvinar in. Nulla sed placerat nibh. Nulla quis lobortis metus.</p>
-          <button className="main-button" onClick={this.continue}>Next</button>
+        <div className="on-boarding-container container stepOneShoppingCart">
+          <div>
+            <h2>View your total at the bottom</h2>
+            <img src="./images/shopping-cart-4.png" alt=""/>
+            <p>This should be in the ballpark of what you usually spend per grocery trip.</p>
+            <button className="main-button" onClick={this.continue}>Next</button>
+          </div>
         </div>
       </div>
     );

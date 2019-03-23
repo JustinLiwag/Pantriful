@@ -8,6 +8,7 @@ import StepOne from "./StepOne"
 import StepTwo from "./StepTwo"
 import StepThree from "./StepThree"
 import StepFour from "./StepFour"
+import StepFive from "./StepFive"
 
 class CreateProfile extends Component {
   state = {
@@ -68,6 +69,13 @@ class CreateProfile extends Component {
         case 4: 
           return (
             <StepFour
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+            />
+          )
+        case 5: 
+          return (
+            <StepFive
               nextStep={this.nextStep}
               prevStep={this.prevStep}
             />

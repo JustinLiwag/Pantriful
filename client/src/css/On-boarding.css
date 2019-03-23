@@ -15,9 +15,6 @@
   color: #838383;
 }
 
-.on-boarding-form {
-}
-
 .form-text-container {
   box-sizing: border-box;
   margin-top: 10px;
@@ -254,9 +251,27 @@
   line-height: 33px;
 }
 
-/* STEP TWO */
+/* Shopping Cart */
 
+.stepOneShoppingCart {
+  /* display: flex;
+  justify-content: center;
+  align-content: center; */
+  /* margin-top: 250px; */
+}
 
+.stepOneShoppingCart img {
+  width: 500px;
+}
 
-/* STEP THREE */
+.stepOneShoppingCart h2 {
+  margin-top: 10px;
+  font-size: 25px;
+}
 
+.stepOneShoppingCart p {
+  padding: 0px 0 50px;
+  width: 500px;
+  margin: auto;
+  line-height: 33px;
+}

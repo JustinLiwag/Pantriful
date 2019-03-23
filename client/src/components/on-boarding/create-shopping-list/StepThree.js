@@ -22,10 +22,13 @@ class StepThree extends Component {
           </Link>
         </div>
 
-        <div className="on-boarding-container container stepOne">
-          <h2>Step Three: Create Your Shopping Lists</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend metus quam, at auctor lorem pulvinar in. Nulla sed placerat nibh. Nulla quis lobortis metus.</p>
-          <button className="main-button" onClick={this.continue}>Next</button>
+        <div className="on-boarding-container container stepOneShoppingCart">
+          <div>
+            <h2>You can change the quantity</h2>
+            <img src="./images/shopping-cart-3.png" alt=""/>
+            <p>You can change the quantitiy or amount of a particular item that you want. The price will update accordingly.</p>
+            <button className="main-button" onClick={this.continue}>Next</button>
+          </div>
         </div>
       </div>
     );

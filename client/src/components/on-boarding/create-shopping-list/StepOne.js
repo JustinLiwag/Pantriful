@@ -23,8 +23,9 @@ class StepOne extends Component {
         </div>
  
         <div className="on-boarding-container container stepOne">
-          <h2>Step One: Create Your Shopping Lists</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eleifend metus quam, at auctor lorem pulvinar in. Nulla sed placerat nibh. Nulla quis lobortis metus.</p>
+          <img src="./images/shopping-cart-1.png" alt=""/>
+          <h2>Let’s set up some shopping lists.</h2>
+          <p>You will be building two example shopping lists for us. This will give us a good idea of what you usually get and how often you tend to buy things. </p>
           <button className="main-button" onClick={this.continue}>GET STARTED</button>
         </div>
       </div>
