@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
-class StepFive extends Component {
+class ShoppingListTwo extends Component {
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -24,10 +24,11 @@ class StepFive extends Component {
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
-            <h2>View your total at the bottom</h2>
-            <img src="./images/shopping-cart-5.png" alt=""/>
-            <p>This should be in the ballpark of what you usually spend per grocery trip.</p>
-            <button className="main-button" onClick={this.continue}>Next</button>
+            <h2>Shopping List Two</h2>
+            <p>Description</p>
+            <button className="main-button" onClick={this.continue}>
+              Next
+            </button>
           </div>
         </div>
       </div>
@@ -35,4 +36,4 @@ class StepFive extends Component {
   }
 }
 
-export default StepFive;
+export default ShoppingListTwo;

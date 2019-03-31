@@ -24,9 +24,9 @@ class StepFour extends Component {
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
-            <h2>View your total at the bottom</h2>
+            <h2>Want something specific? Leave us a note.</h2>
             <img src="./images/shopping-cart-4.png" alt=""/>
-            <p>This should be in the ballpark of what you usually spend per grocery trip.</p>
+            <p>You can leave notes on an item to let us know if you want something a little more specific. </p>
             <button className="main-button" onClick={this.continue}>Next</button>
           </div>
         </div>

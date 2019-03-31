@@ -64,22 +64,12 @@ class StepFour extends Component {
 
     for (let i = 0; i < selectedPantryItems.length; i++) {
       result.push(
-        <div
-          className="shopping-list-item"
-          key={selectedPantryItems[i].name + "container"}
-        >
-          <input
-            key={i}
-            name={selectedPantryItems[i].name}
-            onChange={this.props.handleShoppingCartAmountChange(
-              selectedPantryItems[i].name
-            )}
-            value={
-              this.props.getNameItem(
-                this.props.values.shoppingListOne,
-                selectedPantryItems[i].item_id
-              )[0].amount
-            }
+        <div className="shopping-list-item" key={selectedPantryItems[i].name + "container"}>
+          <input 
+            key={i} 
+            name={selectedPantryItems[i].name} 
+            onChange={this.props.handleShoppingCartAmountChange(selectedPantryItems[i].name)}
+            value={this.props.getNameItem(this.props.values.shoppingListOne,selectedPantryItems[i].item_id)[0].amount}
             className="shopping-cart-input"
             type="number"
             placeholder="Qty"

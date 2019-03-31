@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Link} from "react-router-dom"
 
-class StepFive extends Component {
+class StepSix extends Component {
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -24,9 +24,9 @@ class StepFive extends Component {
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
-            <h2>View your total at the bottom</h2>
-            <img src="./images/shopping-cart-5.png" alt=""/>
-            <p>This should be in the ballpark of what you usually spend per grocery trip.</p>
+            <h2>Create your second shopping list</h2>
+            <img src="./images/shopping-cart-6.png" alt=""/>
+            <p>After finishing your first shopping list you will make a second one. We recommend mixing it up a bit so we can see how your choices changes up from week to week.</p>
             <button className="main-button" onClick={this.continue}>Next</button>
           </div>
         </div>
@@ -35,4 +35,4 @@ class StepFive extends Component {
   }
 }
 
-export default StepFive;
+export default StepSix;
