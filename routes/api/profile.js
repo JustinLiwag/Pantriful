@@ -93,10 +93,35 @@ router.post(
           dietProfile: req.body.dietProfile,
           dietaryRestrictions: req.body.dietaryRestrictions
         };
-
         new ProfileTest(profileData).save().then(profile => res.json(profile));
       }
     });
+  }
+);
+
+// @route   POST api/profile/food-profile-test/shopping-cart
+// @desc    Add Shopping Cart to users profile
+// @access  Private
+router.post(
+  "/food-profile-test/shopping-cart", 
+  passport.authenticate("jwt", { session: false }), 
+  (req, res) => {
+    ProfileTest.findOneAndUpdate(
+      { user: req.user.id },
+      {
+        $push: {
+          "shoppingListOne": req.body.shoppingListOne,
+          "shoppingListTwo": req.body.shoppingListTwo  
+      } },
+      { safe: true, upsert: true },
+      function (err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc)
+        }
+      }
+    )
   }
 );
 

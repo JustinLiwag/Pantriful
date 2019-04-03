@@ -107,7 +107,7 @@
   margin: auto;
   text-align: center;
   height: 80px;
-  border-bottom: 1px solid #EBEBEB;
+  border-bottom: 1px solid transparent;
 }
 
 .on-boarding-nav button {
@@ -128,7 +128,8 @@
 
 .main-button {
   letter-spacing: 1px;
-  margin: auto;
+  margin: 75px auto 0;
+  text-align: center;
   padding: 15px 150px;
   border-radius: 23px;
   border: none;

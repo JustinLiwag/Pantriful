@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom"
 
 class StepOne extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -18,7 +22,7 @@ class StepOne extends Component {
         <div className="on-boarding-nav">
           <Link to="/"><button>Back</button></Link>
           <Link to="/">
-            <img src="images/pantriful-logo-orange.png" alt="" />
+            <img src="images/on-boarding-logo.png" alt="" />
           </Link>
         </div>
  

@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 // import Checkbox from "../utilities/Checkbox";
 
 class ShoppingListOne extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   continue = e => {
     e.preventDefault();
     this.props.nextStep();
@@ -152,7 +156,7 @@ class ShoppingListOne extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/pantriful-logo-orange.png" alt="" />
+            <img src="images/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 
@@ -194,7 +198,13 @@ class ShoppingListOne extends Component {
               {this.props.getTotal("shoppingListOne")}
             </div>
           </div>
+         
         </div>
+        <div className="container">
+          <button className="main-button" onClick={this.continue}>
+            Next
+          </button>
+        </div> 
       </div>
     );
   }

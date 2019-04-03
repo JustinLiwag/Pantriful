@@ -29,6 +29,14 @@ export const sendFoodProfile = (userData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
+// Send in ShoppingLists to API
+export const sendShoppingLists = (userData, history) => dispatch => {
+  axios
+    .post("/api/profile/food-profile-test/shopping-cart", userData)
+    .then(res => history.push("/dashboard"))
+    .catch(err => console.log(err));
+};
+
 //  Profile loading
 export const setFoodProfileLoading = () => {
   return {
