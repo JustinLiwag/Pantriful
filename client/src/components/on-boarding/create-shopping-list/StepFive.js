@@ -34,9 +34,9 @@ class StepFive extends Component {
               This should be in the ballpark of what you usually spend per
               grocery trip.
             </p>
-            <button className="main-button" onClick={this.continue}>
-              Next
-            </button>
+            <div className="on-boarding-footer">
+              <button onClick={this.continue}>Next</button>
+            </div>
           </div>
         </div>
       </div>

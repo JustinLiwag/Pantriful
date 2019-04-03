@@ -199,10 +199,8 @@ class ShoppingListTwo extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
-          <button className="main-button" onClick={this.continue}>
-            Next
-          </button>
+        <div className="on-boarding-footer">
+          <button onClick={this.continue}>Next</button>
         </div>
       </div>
     );

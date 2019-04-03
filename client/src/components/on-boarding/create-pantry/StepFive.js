@@ -30,7 +30,9 @@ class StepFive extends Component {
           <img src="./images/on-boarding-five.png" alt=""/>
           <h2>Awesome! <br/>Now let’s build your pantry.</h2>
           <p>Your pantry includes all the things you like to eat. Don't worry, we made it really easy to set up. <br/><br/> Let's start with the proteins.</p>
-          <button className="main-button" onClick={this.continue}>Let's Go!</button>
+          <div className="on-boarding-footer">
+            <button onClick={this.continue}>Let's Go</button>
+          </div>
         </div>
       </div>
     );

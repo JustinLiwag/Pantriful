@@ -35,9 +35,9 @@ class StepSix extends Component {
               second one. We recommend mixing it up a bit so we can see how
               your choices changes up from week to week.
             </p>
-            <button className="main-button" onClick={this.continue}>
-              Next
-            </button>
+            <div className="on-boarding-footer">
+              <button onClick={this.continue}>Next</button>
+            </div>
           </div>
         </div>
       </div>

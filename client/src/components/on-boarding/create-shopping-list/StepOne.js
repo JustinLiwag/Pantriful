@@ -30,7 +30,9 @@ class StepOne extends Component {
           <img src="./images/shopping-cart-1.png" alt=""/>
           <h2>Let’s set up some shopping lists.</h2>
           <p>You will be building two example shopping lists for us. This will give us a good idea of what you usually get and how often you tend to buy things. </p>
-          <button className="main-button" onClick={this.continue}>GET STARTED</button>
+          <div className="on-boarding-footer">
+            <button onClick={this.continue}>Get Started!</button>
+          </div>
         </div>
       </div>
     );

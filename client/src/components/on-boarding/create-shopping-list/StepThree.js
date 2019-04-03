@@ -34,9 +34,9 @@ class StepThree extends Component {
               You can change the quantitiy or amount of a particular item
               that you want. The price will update accordingly.
             </p>
-            <button className="main-button" onClick={this.continue}>
-              Next
-            </button>
+            <div className="on-boarding-footer">
+              <button onClick={this.continue}>Next</button>
+            </div>
           </div>
         </div>
       </div>

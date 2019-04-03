@@ -37,9 +37,9 @@ class Complete extends Component {
             <p>
               These two grocery lists will help us create your own personalized food profile and let us make customized grocery lists tailored to you. Lets See how your profile looks like now!
             </p>
-            <button className="main-button" onClick={this.submit}>
-              Submit
-            </button>
+            <div className="on-boarding-footer">
+              <button onClick={this.submit}>Submit</button>
+            </div>
           </div>
         </div>
       </div>

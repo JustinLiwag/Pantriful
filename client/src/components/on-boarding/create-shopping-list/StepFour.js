@@ -34,9 +34,9 @@ class StepFour extends Component {
               You can leave notes on an item to let us know if you want
               something a little more specific.{" "}
             </p>
-            <button className="main-button" onClick={this.continue}>
-              Next
-            </button>
+            <div className="on-boarding-footer">
+              <button onClick={this.continue}>Next</button>
+            </div>
           </div>
         </div>
       </div>

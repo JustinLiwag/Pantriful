@@ -34,9 +34,9 @@ class StepTwo extends Component {
               First, you will select items from your pantry. These will be
               added to your shopping list.
             </p>
-            <button className="main-button" onClick={this.continue}>
-              Next
-            </button>
+            <div className="on-boarding-footer">
+              <button onClick={this.continue}>Next</button>
+            </div>
           </div>
         </div>
       </div>
