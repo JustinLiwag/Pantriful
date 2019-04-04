@@ -17,8 +17,8 @@ const TextFieldGroup = ({
         name={name}
         value={value}
         onChange={onChange}
-        class="form-text-input"
-        autocomplete = "off"
+        className="form-text-input"
+        autoComplete = "off"
       />
       <span className="form-text-underline"></span>
       {error ? <div className="error-message">{error}</div> : null}
@@ -31,8 +31,7 @@ TextFieldGroup.propTypes = {
   placeholder: PropTypes.string,
   name: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  error: PropTypes.string
+  onChange: PropTypes.func.isRequired
 };
 
 TextFieldGroup.defaultProps = {

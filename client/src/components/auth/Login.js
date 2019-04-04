@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
 import { Link } from "react-router-dom";
 import TextFieldGroup from "../common/textFieldGroup";
+import Navbar from "../layout/Navbar"
+import Footer from "../layout/Footer"
 
 class Login extends Component {
   constructor() {
@@ -52,36 +54,40 @@ class Login extends Component {
     const { errors } = this.state;
 
     return (
-      <section className="login-form container">
-        <div>
-            <div>
-                <h2>Login</h2>
-                <form onSubmit={this.onSubmit}>
-                  <TextFieldGroup
-                    placeholder="Email"
-                    name="email"
-                    type="email"
-                    value={this.state.email}
-                    onChange={this.onChange}
-                    error={errors.email}
-                  />
-                  <TextFieldGroup
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.onChange}
-                    error={errors.password}
-                  />
-                  <button type="submit">Submit</button>
-                </form>
-                <p><Link to="/register">Not a member? <span>Sign up</span></Link></p>
+      <div>
+        <Navbar />
+        <section className="login-form container">
+          <div>
+              <div>
+                  <h2>Login</h2>
+                  <form onSubmit={this.onSubmit}>
+                    <TextFieldGroup
+                      placeholder="Email"
+                      name="email"
+                      type="email"
+                      value={this.state.email}
+                      onChange={this.onChange}
+                      error={errors.email}
+                    />
+                    <TextFieldGroup
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.onChange}
+                      error={errors.password}
+                    />
+                    <button type="submit">Submit</button>
+                  </form>
+                  <p><Link to="/register">Not a member? <span>Sign up</span></Link></p>
+              </div>
+              <div>
+                  <img src="images/login-register/login-img.png" alt=""/>
+              </div>
             </div>
-            <div>
-                <img src="images/login-img.png" alt=""/>
-            </div>
-        </div>
-    </section>
+        </section>
+      <Footer />
+      </div>
     );
   }
 }
@@ -101,38 +107,3 @@ export default connect(
   mapStateToProps,
   { loginUser }
 )(Login);
-
-
-
-// <section id="main" className="register login container">
-//         <img className="container" src="images/login-img.png" alt="" />
-//         <div className="reg-form container">
-//           <h1>Login</h1>
-//           <p>Welcome Back.</p>
-//           <form onSubmit={this.onSubmit}>
-//             <TextFieldGroup
-//               placeholder="Email"
-//               name="email"
-//               type="email"
-//               value={this.state.email}
-//               onChange={this.onChange}
-//               error={errors.email}
-//             />
-//             <TextFieldGroup
-//               type="password"
-//               placeholder="Password"
-//               name="password"
-//               value={this.state.password}
-//               onChange={this.onChange}
-//               error={errors.password}
-//             />
-//             <input id="login-submit" className="reg-submit" type="submit" />
-//           </form>
-//           <p id="member-login">
-//             <Link to="/register">
-//               Not a member?
-//               <span className="pantriful-orange"> Sign up</span>
-//             </Link>
-//           </p>
-//         </div>
-//       </section>

@@ -19,10 +19,10 @@ class Navbar extends Component {
     const authLinks = (
       <ul>
         <li>
-          <Link className="navbar-auth-links" to="/"><img src="./images/explore-icon.png" alt=""></img>Explore</Link>
+          <Link className="navbar-auth-links" to="/"><img src="./images/navbar-icons/explore-icon.png" alt=""></img>Explore</Link>
         </li>
         <li>
-          <Link className="navbar-auth-links" to="/"><img src="./images/customize-icon.png" alt=""></img>Customize Pantry</Link>
+          <Link className="navbar-auth-links" to="/"><img src="./images/navbar-icons/customize-icon.png" alt=""></img>Customize Pantry</Link>
         </li>
         <li>
           <Link to="/" onClick={this.onLogoutClick.bind(this)}>
@@ -46,7 +46,7 @@ class Navbar extends Component {
     return (
       <nav className="flexnav container">
         <Link className="logo" to="/">
-          <img src="images/pantriful-logo-orange.png" alt="" />
+          <img src="images/logo/pantriful-logo.png" alt="" />
         </Link>
         {isAuthenticated ? authLinks : guestLinks}
       </nav>

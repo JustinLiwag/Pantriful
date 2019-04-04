@@ -89,6 +89,7 @@
 
 .getting-started-completed {
     opacity: .4;
+    pointer-events: none;
 }
 
 /* Tab Menu */
