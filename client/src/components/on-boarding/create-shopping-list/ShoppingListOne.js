@@ -156,7 +156,7 @@ class ShoppingListOne extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/on-boarding-logo.png" alt="" />
+            <img src="images/logo/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 
@@ -198,7 +198,6 @@ class ShoppingListOne extends Component {
               {this.props.getTotal("shoppingListOne")}
             </div>
           </div>
-         
         </div>
         <div className="on-boarding-footer">
           <button onClick={this.continue}>Next</button>

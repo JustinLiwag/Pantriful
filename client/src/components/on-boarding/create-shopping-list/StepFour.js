@@ -22,14 +22,14 @@ class StepFour extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/on-boarding-logo.png" alt="" />
+            <img src="images/logo/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
             <h2>Want something specific? Leave us a note.</h2>
-            <img src="./images/shopping-cart-4.png" alt="" />
+            <img src="./images/on-boarding/shopping-cart-4.png" alt="" />
             <p>
               You can leave notes on an item to let us know if you want
               something a little more specific.{" "}

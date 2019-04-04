@@ -51,28 +51,24 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            {/* Hide navbar on create profile */}
-            {/*<Route path="/" render={ ( props ) => ( props.location.pathname !== ("/create-food-profile")) && <Navbar /> }/>*/}
-              <Route exact path="/" component={Landing} />
-              <div>
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-                <Switch key="Dashboard">
-                  <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-                  <PrivateRoute
-                    exact
-                    path="/create-food-profile"
-                    component = {CreateFoodProfile}
-                  />
-                  <PrivateRoute
-                    exact
-                    path="/create-shopping-list"
-                    component = {CreateShoppingList}
-                  />
-                </Switch>
-              </div>
-            {/* Hide Footer on create profile */}
-            {/*<Route path="/" render={ ( props ) => ( props.location.pathname !== "/create-food-profile") && <Footer /> }/>*/}
+            <Route exact path="/" component={Landing} />
+            <div>
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Switch key="Dashboard">
+                <PrivateRoute exact path="/dashboard" component={Dashboard}/>
+                <PrivateRoute
+                  exact
+                  path="/create-food-profile"
+                  component = {CreateFoodProfile}
+                />
+                <PrivateRoute
+                  exact
+                  path="/create-shopping-list"
+                  component = {CreateShoppingList}
+                />
+              </Switch>
+            </div>
           </div>
         </Router>
       </Provider>

@@ -27,7 +27,7 @@ class Complete extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/on-boarding-logo.png" alt="" />
+            <img src="images/logo/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 

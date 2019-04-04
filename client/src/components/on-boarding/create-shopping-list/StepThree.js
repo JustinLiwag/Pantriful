@@ -22,14 +22,14 @@ class StepThree extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/on-boarding-logo.png" alt="" />
+            <img src="images/logo/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
             <h2>You can change the quantity</h2>
-            <img src="./images/shopping-cart-3.png" alt="" />
+            <img src="./images/on-boarding/shopping-cart-3.png" alt="" />
             <p>
               You can change the quantitiy or amount of a particular item
               that you want. The price will update accordingly.

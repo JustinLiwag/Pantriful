@@ -82,7 +82,7 @@ class Login extends Component {
                   <p><Link to="/register">Not a member? <span>Sign up</span></Link></p>
               </div>
               <div>
-                  <img src="images/login-img.png" alt=""/>
+                  <img src="images/login-register/login-img.png" alt=""/>
               </div>
             </div>
         </section>

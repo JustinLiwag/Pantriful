@@ -24,7 +24,7 @@ export const getFoodProfile = () => dispatch => {
 // Send in Food Profile to API
 export const sendFoodProfile = (userData, history) => dispatch => {
   axios
-    .post("/api/profile/food-profile-test/foodProfile", userData)
+    .post("/api/profile/food-profile/foodProfile", userData)
     .then(res => history.push("/dashboard"))
     .catch(err => console.log(err));
 };
@@ -32,7 +32,7 @@ export const sendFoodProfile = (userData, history) => dispatch => {
 // Send in ShoppingLists to API
 export const sendShoppingLists = (userData, history) => dispatch => {
   axios
-    .post("/api/profile/food-profile-test/shopping-cart", userData)
+    .post("/api/profile/food-profile/shopping-cart", userData)
     .then(res => history.push("/dashboard"))
     .catch(err => console.log(err));
 };

@@ -33,10 +33,10 @@ class Landing extends Component {
             <div>
                 <div className="how-1 how-row">
                     <div className="how-img-container">
-                        <img className="how-img" src="images/create-image.png" alt=""/>
+                        <img className="how-img" src="images/landing-page/create-image.png" alt=""/>
                     </div>
                     <div>
-                        <h3><img className="how-icon" src="images/create-icon.png" alt=""/>Create</h3>
+                        <h3><img className="how-icon" src="images/landing-page/create-icon.png" alt=""/>Create</h3>
                         <h2 className="how-title">Create a customized grocery experience.</h2>
                         <p className="how-item-desc">By creating a customized experience for you we are able to create tailor made shopping
                             lists just for you. Forget making shopping lists again. We’ll take care of it for you. </p>
@@ -46,10 +46,10 @@ class Landing extends Component {
 
                 <div className="how-2 how-row">
                     <div className="how-img-container">
-                        <img className="how-img" src="images/convenience-image.png" alt=""/>
+                        <img className="how-img" src="images/landing-page/convenience-image.png" alt=""/>
                     </div>
                     <div>
-                        <h3 ><img className="how-icon" src="images/convenience-icon.png" alt=""/>Convenience</h3>
+                        <h3 ><img className="how-icon" src="images/landing-page/convenience-icon.png" alt=""/>Convenience</h3>
                         <h2 className="how-title">Never step into a grocery again.</h2>
                         <p className="how-item-desc">After creating a customized grocery list for you we will be able to deliver it to you
                             where ever or whenever you want. Going to the grocery will be a thing of the past.</p>
@@ -59,10 +59,10 @@ class Landing extends Component {
 
                 <div className="how-3 how-row">
                     <div className="how-img-container">
-                        <img className="how-img" src="images/improve-image.png" alt=""/>
+                        <img className="how-img" src="images/landing-page/improve-image.png" alt=""/>
                     </div>
                     <div>
-                        <h3><img className="how-icon" src="images/improve-icon.png" alt=""/>Improve</h3>
+                        <h3><img className="how-icon" src="images/landing-page/improve-icon.png" alt=""/>Improve</h3>
                         <h2 className="how-title">Learn about and improve your diet.</h2>
                         <p className="how-item-desc">Truly take hold of your diet and explore how you can improve and expand what you eat.
                             Stop thinking about your food and start enjoying it again.</p>
@@ -79,7 +79,7 @@ class Landing extends Component {
                     <div className="features-row">
                         <div className="features-item">
                             <div>
-                                <img src="images/diet-analysis-icon.png" alt=""/>
+                                <img src="images/landing-page/diet-analysis-icon.png" alt=""/>
                             </div>
                             <div>
                                 <h2>Diet Analysis</h2>
@@ -88,7 +88,7 @@ class Landing extends Component {
                         </div>
                         <div className="features-item">
                             <div>
-                                <img src="images/goal-tracking-icon.png" alt=""/>
+                                <img src="images/landing-page/goal-tracking-icon.png" alt=""/>
                             </div>
                             <div>
                                 <h2>Goal Tracking</h2>
@@ -100,7 +100,7 @@ class Landing extends Component {
                     <div className="features-row">
                         <div className="features-item">
                             <div>
-                                <img src="images/experiment-discover-icon.png" alt=""/>
+                                <img src="images/landing-page/experiment-discover-icon.png" alt=""/>
                             </div>
                             <div>
                                 <h2>Experiment and Discover</h2>
@@ -110,7 +110,7 @@ class Landing extends Component {
                         </div>
                         <div className="features-item">
                             <div>
-                                <img src="images/save-time-icon.png" alt=""/>
+                                <img src="images/landing-page/save-time-icon.png" alt=""/>
                             </div>
                             <div>
                                 <h2>Save time and Money</h2>

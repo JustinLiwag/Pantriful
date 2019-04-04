@@ -11,9 +11,9 @@ class Footer extends Component {
         </section>
         <section className="footer ">
               <div className="container">
-                  <Link className="footer-img" to="/"><img src="images/pantriful-logo.png" alt=""/></Link>
+                  <Link className="footer-img" to="/"><img src="images/logo/pantriful-logo.png" alt=""/></Link>
                   <p className="footer-note">Made with love in Pasadena, Ca</p>
-                  <img className="footer-logo" src="images/footer-logo.png" alt=""/>
+                  <img className="footer-logo" src="images//footer/footer-logo.png" alt=""/>
               </div>
               <div className="footer-menu">
                   <h3>Menu</h3>

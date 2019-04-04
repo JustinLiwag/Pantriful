@@ -41,7 +41,7 @@ class DashboardContent extends Component {
             <Navbar />
             <div className="dashboard-status">
               <div className="status-update-container">
-                <img src="./images/profile.placeholder.png" alt="" />
+                <img src="./images/dashboard/profile.placeholder.png" alt="" />
                 {this.statusUpdateContainer()}
               </div>
               <div className="getting-started">

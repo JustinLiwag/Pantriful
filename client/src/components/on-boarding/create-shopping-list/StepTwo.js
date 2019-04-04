@@ -22,14 +22,14 @@ class StepTwo extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/on-boarding-logo.png" alt="" />
+            <img src="images/logo/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
             <h2>Add Items from your Pantry </h2>
-            <img src="./images/shopping-cart-2.png" alt="" />
+            <img src="./images/on-boarding/shopping-cart-2.png" alt="" />
             <p>
               First, you will select items from your pantry. These will be
               added to your shopping list.

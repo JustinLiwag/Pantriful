@@ -22,14 +22,14 @@ class StepSix extends Component {
         <div className="on-boarding-nav">
           <button onClick={this.back}>Back</button>
           <Link to="/">
-            <img src="images/on-boarding-logo.png" alt="" />
+            <img src="images/logo/on-boarding-logo.png" alt="" />
           </Link>
         </div>
 
         <div className="on-boarding-container container stepOneShoppingCart">
           <div>
             <h2>Create your second shopping list</h2>
-            <img src="./images/shopping-cart-6.png" alt="" />
+            <img src="./images/on-boarding/shopping-cart-6.png" alt="" />
             <p>
               After finishing your first shopping list you will make a
               second one. We recommend mixing it up a bit so we can see how
