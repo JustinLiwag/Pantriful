@@ -6,7 +6,7 @@ import { GET_FOOD_PROFILE, FOOD_PROFILE_LOADING } from "./types";
 export const getFoodProfile = () => dispatch => {
   dispatch(setFoodProfileLoading());
   axios
-    .get("/api/master-food-profile/")
+    .get("/api/master-food-profile")
     .then(res =>
       dispatch({
         type: GET_FOOD_PROFILE,
@@ -16,7 +16,7 @@ export const getFoodProfile = () => dispatch => {
     .catch(err =>
       dispatch({
         type: GET_FOOD_PROFILE,
-        payload: { error: true }
+        payload: {}
       })
     );
 };
@@ -24,7 +24,15 @@ export const getFoodProfile = () => dispatch => {
 // Send in Food Profile to API
 export const sendFoodProfile = (userData, history) => dispatch => {
   axios
-    .post("/api/profile/food-profile-test/foodProfile", userData)
+    .post("/api/profile/food-profile/foodProfile", userData)
+    .then(res => history.push("/dashboard"))
+    .catch(err => console.log(err));
+};
+
+// Send in ShoppingLists to API
+export const sendShoppingLists = (userData, history) => dispatch => {
+  axios
+    .post("/api/profile/food-profile/shopping-cart", userData)
     .then(res => history.push("/dashboard"))
     .catch(err => console.log(err));
 };
