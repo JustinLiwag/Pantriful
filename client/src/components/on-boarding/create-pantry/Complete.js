@@ -6,11 +6,6 @@ class Complete extends Component {
     window.scrollTo(0, 0);
   }
 
-  continue = e => {
-    e.preventDefault();
-    this.props.nextStep();
-  };
-
   back = e => {
     e.preventDefault();
     this.props.prevStep();
@@ -25,7 +20,7 @@ class Complete extends Component {
     return (
       <div>
         <div className="on-boarding-nav">
-          <Link to="/"><button>Back</button></Link>
+          <button onClick={this.back}>Back</button>
           <Link to="/">
             <img src="images/logo/pantriful-logo-orange.png" alt="" />
           </Link>

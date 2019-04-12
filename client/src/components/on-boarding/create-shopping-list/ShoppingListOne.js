@@ -105,8 +105,10 @@ class ShoppingListOne extends Component {
             htmlFor={notesName}
             className="shoppingList__item__labels shoppingList__item__description"
           >
-            {selectedPantryItems[i].measurementUnit} of{" "}
-            {selectedPantryItems[i].name}{" "}
+            {selectedPantryItems[i].measurementUnit === "" ? null : selectedPantryItems[i].measurementUnit}
+            {selectedPantryItems[i].measurementUnit === "" ? null : " of "} 
+            {selectedPantryItems[i].name} {" "}
+
           </label>
           <label
             htmlFor={notesName}
@@ -177,7 +179,7 @@ class ShoppingListOne extends Component {
             {this.createPantryTab("Vegetable")}
             {this.createPantryTab("Fruit")}
             {this.createPantryTab("Alternative Protein")}
-            {this.createPantryTab("Grains")}
+            {this.createPantryTab("Grain")}
             {this.createPantryTab("Dairy")}
           </div>
 

@@ -46,7 +46,6 @@ router.post(
     const newItem = {
       name: req.body.name,
       item_id: req.body.item_id,
-      basePrice: req.body.basePrice,
       lowPrice: req.body.lowPrice,
       upperPrice: req.body.upperPrice,
       measurementUnit: req.body.measurementUnit,

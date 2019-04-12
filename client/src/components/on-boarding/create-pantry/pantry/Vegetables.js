@@ -51,7 +51,7 @@ class Vegetables extends Component {
             <h2>Select your favorites (Vegetables)</h2>
             <p>Here you can select your favorite Vegetables. We recommend selecting things you eat on a regular basis.</p>
             <ul className="checkbox-grid">
-                {this.createCheckboxesFromApi(this.props.foodProfile, "Vegetables")}
+                {this.createCheckboxesFromApi(this.props.foodProfile, "Vegetable")}
             </ul>
         </div>
 

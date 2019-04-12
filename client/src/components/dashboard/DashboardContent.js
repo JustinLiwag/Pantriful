@@ -11,7 +11,7 @@ class DashboardContent extends Component {
                <div className="status-update-text">
                    <p>Hi, {this.props.auth.user.name} {this.props.auth.user.lastName}</p>
                    <p>({this.props.profile.username})</p>
-                   <p>You only have one last step to complete. You delivery information! Be sure to also check out your new profile!</p>
+                   <p>You only have one last step to complete. Your delivery information! Be sure to also check out your new profile!</p>
                    <Link to="/dashboard">Enter Delivery Details</Link>
                </div> 
            )
