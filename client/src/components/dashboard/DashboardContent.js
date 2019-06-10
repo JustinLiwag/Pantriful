@@ -96,12 +96,12 @@ class DashboardContent extends Component {
                     <div className="dashboard-list">
                       <div>
                         <h3>
-                          Upcoming Grocery List for March 15, 2019
+                          Upcoming Grocery Lists
                         </h3>
                         <h3>View all Lists</h3>
                       </div>
                       <div>
-                        <p>Coming Soon...</p>
+                        
                       </div>
                     </div>
 
