@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import {Link} from "react-router-dom";
 import TextFieldGroup from "../utilities/formFieldGroup";
 import isEmpty from "../../../validation/is-empty";
+import Navbar from "../utilities/Navbar"
+import Footer from "../utilities/Footer"
 
 // Fields for the input form
 const FIELDS = [{
@@ -106,12 +108,7 @@ class StepTwo extends Component {
     render() {
     return (
         <div>
-        <div className="on-boarding-nav">
-            <button onClick={this.back}>Back</button>
-            <Link to="/">
-            <img src="images/logo/on-boarding-logo.png" alt="" />
-            </Link>
-        </div>
+        <Navbar/>
 
         <div className="on-boarding-container container">
             <h2>Lets get some basic information down.</h2>
@@ -120,9 +117,7 @@ class StepTwo extends Component {
         </div>
         
 
-        <div className="on-boarding-footer">
-            <button onClick={this.continue}>Next</button>
-        </div>
+        <Footer continue={this.continue} back={this.back} />
         </div>
     );
     }
