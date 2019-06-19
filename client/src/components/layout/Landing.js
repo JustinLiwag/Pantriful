@@ -33,7 +33,7 @@ class Landing extends Component {
                             <h2 className="pt-4 pb-3 font-black text-3xl sm:text-4xl text-orange-base leading-tight mx-auto xl:text-5xl">Your own smart <span className="border-b-8 border-blue-300 border-opacity-50">personal</span> grocery shopper.</h2>
                             <p className="text-gray-600 max-w-md mx-auto text-xl leading-loose pb-6 xl:text-2xl">We create unique grocery lists tailored to you and deliver them to your doorstep.</p>
 
-                            <Link to="/register" className="inline-block font-bold text-white text-weight-bold bg-orange-base hover:bg-orange-600 py-3 px-8 rounded-full shadow-md xl:text-xl">Get Started</Link>
+                            <Link to="/register" className="inline-block font-bold text-white text-weight-bold bg-orange-base hover:bg-orange-600 py-3 px-12 rounded-full shadow-md xl:text-xl">Get Started</Link>
 
                         </div>
                     </div>

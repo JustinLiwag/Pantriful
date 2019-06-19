@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 // import {Link} from "react-router-dom";
-import TextFieldGroup from "../utilities/formFieldGroup";
-import isEmpty from "../../../validation/is-empty";
+// import TextFieldGroup from "../utilities/formFieldGroup";
+// import isEmpty from "../../../validation/is-empty";
 import Navbar from "../utilities/Navbar"
 import Footer from "../utilities/Footer"
 
@@ -39,7 +39,7 @@ class StepTwo extends Component {
         const results = []
         for (let i = 0; i < array.length; i++) {
             results.push(
-                <li className="mt-2 mx-1 w-2/3 md:w-1/4">
+                <li key={array[i].name} className="mt-2 mx-1 w-2/3 md:w-1/4">
                     <input 
                         className="hidden"
                         id={array[i].name}

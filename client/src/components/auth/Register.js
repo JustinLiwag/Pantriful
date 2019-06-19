@@ -56,7 +56,7 @@ class Register extends Component {
 
     return (
       <div className="min-h-screen mb-24">
-        <div className="md:flex max-w-4xl mx-auto">
+        <div className="md:flex max-w-4xl mx-auto md:mt-8 px-4">
           <div className="hidden md:block w-1/2">
             <Link className="p-12" to="/">
               <svg className="mx-auto" width="172" height="35" viewBox="0 0 172 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@ class Register extends Component {
                 <path d="M163.741 29.1924L166.892 3.26271H171.627L168.459 29.1924H163.741Z" fill="#EE9986" />
               </svg>
             </Link>
-            <img className="mx-auto" src="/images/login-register/register.png" alt=""></img>
+            <img className="mx-auto " src="/images/login-register/register.png" alt=""></img>
           </div>
           <div className="md:w-1/2">
             <Link className="p-12 md:hidden" to="/">
@@ -103,7 +103,7 @@ class Register extends Component {
                 <path d="M163.741 29.1924L166.892 3.26271H171.627L168.459 29.1924H163.741Z" fill="#EE9986" />
               </svg>
             </Link>
-            <div className="container max-w-sm md:shadow-lg bg-white pt-12 rounded-lg">
+            <div className="container max-w-sm md:shadow-lg bg-white py-12 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-600">Create your account</h3>
               <p className="mb-8 text-gray-400 font-bold">We just need some info to get started</p>
               <form onSubmit={this.onSubmit}>

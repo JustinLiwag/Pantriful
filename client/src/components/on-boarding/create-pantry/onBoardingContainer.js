@@ -10,11 +10,9 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
 import StepFour from "./StepFour";
-import StepFive from "./StepFive";
 
 // Pantry
 import Chicken from "./pantry/Chicken";
-import NewChicken from "./pantry/NewChicken";
 import Beef from "./pantry/Beef";
 import Pork from "./pantry/Pork";
 import Lamb from "./pantry/Lamb";
@@ -241,11 +239,11 @@ class CreateProfile extends Component {
         case 3:
           return (
             <StepThree
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                values={values}
-                getByValue={this.getByValue}
-                handleChange={this.handleDietProfileCheckboxChange}
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              values={values}
+              getByValue={this.getByValue}
+              handleChange={this.handleDietProfileCheckboxChange}
             />            
           );
         case 4:
@@ -270,7 +268,7 @@ class CreateProfile extends Component {
         case 6:
           return (
             // Beef
-            <NewChicken
+            <Beef
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
                 values={values}

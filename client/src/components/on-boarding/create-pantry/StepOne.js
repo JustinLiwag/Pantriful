@@ -26,41 +26,41 @@ class StepOne extends Component {
     e.preventDefault();
 
     // Validation for Text Form
-    // const {username, age, gender, height, weight} = this.props.values
-    // this.setState({
-    //     username: false,
-    //     age: false,
-    //     gender: false,
-    //     height: false,
-    //     weight: false 
-    // })
+    const {username, age, gender, height, weight} = this.props.values
+    this.setState({
+        username: false,
+        age: false,
+        gender: false,
+        height: false,
+        weight: false 
+    })
 
     // // Username Regex 
-    // const regex = /^([a-zA-Z ]){6,20}$/;
-    // if (username.length <= 5 || age <= 0 || height.length <= 0 || weight <= 0 ) {
-    //     if (!regex.test(username)) {
-    //         this.setState({username: "Invalid characters"})
-    //     }
-    //     if (isEmpty(username)) {
-    //         this.setState({username: "Must enter username"})
-    //     }
-    //     if (isEmpty(gender)) {
-    //         this.setState({gender: "Must pick an option"})
-    //     }
-    //     if (isEmpty(age)) {
-    //         this.setState({age: "Must enter age"})
-    //     }
-    //     if (isEmpty(height)) {
-    //         this.setState({height: "Must enter height"})
-    //     }
-    //     if (isEmpty(weight)) {
-    //         this.setState({weight: "Must enter weight"})
-    //     }
-    //     if (username.length < 6) {
-    //         this.setState({username: "Username needs to be at least 6 characters"})
-    //     }
-    //     return null
-    // }
+    const regex = /^([a-zA-Z ]){6,20}$/;
+    if (username.length <= 5 || age <= 0 || height.length <= 0 || weight <= 0 ) {
+        if (!regex.test(username)) {
+            this.setState({username: "Invalid characters"})
+        }
+        if (isEmpty(username)) {
+            this.setState({username: "You must enter username"})
+        }
+        if (isEmpty(gender)) {
+            this.setState({gender: "You must pick an option"})
+        }
+        if (isEmpty(age)) {
+            this.setState({age: "You must enter age"})
+        }
+        if (isEmpty(height)) {
+            this.setState({height: "You must enter height"})
+        }
+        if (isEmpty(weight)) {
+            this.setState({weight: "You must enter weight"})
+        }
+        if (username.length < 6) {
+            this.setState({username: "Username needs to be at least 6 characters"})
+        }
+        return null
+    }
     this.props.nextStep()
   }
 
@@ -73,7 +73,7 @@ class StepOne extends Component {
     const results = []
     for (let i = 0; i < options.length; i++) {
       results.push(
-        <option value={options[i]}>{options[i]}</option>
+        <option key={options[i]} value={options[i]}>{options[i]}</option>
       )
     }
     return results;
