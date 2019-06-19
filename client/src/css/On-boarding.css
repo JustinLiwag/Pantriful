@@ -179,7 +179,7 @@
 
 /* CHECKBOX GRID */
 
-.checkbox-grid {
+/* .checkbox-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;
@@ -208,7 +208,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /*   padding-left: 20px; */
+    padding-left: 20px;
   text-align: center;
   height: 55px;
   background: #FBFBFC;
@@ -221,22 +221,23 @@
   border: 1px solid #EAEAEA;
   border-radius: 6px;
 }
+*/
 
-.checkbox-grid li label:hover {
+/* .checkbox-click li label:hover {
   background: #FCEDEA;
   color: #5E5E5E;
   transition: all 305ms ease-in-out;
-}
+}  */
 
 /* .grid li input[type=checkbox]:checked ~ label */
-.checkbox-grid li input[type=checkbox]:checked~label {
-  background: #EE9986;
-  color: white;
+.checkbox-click li input[type=checkbox]:checked~label {
+  border: solid 2px #EE9986;
+  color: #EE9986;
   transition: all 205ms ease-in-out;
 }
 
 /* STEP ONE */
-.stepOne img{
+/* .stepOne img{
   width: 300px;
 }
 
@@ -250,7 +251,7 @@
   width: 500px;
   margin: auto;
   line-height: 33px;
-}
+} */
 
 /* Shopping Cart */
 

@@ -1,44 +1,18 @@
 import React, { Component } from "react";
 // import {Link} from "react-router-dom";
-import TextFieldGroup from "../utilities/formFieldGroup";
-import isEmpty from "../../../validation/is-empty";
-import Navbar from "../utilities/Navbar"
-import Footer from "../utilities/Footer"
+// import TextFieldGroup from "../utilities/formFieldGroup";
+// import isEmpty from "../../../../validation/is-empty";
+import Navbar from "../../utilities/Navbar"
+import Footer from "../../utilities/Footer"
 
-const PROFILE = [
-    {name: "General / Traditional"},
-    {name: "Vegetarian"},
-    {name: "Paleo"},
-    {name: "Vegan"},
-    {name: "Gluten Free"},
-    {name: "Keto"},
-    {name: "Other"}
-]
-
-class StepThree extends Component {
-    state = {
-        error: false
-    }
-
+class NewChicken extends Component {
     componentDidMount() {
         window.scrollTo(0, 0);
     }
 
     continue = e => {
         e.preventDefault();
-
-        this.setState({error: false})
-        if ((this.props.getByValue(this.props.values.dietProfile, true).length > 0)) {
-            return this.props.nextStep();
-        }
-
-        this.setState({
-            error: "You must select a Diet Profile"
-        })
-
-        return null
-
-        this.props.nextStep();
+        return this.props.nextStep();
     };
 
     back = e => {
@@ -74,9 +48,8 @@ class StepThree extends Component {
 
         <div className="container">
             <h3 className="text-2xl md:text-3xl mt-4 md:mt-0 font-bold text-gray-600">What kind of <span className="text-orange-base">diet</span> do you have?</h3>
-            {this.state.error ? <div className="text-center text-xl mt-4 pl-2 text-red-400">{this.state.error}</div> : null}
             <ul className="flex mx-auto justify-center content-center flex-wrap checkbox-click md:max-w-xl mt-4">
-                {this.generateCheckboxes(PROFILE)}
+                
             </ul>
         </div>
         
@@ -87,4 +60,4 @@ class StepThree extends Component {
     }
 }
 
-export default StepThree;
+export default NewChicken;

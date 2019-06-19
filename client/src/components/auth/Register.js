@@ -55,7 +55,7 @@ class Register extends Component {
     const { errors } = this.state;
 
     return (
-      <div className="min-h-screen pt-12 mb-24">
+      <div className="min-h-screen mb-24">
         <div className="md:flex max-w-4xl mx-auto">
           <div className="hidden md:block w-1/2">
             <Link className="p-12" to="/">
@@ -103,7 +103,7 @@ class Register extends Component {
                 <path d="M163.741 29.1924L166.892 3.26271H171.627L168.459 29.1924H163.741Z" fill="#EE9986" />
               </svg>
             </Link>
-            <div className="container max-w-sm md:shadow-lg bg-white py-12 rounded-lg">
+            <div className="container max-w-sm md:shadow-lg bg-white pt-12 rounded-lg">
               <h3 className="text-2xl font-bold text-gray-600">Create your account</h3>
               <p className="mb-8 text-gray-400 font-bold">We just need some info to get started</p>
               <form onSubmit={this.onSubmit}>
