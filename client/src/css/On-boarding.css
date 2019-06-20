@@ -236,6 +236,11 @@
   transition: all 205ms ease-in-out;
 }
 
+.radio-click li input[type=radio]:checked~label {
+  border: solid 2px #EE9986;
+  color: #EE9986;
+  transition: all 205ms ease-in-out;
+}
 /* STEP ONE */
 /* .stepOne img{
   width: 300px;
@@ -467,6 +472,29 @@
 
 .shoppingList__item__notesOpen {
   display: none;
+}
+
+.shoppingList__item__notesOpen:not(checked)~.shoppingList__item__notesContainer {
+  height: 0;
+  opacity: 0;
+  transition: all .1s;
+}
+
+.shoppingList__item__notesOpen:checked~.shoppingList__item__notesContainer {
+  height: auto;
+  opacity: 1;
+  pointer-events: auto;
+  transition: all .5s ease-out;
+}
+
+/* NEW NOTES TOGGLE */
+
+.notes-container {
+  display: none;
+}
+
+.notesCheckbox:checked + .notes-container{
+  display: block;
 }
 
 .shoppingList__item__notesOpen:not(checked)~.shoppingList__item__notesContainer {
