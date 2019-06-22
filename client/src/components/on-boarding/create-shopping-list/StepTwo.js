@@ -47,8 +47,9 @@ class StepTwo extends Component {
     // Creates Check boxes
     for (let i = 0; i < items.length; i++) {
       result.push(
-        <div key={items[i].name}>
+        <li className="w-1/3 flex mt-8" key={items[i].name}>
           <input
+            className="hidden flex-grow content-center"
             id={items[i].name}
             type="checkbox"
             name={items[i].name}
@@ -58,8 +59,8 @@ class StepTwo extends Component {
             )}
             onChange={this.props.handleCheckboxChangeShoppingListOne}
           />
-          <label htmlFor={items[i].name}>{items[i].name}</label>
-        </div>
+          <label className="pl-4 text-xs" htmlFor={items[i].name}>{items[i].name}</label>
+        </li>
       );
     }
     return result
@@ -83,50 +84,64 @@ class StepTwo extends Component {
 
     for (let i = 0; i < selectedPantryItems.length; i++) {
       result.push(
-        <li>
+        <li key={selectedPantryItems[i].name}>
           {/* Container Div */}
-          <div className=" flex shadow-lg p-2">
+          <div className=" flex shadow-md px-4 py-2 border-l-4 border-orange-base mt-2">
             {/* Button Flex */}
-            <div className="w-2/12 self-center">
-              <button className="border-transparent" name={selectedPantryItems[i].name} onClick={this.props.handleAmountDecrease}>-</button>
-              <input className="w-1/2 text-center outline-none" 
+            <div className="w-2/12 justify-between self-center mr-4">
+              <button className="focus:outline-none text-2xl font-bold text-orange-base" name={selectedPantryItems[i].name} onClick={this.props.handleAmountDecrease}>-</button>
+              <input className="w-1/2 text-center outline-none text-2xl" 
                 key={i}
                 type="number" 
                 name={selectedPantryItems[i].name}
                 onChange={this.props.handleShoppingCartAmountChange(selectedPantryItems[i].name)}
                 value={this.props.getNameItem(this.props.values.shoppingListOne, selectedPantryItems[i].name)[0].amount} 
               />
-              <button className="border-none" name={selectedPantryItems[i].name} onClick={this.props.handleAmountIncrease}>+</button>
+              <button className="focus:outline-none text-2xl font-bold text-orange-base" name={selectedPantryItems[i].name} onClick={this.props.handleAmountIncrease}>+</button>
             </div>
             {/* Info Flex */}
             <div className="w-10/12">
               {/* Top Row */}
               <div className="flex justify-between">
-                <p>{selectedPantryItems[i].measurementUnit} of</p>
-                ${" "}
-                {(
-                  selectedPantryItems[i].lowPrice *
-                  selectedPantryItems[i].amount
-                ).toFixed(2)}{" "}
-                - ${" "}
-                {(
-                  selectedPantryItems[i].upperPrice *
-                  selectedPantryItems[i].amount
-                ).toFixed(2)}
+                <p className="text-xs text-gray-500 font-bold self-center tracking-wider">{selectedPantryItems[i].measurementUnit} of</p>
+                <p className="italic text-md text-gray-600 font-bold">
+                  ${" "}
+                  {(
+                    selectedPantryItems[i].lowPrice *
+                    selectedPantryItems[i].amount
+                  ).toFixed(2)}{" "}
+                  - ${" "}
+                  {(
+                    selectedPantryItems[i].upperPrice *
+                    selectedPantryItems[i].amount
+                  ).toFixed(2)}
+                </p>
               </div>
               {/* Bottom Row */}
               <div className="flex justify-between">
-                <p>{selectedPantryItems[i].name}</p>
-                <label className="notesCheckbox">
-                  <input className="hidden" type="checkbox" value={selectedPantryItems[i].item_id} onClick={this.toggleNotes}/>
-                  Notes
-                </label>
+                <p className="text-orange-base font-bold text-xl">{selectedPantryItems[i].name}</p>
+                { this.props.getNameItem(
+                  this.props.values.shoppingListOne,
+                  selectedPantryItems[i].name
+                  )[0].notes
+                  ? <label 
+                      className="notesCheckbox text-green-button font-bold text-md self-center">
+                      <input className="hidden " type="checkbox" value={selectedPantryItems[i].item_id} onClick={this.toggleNotes}/>
+                      Notes 
+                    </label>
+                  :
+                    <label 
+                      className="notesCheckbox text-orange-base opacity-75 font-bold text-md self-center">
+                      <input className="hidden " type="checkbox" value={selectedPantryItems[i].item_id} onClick={this.toggleNotes}/>
+                      Notes 
+                    </label>
+                }
               </div>
             </div>
           </div>
           { this.state.openNote === selectedPantryItems[i].item_id
           ? <div className="shadow-lg">
-              <input className="w-full outline-none px-2" type="text" placeholder="Leave us a note. (ex. I want fuji apples)" name={selectedPantryItems[i].name}
+              <input className="w-full outline-none p-4 text-orange-base font-bold border-l-4 border-orange-base" type="text" placeholder="Leave us a note. (ex. I want fuji apples)" name={selectedPantryItems[i].name}
               onChange={this.props.handleShoppingCartNotesChange(
                 selectedPantryItems[i].name
               )}
@@ -156,132 +171,191 @@ class StepTwo extends Component {
     return result;
   };
 
+
   render() {
     return (
       <div>
         <Navbar/>
-        <h3 className="text-center">Create your first shopping list</h3>
-        <div className="container mx-auto flex justify-around">
-          <div className="w-1/2">
-            <h3>Pantry</h3>
-            <ul className="flex flex-wrap">
-              <li>
-                <label className="px-4 py-2 shadow rounded-full">
+        <h3 className="text-center text-2xl md:text-3xl mt-4 mb-8 md:mt-0 font-bold text-gray-600">Create your <span className="text-orange-base">first</span> shopping list.</h3>
+        <div className="container mx-auto flex justify-between w-3/4 mb-48">
+          <div className="pantry-container w-1/2 mr-8">
+            <h3 className="hidden md:block shopping-cart-pantry-title">YOUR PANTRY</h3>
+            <ul className="flex flex-wrap items-center pantry-categories">
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label >
                   <input
                     className="hidden"
                     type="radio"
-                    name="react-tips"
+                    name="category"
                     value="Chicken"
                     checked={this.state.selectedOption === "Chicken"}
                     onChange={this.handleOptionChange}
                   />
-                  Chicken
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Chicken.png" alt=""></img>
+                    <p className="font-bold inline italic">Chicken</p>
+                  </span>
                 </label>
               </li>
-              <li>
+              <li className="w-xl mx-2 mb-4 mt-2">
                 <label>
                   <input
+                    className="hidden"
                     type="radio"
-                    name="react-tips"
+                    name="category"
                     value="Beef"
                     checked={this.state.selectedOption === "Beef"}
                     onChange={this.handleOptionChange}
                   />
-                  Beef
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Beef.png" alt=""></img>
+                    <p className="font-bold inline italic">Beef</p>
+                  </span>
                 </label>
               </li>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Pork"
-                  checked={this.state.selectedOption === "Pork"}
-                  onChange={this.handleOptionChange}
-                />
-                Pork
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Lamb"
-                  checked={this.state.selectedOption === "Lamb"}
-                  onChange={this.handleOptionChange}
-                />
-                Lamb
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Seafood"
-                  checked={this.state.selectedOption === "Seafood"}
-                  onChange={this.handleOptionChange}
-                />
-                Seafood
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Vegetable"
-                  checked={this.state.selectedOption === "Vegetable"}
-                  onChange={this.handleOptionChange}
-                />
-                Vegetables
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Fruit"
-                  checked={this.state.selectedOption === "Fruit"}
-                  onChange={this.handleOptionChange}
-                />
-                Fruits
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Alternative Protein"
-                  checked={this.state.selectedOption === "Alternative Protein"}
-                  onChange={this.handleOptionChange}
-                />
-                Alternative Proteins
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Grain"
-                  checked={this.state.selectedOption === "Grain"}
-                  onChange={this.handleOptionChange}
-                />
-                Grains
-              </label>
-              <label>
-                <input
-                  type="radio"
-                  name="react-tips"
-                  value="Dairy"
-                  checked={this.state.selectedOption === "Dairy"}
-                  onChange={this.handleOptionChange}
-                />
-                Dairy
-              </label>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label>
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Pork"
+                    checked={this.state.selectedOption === "Pork"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Pork.png" alt=""></img>
+                    <p className="font-bold inline italic">Pork</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label>
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Lamb"
+                    checked={this.state.selectedOption === "Lamb"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Lamb.png" alt=""></img>
+                    <p className="font-bold inline italic">Lamb</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label>
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Seafood"
+                    checked={this.state.selectedOption === "Seafood"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Seafood.png" alt=""></img>
+                    <p className="font-bold inline italic">Seafood</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label>
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Vegetable"
+                    checked={this.state.selectedOption === "Vegetable"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Vegetable.png" alt=""></img>
+                    <p className="font-bold inline italic">Vegetables</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label >
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Fruit"
+                    checked={this.state.selectedOption === "Fruit"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Fruit.png" alt=""></img>
+                    <p className="font-bold inline italic">Fruits</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label >
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Alternative Proteins"
+                    checked={this.state.selectedOption === "Alternative Proteins"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/AlternativeProtein.png" alt=""></img>
+                    <p className="font-bold inline italic">Alternative Proteins</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label>
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Grain"
+                    checked={this.state.selectedOption === "Grain"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Grain.png" alt=""></img>
+                    <p className="font-bold inline italic">Grains</p>
+                  </span>
+                </label>
+              </li>
+              <li className="w-xl mx-2 mb-4 mt-2">
+                <label>
+                  <input
+                    className="hidden"
+                    type="radio"
+                    name="category"
+                    value="Dairy"
+                    checked={this.state.selectedOption === "Dairy"}
+                    onChange={this.handleOptionChange}
+                  />
+                  <span className="px-4 py-3 shadow-md rounded-full">
+                    <img className="inline mr-2" src="/images/on-boarding/category-items/Dairy.png" alt=""></img>
+                    <p className="font-bold inline italic">Dairy</p>
+                  </span>
+                </label>
+              </li>
             </ul>
-
-
-            <div>Display Content</div>
-            {this.createCategoryItems(this.state.selectedOption)}
+            <ul className="flex flex-wrap justify-between pantry__checkboxContainer pl-4">
+              {this.createCategoryItems(this.state.selectedOption)} 
+            </ul>
           </div>
-          <div>
-            <h3>Shopping List</h3>
+          <div className="w-1/2">
             <ul >
-              {this.buildShoppingList(this.props.values.shoppingListOne)}
-              {this.props.getTotal("shoppingListOne")}
+              {this.props.values.shoppingListOne.length === 0 
+              ? <div className="mb-8">
+                  <img className="mt-8 block mx-auto" src="/images/on-boarding/category-items/empty-cart.png" alt=""></img>
+                  <p className="mt-2 text-lg text-gray-400 text-center w-1/2 mx-auto font-bold">Add items from your pantry to your shopping list.</p>
+                </div>
+              : this.buildShoppingList(this.props.values.shoppingListOne)}
             </ul>
+              {this.props.getTotal("shoppingListOne")}
           </div>
         </div>
         <Footer continue={this.continue} back={this.back}/>

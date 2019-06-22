@@ -22,7 +22,7 @@ class Landing extends Component {
             <div className="hero">
                 <div className="container flex mx-auto">
                     <div className="lg:w-1/3 hidden lg:block"></div>
-                    <div className="lg:w-2/3 pt-40 mx-auto">
+                    <div className="lg:w-2/3 pt-20 mx-auto">
                         <div class="w-3/4 mx-auto text-center">
 
                             <div className="text-sm py-2 px-3 bg-indigo-800 items-center text-indigo-100 leading-none rounded-full flex inline-flex" role="alert">
