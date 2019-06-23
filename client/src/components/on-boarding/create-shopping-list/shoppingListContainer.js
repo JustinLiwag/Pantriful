@@ -11,7 +11,7 @@ import StepFour from "./StepFour";
 
 class CreateProfile extends Component {
   state = {
-    step: 1,
+    step: 3,
     shoppingListOne: [],
     shoppingListTwo: []
   };
@@ -161,6 +161,25 @@ class CreateProfile extends Component {
     data[index].amount = value;
     this.setState({ data });
   };
+
+  handleAmountIncreaseShoppingCartTwo = (e) => {
+    const { name } = e.target;
+    var data = [...this.state.shoppingListTwo];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].amount += 1
+    this.setState({data})
+  }
+
+  handleAmountDecreaseShoppingCartTwo = (e) => {
+    const { name } = e.target;
+    var data = [...this.state.shoppingListTwo];
+    var index = data.findIndex(obj => obj.name === name);
+    if (data[index].amount === 1) {
+      return this.setState({data})
+    }
+    data[index].amount -= 1
+    this.setState({data})
+  }
 
   handleShoppingCartNotesChangeTwo = input => e => {
     const { name, value } = e.target;

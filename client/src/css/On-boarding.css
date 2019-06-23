@@ -402,7 +402,7 @@
   display: block;
   position: relative;
   padding-left: 40px;
-  font-size: 14px;
+  /* font-size: 14px; */
   text-align: left;
   cursor: pointer;
   letter-spacing: .5px;
@@ -604,4 +604,9 @@ input[type=number]::-webkit-outer-spin-button {
 .pantry-categories input[type="radio"]:checked ~ * {
   background-color: #EE9986;
   color: white;
+}
+
+.styles_modal__gNwvD {
+  border-radius: 15px;
+  min-height: 50vh;
 }
