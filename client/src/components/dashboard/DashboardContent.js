@@ -1,150 +1,51 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Navbar from "../layout/Navbar"
 import Footer from "../layout/Footer"
 
+import Home from './Home'
+import Status from './Status'
+
 class DashboardContent extends Component {
-    statusUpdateContainer = () => {
-        if (this.props.profile.shoppingListOne.length > 0 &&
-            this.props.profile.shoppingListTwo.length > 0) {
-           return (
-               <div className="status-update-text">
-                   <p>Hi, {this.props.auth.user.name} {this.props.auth.user.lastName}</p>
-                   <p>({this.props.profile.username})</p>
-                   <p>You only have one last step to complete. Your delivery information! Be sure to also check out your new profile!</p>
-                   <Link to="/dashboard">Enter Delivery Details</Link>
-               </div> 
-           )
-       }
-       return (
-           <div className="status-update-text">
-               <p>Hi, {this.props.auth.user.name} {this.props.auth.user.lastName}</p>
-               <p>({this.props.profile.username})</p>
-               <p>You haven't set up your shopping lists yet. Go ahead and do that next!</p>
-               <Link to="/create-shopping-list">Create Shopping List</Link>
-           </div>
-       )
-    } 
-    
-    completeOnboardingStep = () => {
-        if (
-          this.props.profile.shoppingListOne.length > 0 &&
-          this.props.profile.shoppingListTwo.length > 0
-        ) {
-          return "getting-started-completed";
-        }
-        return null
+    state = {
+      openTab: "Home"
     }
+
+    changeTab = (input, e) => {
+      this.setState({
+        openTab: input
+      })
+    }
+
+    toggleMenuClasses = (item) => {
+      if (this.state.openTab === item) {
+        return "inline px-12 py-4 border-b-4 border-orange-base"
+      }
+      return "inline px-12 py-4 text-gray-500"
+    } 
+
     render () {
         return (
-          <div>
+          <div className="border-t-4 border-orange-base">
             <Navbar />
-            <div className="dashboard-status">
-              <div className="status-update-container">
-                <img src="./images/dashboard/profile.placeholder.png" alt="" />
-                {this.statusUpdateContainer()}
-              </div>
-              <div className="getting-started">
-                <div>
-                  <h3>Getting Started</h3>
-                  <div className="getting-started-completed">
-                    <Link to="/dashboard">
-                      <h4>1. Create Pantry</h4>
-                      <p>so we can figure out what you like.</p>
-                    </Link>
-                  </div>
-                  <div className={this.completeOnboardingStep()}>
-                    <Link to="/create-shopping-list">
-                      <h4>2. Create example shopping lists</h4>
-                      <p>to let us know how often you eat things.</p>
-                    </Link>
-                  </div>
-                  <div>
-                    <Link to="/dashboard">
-                      <h4>3. Enter in delivery details</h4>
-                      <p>
-                        so we can figure out where to send your food.
-                      </p>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <Status />
+
+            <div className="container">
+              <ul className="border-b border-gray-300 py-4 mb-4">
+                <li className={this.toggleMenuClasses("Home")}><button className="focus:outline-none" name="Home" onClick={(e) => this.changeTab("Home", e)}>Home</button></li>
+                <li className={this.toggleMenuClasses("Lists")}><button className="focus:outline-none" name="Lists" onClick={(e) => this.changeTab("Lists", e)}>Lists</button></li>
+                <li className={this.toggleMenuClasses("Pantry")}><button className="focus:outline-none" name="Pantry" onClick={(e) => this.changeTab("Pantry", e)}>Pantry</button></li>
+                <li className={this.toggleMenuClasses("Apps")}><button className="focus:outline-none" name="Apps" onClick={(e) => this.changeTab("Apps", e)}>Apps</button></li>
+              </ul>
             </div>
 
-            <div>
-              <div>
-                <ul className="dashboard-tab-menu">
-                  <li className="active-tab-menu">
-                    <Link to="/">Home</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard">Lists</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard">Pantry</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard">Tools</Link>
-                  </li>
-                  <li>
-                    <Link to="/dashboard">Settings</Link>
-                  </li>
-                </ul>
+            {this.state.openTab === "Home" ? <Home /> : null}
+            {this.state.openTab === "Lists" ? <p className="container text-center my-12">Lists Component</p> : null}
+            {this.state.openTab === "Pantry" ? <p className="container text-center my-12">Pantry Component</p> : null}
+            {this.state.openTab === "Apps" ? <p className="container text-center my-12">Apps Component</p> : null}
 
-                <div className="active-menu-item">
-                  <div className="active-menu-container">
-                    <div className="dashboard-list">
-                      <div>
-                        <h3>
-                          Upcoming Grocery Lists
-                        </h3>
-                        <h3>View all Lists</h3>
-                      </div>
-                      <div>
-                        
-                      </div>
-                    </div>
-
-                    <div className="dashboard-pantry">
-                      <div>
-                        <h3>My Pantry</h3>
-                        <h3>View My Pantry</h3>
-                      </div>
-                      <div>
-                        <p>Coming Soon...</p>
-                      </div>
-                    </div>
-
-                    <div className="dashboard-tools">
-                      <div>
-                        <h3>Tools</h3>
-                      </div>
-                      <div>
-                        <div />
-                        <div />
-                        <div />
-                        <div />
-                      </div>
-                    </div>
-
-                    <div className="dashboard-resources">
-                      <div>
-                        <h3>Resources</h3>
-                      </div>
-                      <div>
-                        <div />
-                        <div />
-                        <div />
-                        <div />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <Footer />
-            </div>
-          </div>
+            <Footer />
+        </div>
         );
     }
     

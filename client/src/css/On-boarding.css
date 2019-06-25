@@ -607,6 +607,17 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .styles_modal__gNwvD {
-  border-radius: 15px;
+  border-radius: 10px;
   min-height: 50vh;
+  padding: 1.5rem 10px;
+}
+
+.shopping-cart-button {
+  right: 10px;
+  top: -65px;
+}
+
+.shopping-cart-button-quantity {
+  right: 10px;
+  top: -80px;
 }

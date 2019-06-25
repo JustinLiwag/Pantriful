@@ -11,7 +11,7 @@ import StepFour from "./StepFour";
 
 class CreateProfile extends Component {
   state = {
-    step: 3,
+    step: 1,
     shoppingListOne: [],
     shoppingListTwo: []
   };
@@ -196,11 +196,8 @@ class CreateProfile extends Component {
       lower += this.state[list][i].amount * this.state[list][i].lowPrice;
       upper += this.state[list][i].amount * this.state[list][i].upperPrice;
     }
-    return (
-      <p className="text-right py-4 px-2 border-t border-gay-300 my-4 font-bold text-gray-600" key="total">
-        Estimated Total: <span className="text-green-button">$ {lower.toFixed(2)}</span> - <span className="text-green-button">$ {upper.toFixed(2)}</span>
-      </p>
-    );
+    const result = `$ ${lower.toFixed(2)} - $ ${upper.toFixed(2)}`
+    return result
   };
 
   // Create submit for API
