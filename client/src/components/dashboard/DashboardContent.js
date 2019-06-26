@@ -11,6 +11,10 @@ class DashboardContent extends Component {
       openTab: "Home"
     }
 
+    componentDidMount() {
+      window.scrollTo(0, 0);
+    }
+
     changeTab = (input, e) => {
       this.setState({
         openTab: input
@@ -30,8 +34,8 @@ class DashboardContent extends Component {
             <Navbar />
             <Status />
 
-            <div className="container">
-              <ul className="border-b border-gray-300 py-4 mb-4">
+            <div className="border-b border-gray-300 py-4 mb-4">
+              <ul className="container">
                 <li className={this.toggleMenuClasses("Home")}><button className="focus:outline-none" name="Home" onClick={(e) => this.changeTab("Home", e)}>Home</button></li>
                 <li className={this.toggleMenuClasses("Lists")}><button className="focus:outline-none" name="Lists" onClick={(e) => this.changeTab("Lists", e)}>Lists</button></li>
                 <li className={this.toggleMenuClasses("Pantry")}><button className="focus:outline-none" name="Pantry" onClick={(e) => this.changeTab("Pantry", e)}>Pantry</button></li>
@@ -39,7 +43,7 @@ class DashboardContent extends Component {
               </ul>
             </div>
 
-            {this.state.openTab === "Home" ? <Home /> : null}
+            {this.state.openTab === "Home" ? <Home changeTab={this.changeTab}/> : null}
             {this.state.openTab === "Lists" ? <p className="container text-center my-12">Lists Component</p> : null}
             {this.state.openTab === "Pantry" ? <p className="container text-center my-12">Pantry Component</p> : null}
             {this.state.openTab === "Apps" ? <p className="container text-center my-12">Apps Component</p> : null}

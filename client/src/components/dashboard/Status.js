@@ -59,7 +59,8 @@ class Status extends Component {
 
               <div className="w-1/2">
                 <div className="shadow-lg rounded-lg max-w-sm">
-                  <h3 className="bg-green-button rounded-t-lg py-2 text-xl text-white font-bold">What do I do next? (1/3)</h3>
+                  <h3 className="bg-green-button rounded-t-lg py-2 text-xl text-white font-bold">What do I do next? ({this.props.profile.profile.shoppingListOne.length > 0 &&
+            this.props.profile.profile.shoppingListTwo.length > 0 ? "2" : "1"}/3)</h3>
                   <ul className="text-left">
                     <li className="ml-4 mt-4">
                       <Link to="/dashboard">
