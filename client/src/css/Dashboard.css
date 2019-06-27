@@ -129,7 +129,6 @@
 }
 
 .active-menu-item {
-    background-color: #FAFAFB;
     padding: 50px 0;
 }
 
@@ -238,4 +237,23 @@
     padding: 100px 100px;
     box-shadow: 0 0.125em 0.313em rgba(50, 50, 93, .09),
         0 0.063em 0.125em rgba(0, 0, 0, .07);
+}
+
+/* New Styles */
+
+.tab-list {
+  border-bottom: 1px solid #ccc;
+  padding-left: 0;
+}
+
+.tab-list-item {
+  display: inline-block;
+  list-style: none;
+  margin-bottom: -1px;
+  padding: 0.5rem 0.75rem;
+}
+
+.tab-list-active {
+  background-color: white;
+  border-bottom: 4px solid #EE9986;
 }
