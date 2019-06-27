@@ -66,6 +66,7 @@ class CreateProfile extends Component {
       const shoppingListObject = {
         item_id: rawData[0].item_id,
         name: rawData[0].name,
+        category: rawData[0].category,
         measurementUnit: rawData[0].measurementUnit,
         notes: "",
         basePrice: rawData[0].basePrice,
@@ -132,6 +133,7 @@ class CreateProfile extends Component {
       const shoppingListObject = {
         item_id: rawData[0].item_id,
         name: rawData[0].name,
+        category: rawData[0].category,
         measurementUnit: rawData[0].measurementUnit,
         notes: "",
         basePrice: rawData[0].basePrice,

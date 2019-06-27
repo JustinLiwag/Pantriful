@@ -9,55 +9,33 @@ class Status extends Component {
             this.props.profile.profile.shoppingListTwo.length > 0) {
            return (
                <div>
-                  <p className="pt-2 text-gray-700 leading-relaxed">You only have one last step to complete. Your delivery information! Be sure to also check out your new profile!</p>
-                  <Link className="inline-block bg-orange-base py-2 px-8 text-white mt-4 font-bold rounded-full " to="/dashboard">Enter Delivery Details</Link>
+               <p className="pt-2 text-gray-700 leading-relaxed">You only have one <span className="text-orange-base font-bold">last step</span> to complete. Your delivery information! Be sure to also check out your new profile!</p>
+                  <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full " to="/dashboard">Enter Delivery Details</Link>
                </div> 
            )
        }
        return (
            <div>
               <p className="pt-2 text-gray-700 leading-relaxed">You haven't set up your <span className="text-orange-base font-bold">shopping lists</span> yet. Go ahead and do that next!</p>
-              <Link className="inline-block bg-orange-base py-2 px-8 text-white mt-4 font-bold rounded-full " to="/create-shopping-list">Create Shopping List</Link>
+              <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full " to="/create-shopping-list">Create Shopping List</Link>
            </div>
        )
     }
 
-    statusUpdateContainer = () => {
-        if (this.props.profile.shoppingListOne.length > 0 &&
-            this.props.profile.shoppingListTwo.length > 0) {
-           return (
-               <div>
-                   <p>Hi, {this.props.auth.user.name} {this.props.auth.user.lastName}</p>
-                   <p>({this.props.profile.username})</p>
-                   <p>You only have one last step to complete. Your delivery information! Be sure to also check out your new profile!</p>
-                   <Link to="/dashboard">Enter Delivery Details</Link>
-               </div> 
-           )
-       }
-       return (
-           <div>
-               <p>Hi, {this.props.auth.user.name} {this.props.auth.user.lastName}</p>
-               <p>({this.props.profile.username})</p>
-               <p>You haven't set up your shopping lists yet. Go ahead and do that next!</p>
-               <Link to="/create-shopping-list">Create Shopping List</Link>
-           </div>
-       )
-    } 
-
-    render () {
+    render () { 
         return (
-            <div className="flex w-3/4 container items-center mb-16">
+            <div className="md:flex md:w-3/4 container items-center mt-4 md:mt-0 mb-8 md:mb-16">
 
-              <div className="flex max-w-md text-left mr-8 mx-auto">
-                <img className="w-20 h-20 inline-block" src="./images/dashboard/profile.placeholder.png" alt="" />
-                <div className="ml-4">
+              <div className="md:flex md:max-w-md text-left md:mr-8 mx-auto">
+                <img className="w-20 h-20 block md:inline-block mx-auto" src="./images/dashboard/profile.placeholder.png" alt="" />
+                <div className="md:ml-4 text-center md:text-left mt-4 md:mt-0">
                   <p className="text-xl font-medium tracking-wide text-gray-700">Hi, {this.props.auth.user.name} {this.props.auth.user.lastName}</p>
                   <p className="text-xl text-orange-base tracking-wide">({this.props.profile.profile.username})</p>
                   {this.statusText()}
                 </div>
               </div>
 
-              <div className="w-1/2">
+              <div className="hidden md:block w-1/2">
                 <div className="shadow-lg rounded-lg max-w-sm">
                   <h3 className="bg-green-button rounded-t-lg py-2 text-xl text-white font-bold">What do I do next? ({this.props.profile.profile.shoppingListOne.length > 0 &&
             this.props.profile.profile.shoppingListTwo.length > 0 ? "2" : "1"}/3)</h3>

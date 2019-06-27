@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-// import { Link } from "react-router-dom";
 import Navbar from "../layout/Navbar"
 import Footer from "../layout/Footer"
 
-import Home from './Home'
 import Status from './Status'
+import Home from './Home/HomeContainer'
+import Lists from './Lists/ListsContainer'
+import Pantry from './Pantry/PantryContainer'
+import Apps from './Apps/AppsContainer'
 
 class DashboardContent extends Component {
     state = {
@@ -23,9 +25,9 @@ class DashboardContent extends Component {
 
     toggleMenuClasses = (item) => {
       if (this.state.openTab === item) {
-        return "inline px-12 py-4 border-b-4 border-orange-base"
+        return "inline px-3 md:px-12 py-4 border-b-4 border-orange-base"
       }
-      return "inline px-12 py-4 text-gray-500"
+      return "inline px-3 md:px-12 py-4 text-gray-500"
     } 
 
     render () {
@@ -44,9 +46,9 @@ class DashboardContent extends Component {
             </div>
 
             {this.state.openTab === "Home" ? <Home changeTab={this.changeTab}/> : null}
-            {this.state.openTab === "Lists" ? <p className="container text-center my-12">Lists Component</p> : null}
-            {this.state.openTab === "Pantry" ? <p className="container text-center my-12">Pantry Component</p> : null}
-            {this.state.openTab === "Apps" ? <p className="container text-center my-12">Apps Component</p> : null}
+            {this.state.openTab === "Lists" ? <Lists changeTab={this.changeTab}/> : null}
+            {this.state.openTab === "Pantry" ? <Pantry changeTab={this.changeTab}/> : null}
+            {this.state.openTab === "Apps" ? <Apps changeTab={this.changeTab}/> : null}
 
             <Footer />
         </div>

@@ -37,7 +37,7 @@ class StepOne extends Component {
 
     // // Username Regex 
     const regex = /^([a-zA-Z ]){6,20}$/;
-    if (username.length <= 5 || age <= 0 || height.length <= 0 || weight <= 0 ) {
+    if (username.length <= 5 || age <= 0 || height.length <= 0 || weight <= 0 || !regex.test(username) ) {
         if (!regex.test(username)) {
             this.setState({username: "Invalid characters"})
         }

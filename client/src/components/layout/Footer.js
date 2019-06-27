@@ -8,7 +8,7 @@ class Footer extends Component {
           <div className="container">
             <div className="md:flex justify-between px-12 md:px-4 md:p-4">
               <div className="mb-4 md:mb-0">
-                <h3 className="text-3xl font-extrabold italic text-left">Pantriful</h3>
+                <h3 className="text-3xl font-extrabold italic text-center md:text-left">Pantriful</h3>
                 <p>Your own smart personal grocery shopper</p>
               </div>
               <div className="mb-4 md:mb-0">
