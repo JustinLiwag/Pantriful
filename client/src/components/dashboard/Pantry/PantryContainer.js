@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts"
-import { Link } from "react-router-dom";
+import { PieChart, Pie, Cell, Tooltip } from "recharts"
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../actions/profileActions";
 
@@ -268,13 +267,13 @@ class Pantry extends Component {
                                     <div className="px-4 py-6 flex">
                                         <div className="relative rounded-lg shadow-lg hover:shadow-xl hover:bg-red-500 w-1/2 bg-red-400 mx-2 h-32">
                                             <button onClick={(e) => this.props.changeTab("Pantry", e)} className="w-full focus:outline-none">
-                                                <img className="absolute right-0 mr-4 mt-2" src="/images/dashboard/change.png"></img>
+                                                <img className="absolute right-0 mr-4 mt-2" src="/images/dashboard/change.png" alt=""></img>
                                                 <p className="text-white font-bold text-xl text-left mt-20 mx-4">Change</p>
                                             </button>
                                         </div>
                                         <div className="relative rounded-lg shadow-lg hover:shadow-xl hover:bg-teal-500 w-1/2 bg-teal-400 mx-2 h-32">
                                             <button onClick={(e) => this.props.changeTab("Pantry", e)} className="w-full focus:outline-none">
-                                                <img className="absolute right-0 mr-4 mt-2" src="/images/dashboard/improve.png"></img>
+                                                <img className="absolute right-0 mr-4 mt-2" src="/images/dashboard/improve.png" alt=""></img>
                                                 <p className="text-white font-bold text-xl text-left mt-20 mx-4">Improve</p>
                                             </button>
                                         </div>
