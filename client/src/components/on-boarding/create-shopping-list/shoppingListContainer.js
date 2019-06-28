@@ -6,13 +6,8 @@ import Spinner from '../../common/Spinner';
 
 import StepOne from "./StepOne"
 import StepTwo from "./StepTwo"
-import StepThree from "./StepThree"
-import StepFour from "./StepFour"
-import StepFive from "./StepFive"
-import StepSix from "./StepSix"
-import ShoppingListOne from "./ShoppingListOne";
-import ShoppingListTwo from "./ShoppingListTwo";
-import Complete from "./Complete";
+import StepThree from "./StepThree";
+import StepFour from "./StepFour";
 
 class CreateProfile extends Component {
   state = {
@@ -71,6 +66,7 @@ class CreateProfile extends Component {
       const shoppingListObject = {
         item_id: rawData[0].item_id,
         name: rawData[0].name,
+        category: rawData[0].category,
         measurementUnit: rawData[0].measurementUnit,
         notes: "",
         basePrice: rawData[0].basePrice,
@@ -101,6 +97,25 @@ class CreateProfile extends Component {
     this.setState({ data });
   };
 
+  handleAmountIncreaseShoppingCartOne = (e) => {
+    const { name } = e.target;
+    var data = [...this.state.shoppingListOne];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].amount += 1
+    this.setState({data})
+  }
+
+  handleAmountDecreaseShoppingCartOne = (e) => {
+    const { name } = e.target;
+    var data = [...this.state.shoppingListOne];
+    var index = data.findIndex(obj => obj.name === name);
+    if (data[index].amount === 1) {
+      return this.setState({data})
+    }
+    data[index].amount -= 1
+    this.setState({data})
+  }
+
   handleShoppingCartNotesChangeOne = input => e => {
     const { name, value } = e.target;
     var data = [...this.state.shoppingListOne];
@@ -118,6 +133,7 @@ class CreateProfile extends Component {
       const shoppingListObject = {
         item_id: rawData[0].item_id,
         name: rawData[0].name,
+        category: rawData[0].category,
         measurementUnit: rawData[0].measurementUnit,
         notes: "",
         basePrice: rawData[0].basePrice,
@@ -148,6 +164,25 @@ class CreateProfile extends Component {
     this.setState({ data });
   };
 
+  handleAmountIncreaseShoppingCartTwo = (e) => {
+    const { name } = e.target;
+    var data = [...this.state.shoppingListTwo];
+    var index = data.findIndex(obj => obj.name === name);
+    data[index].amount += 1
+    this.setState({data})
+  }
+
+  handleAmountDecreaseShoppingCartTwo = (e) => {
+    const { name } = e.target;
+    var data = [...this.state.shoppingListTwo];
+    var index = data.findIndex(obj => obj.name === name);
+    if (data[index].amount === 1) {
+      return this.setState({data})
+    }
+    data[index].amount -= 1
+    this.setState({data})
+  }
+
   handleShoppingCartNotesChangeTwo = input => e => {
     const { name, value } = e.target;
     var data = [...this.state.shoppingListTwo];
@@ -163,11 +198,8 @@ class CreateProfile extends Component {
       lower += this.state[list][i].amount * this.state[list][i].lowPrice;
       upper += this.state[list][i].amount * this.state[list][i].upperPrice;
     }
-    return (
-      <p className="shoppingList__total" key="total">
-        Estimated Total: $ {lower.toFixed(2)} - $ {upper.toFixed(2)}
-      </p>
-    );
+    const result = `$ ${lower.toFixed(2)} - $ ${upper.toFixed(2)}`
+    return result
   };
 
   // Create submit for API
@@ -196,20 +228,8 @@ class CreateProfile extends Component {
         case 1:
           return <StepOne nextStep={this.nextStep} prevStep={this.prevStep} />;
         case 2:
-          return <StepTwo nextStep={this.nextStep} prevStep={this.prevStep} />;
-        case 3:
           return (
-            <StepThree nextStep={this.nextStep} prevStep={this.prevStep} />
-          );
-        case 4:
-          return <StepFour nextStep={this.nextStep} prevStep={this.prevStep} />;
-        case 5:
-          return <StepFive nextStep={this.nextStep} prevStep={this.prevStep} />;
-        case 6:
-          return <StepSix nextStep={this.nextStep} prevStep={this.prevStep} />;
-        case 7:
-          return (
-            <ShoppingListOne
+            <StepTwo 
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
@@ -225,15 +245,17 @@ class CreateProfile extends Component {
               handleShoppingCartAmountChange={
                 this.handleShoppingCartAmountChangeOne
               }
+              handleAmountIncrease={this.handleAmountIncreaseShoppingCartOne}
+              handleAmountDecrease={this.handleAmountDecreaseShoppingCartOne}
               handleShoppingCartNotesChange={
                 this.handleShoppingCartNotesChangeOne
               }
               getTotal={this.getTotal}
             />
           );
-        case 8:
+        case 3:
           return (
-            <ShoppingListTwo
+            <StepThree
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
@@ -249,15 +271,17 @@ class CreateProfile extends Component {
               handleShoppingCartAmountChange={
                 this.handleShoppingCartAmountChangeTwo
               }
+              handleAmountIncrease={this.handleAmountIncreaseShoppingCartTwo}
+              handleAmountDecrease={this.handleAmountDecreaseShoppingCartTwo}
               handleShoppingCartNotesChange={
                 this.handleShoppingCartNotesChangeTwo
               }
               getTotal={this.getTotal}
             />
           );
-        case 9:
+        case 4:
           return (
-            <Complete
+            <StepFour
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               createSubmit={this.createSubmit}

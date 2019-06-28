@@ -17,11 +17,11 @@ import Dashboard from "./components/dashboard/Dashboard";
 import CreateFoodProfile from "./components/on-boarding/create-pantry/onBoardingContainer";
 import CreateShoppingList from "./components/on-boarding/create-shopping-list/shoppingListContainer";
 
-import "./css/font.css";
 import "./css/App.css";
 import "./css/LandingPage.css";
 import "./css/Dashboard.css";
 import "./css/On-boarding.css";
+import "./css/tailwind.css";
 
 // Check for token
 if (localStorage.jwtToken) {

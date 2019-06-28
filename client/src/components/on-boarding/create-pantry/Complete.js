@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import {Link} from "react-router-dom"
+import Navbar from "../utilities/Navbar"
+import Footer from "../utilities/Footer"
 
 class Complete extends Component {
   componentDidMount() {
@@ -18,23 +19,15 @@ class Complete extends Component {
 
   render() {
     return (
-      <div>
-        <div className="on-boarding-nav">
-          <button onClick={this.back}>Back</button>
-          <Link to="/">
-            <img src="images/logo/pantriful-logo-orange.png" alt="" />
-          </Link>
+      <div className="mb-48">
+            <Navbar />
+            <div className="container px-8 md:px-0">
+                <img className="mx-auto mt-8 w-full md:max-w-sm" src="/images/on-boarding/shopping-cart-1.png" alt=""></img>
+                <h3 className="mt-4 text-2xl md:text-3xl font-bold text-gray-600">Your <span className="text-orange-base italic font-extrabold ">Pantry</span> is all set! Let's go to your dashboard.</h3>
+                <p className="mt-1 text-md md:text-lg leading-loose max-w-xl mx-auto text-gray-600">This will help us figure out what you like to eat so that we can do all kinds of cool stuff for you. Your pantry will be something you can view and change whenever you want.</p>
+            </div>
+            <Footer submit={this.submit} back={this.back} last={true}/>
         </div>
-
-        <div className="on-boarding-container container stepOne">
-          <img src="./images/on-boarding/on-boarding-complete.png" alt=""/>
-          <h2>Awesome! Your Pantry is all set!</h2>
-          <p> This will help us figure out what you like to eat so that we can create a service tailored to you. This will be something you can change whenever you want. <br/><br/>Let's go to your Dashboard. </p>
-          <div className="on-boarding-footer onward-button">
-            <button onClick={this.submit}>Onward!</button>
-          </div>
-        </div>
-      </div>
     );
   }
 }
