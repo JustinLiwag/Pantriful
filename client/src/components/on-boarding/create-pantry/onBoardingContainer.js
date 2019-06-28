@@ -10,7 +10,6 @@ import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
 import StepFour from "./StepFour";
-import StepFive from "./StepFive";
 
 // Pantry
 import Chicken from "./pantry/Chicken";
@@ -33,6 +32,7 @@ class CreateProfile extends Component {
   state = {
     step: 1,
     username: "",
+    gender: "",
     age: "",
     height: "",
     weight: "",
@@ -195,6 +195,7 @@ class CreateProfile extends Component {
     const { step } = this.state;
     const {
       username,
+      gender,
       age,
       height,
       weight,
@@ -204,6 +205,7 @@ class CreateProfile extends Component {
     } = this.state;
     const values = {
       username,
+      gender,
       age,
       height,
       weight,
@@ -218,53 +220,40 @@ class CreateProfile extends Component {
       switch (step) {
         case 1:
           return (
-            // Intro to on-boarding
             <StepOne
               nextStep={this.nextStep}
               prevStep={this.prevStep}
+              values={values}
+              handleChange={this.handleChange}
             />
           );
         case 2:
           return (
-            // Basic Information
             <StepTwo
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                values={values}
-                handleChange={this.handleChange}
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              values={values}
+              handleChange={this.handleDietaryRestrictionsCheckboxChange}
             />            
           );
         case 3:
           return (
-            // Dietary Restrictions
             <StepThree
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                values={values}
-                handleChange={this.handleDietaryRestrictionsCheckboxChange}
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              values={values}
+              getByValue={this.getByValue}
+              handleChange={this.handleDietProfileCheckboxChange}
             />            
           );
         case 4:
           return (
-            // Diet Profile
             <StepFour
                 nextStep={this.nextStep}
                 prevStep={this.prevStep}
-                values={values}
-                getByValue={this.getByValue}
-                handleChange={this.handleDietProfileCheckboxChange}
             />            
           );
         case 5:
-          return (
-            <StepFive
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                values={values}
-                handleChange={this.handleChange}
-            />            
-          );
-        case 6:
           return (
             // Chicken
             <Chicken
@@ -276,7 +265,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 7:
+        case 6:
           return (
             // Beef
             <Beef
@@ -288,7 +277,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 8:
+        case 7:
           return (
             // Pork
             <Pork
@@ -300,7 +289,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 9:
+        case 8:
           return (
             // Lamb
             <Lamb
@@ -312,7 +301,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 10:
+        case 9:
           return (
             // Seafood
             <Seafood
@@ -324,7 +313,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 11:
+        case 10:
           return (
             // Pork
             <Checkup
@@ -336,7 +325,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 12:
+        case 11:
           return (
             // Vegetables
             <Vegetables
@@ -348,7 +337,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 13:
+        case 12:
           return (
             // Fruits
             <Fruits
@@ -360,7 +349,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 14:
+        case 13:
           return (
             // AlternativeProteins
             <AlternativeProteins
@@ -372,7 +361,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 15:
+        case 14:
           return (
             // Grains
             <Grains
@@ -384,7 +373,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 16:
+        case 15:
           return (
             // Dairy
             <Dairy
@@ -396,7 +385,7 @@ class CreateProfile extends Component {
                 handleCheckboxChange={this.handleCheckboxChange}
             />            
           );
-        case 17:
+        case 16:
           return (
             // Complete
             <Complete

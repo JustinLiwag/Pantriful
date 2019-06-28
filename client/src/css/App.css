@@ -1,33 +1,18 @@
 /*----GENERAL/UTILITY STYLES----*/
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    height: 100%;
-}
-
 .content-container {
-    padding-bottom: 430px;
+    /* padding-bottom: 430px; */
     min-height: 100vh;
     overflow: hidden;
     position: relative;
 }
 @media screen and (max-width: 800px) {
     .content-container {
-        padding-bottom: 515px;
+        /* padding-bottom: 515px; */
     }
 }
 
 body {
-    font-family: "Avenir LT Std 55 Roman", sans-serif;
-    border-top: 5px solid #EE9986;
     color: #4A4A4A;
     font-size: 16px;
     text-rendering: optimizeLegibility;
@@ -110,20 +95,20 @@ body {
   margin-right: 30px;
 }
 
-nav ul li a {
+/* nav ul li a {
   text-decoration: none;
   color: #EE9986;
   font-size: 20px;
   font-weight: bold;
-}
+} */
 
-.nav-signup-button a {
+/* .nav-signup-button a {
   color: white;
   border-radius: 5px;
   padding: 12px 60px;
   background-color: #EE9986;
   font-size: 20px;
-}
+} */
 
 @media screen and (max-width: 600px) {
   .flexnav {
@@ -145,7 +130,7 @@ nav ul li a {
     max-width: 200px;
   }
 
-  nav ul li a {
+  /* nav ul li a {
     text-decoration: none;
     color: #EE9986;
     font-size: 18px;
@@ -153,15 +138,15 @@ nav ul li a {
     padding: 5px 25px;
     border: 2px solid #EE9986;
     font-weight: bold;
-  }
+  } */
 
-  .nav-signup-button a {
+  /* .nav-signup-button a {
     color: white;
     border-radius: 5px;
     padding: 5px 25px;
     background-color: #EE9986;
     font-size: 18px;
-  }
+  } */
 }
 
 
@@ -219,7 +204,7 @@ nav ul li a {
   color: #BABABA;
 }
 
-.login-form button {
+/* .login-form button {
   display: block;
   font-size: 15px;
   padding: 10px 105px;
@@ -229,7 +214,7 @@ nav ul li a {
   font-weight: bold;
   border-radius: 5px;
   margin: 15px auto 10px;
-}
+} */
 
 
 .login-form>div div:nth-of-type(2) img {
@@ -291,7 +276,7 @@ nav ul li a {
   color: #BABABA;
 }
 
-.register-form button {
+/* .register-form button {
   display: block;
   font-size: 15px;
   padding: 10px 105px;
@@ -301,7 +286,7 @@ nav ul li a {
   font-weight: bold;
   border-radius: 5px;
   margin: 15px auto 10px;
-}
+} */
 
 
 .register-form>div div:nth-of-type(2) img {
