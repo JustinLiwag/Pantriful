@@ -23,7 +23,7 @@ class Landing extends Component {
                 <div className="container flex mx-auto">
                     <div className="lg:w-1/3 hidden lg:block"></div>
                     <div className="lg:w-2/3 pt-20 mx-auto">
-                        <div class="w-3/4 mx-auto text-center">
+                        <div className="w-3/4 mx-auto text-center">
 
                             <div className="text-sm py-2 px-3 bg-indigo-800 items-center text-indigo-100 leading-none rounded-full flex inline-flex" role="alert">
                                 <span className="flex rounded-full bg-teal-500 uppercase py-2 px-3 text-xs font-extrabold mr-3">New</span>
@@ -44,7 +44,7 @@ class Landing extends Component {
 
                 <div className="text-center">
                     <p className="text-xl text-gray-500">How it works</p>
-                    <h3 class="font-extrabold md:text-4xl text-3xl text-gray-700 w-2/3 mx-auto xl:text-4xl">It's grocery shopping made <span className="italic text-orange-base">effortless</span>.</h3>
+                    <h3 className="font-extrabold md:text-4xl text-3xl text-gray-700 w-2/3 mx-auto xl:text-4xl">It's grocery shopping made <span className="italic text-orange-base">effortless</span>.</h3>
                 </div>
 
                 <div className="md:flex justify-around mt-24 px-6 text-center md:text-left md:flex-row-reverse md:mx-auto">
@@ -68,7 +68,7 @@ class Landing extends Component {
 
                 </div>
 
-                <div className="md:flex justify-around mt-24 px-6 text-center md:text-left md:mx-auto">
+                <div className="md:flex justify-around mt-32 md:mt-48 px-6 text-center md:text-left md:mx-auto">
 
                     <div className="max-w-sm mx-auto md:mx-0 md:self-center lg:max-w-md pb-6 md:pb-0">
                         <img src="/images/landing-page/how-it-works/schedule.png" alt=""></img>
@@ -89,7 +89,7 @@ class Landing extends Component {
 
                 </div>
 
-                <div className="md:flex justify-around mt-24 px-6 text-center md:text-left md:flex-row-reverse md:mx-auto">
+                <div className="md:flex justify-around mt-32 md:mt-48 px-6 text-center md:text-left md:flex-row-reverse md:mx-auto">
 
                     <div className="max-w-sm mx-auto md:mx-0 md:self-center lg:max-w-md pb-6 md:pb-0">
                         <img src="/images/landing-page/how-it-works/improve.png" alt=""></img>
@@ -111,7 +111,7 @@ class Landing extends Component {
 
             </section>
 
-            <section class="md:flex features md:p-48 md:my-32 py-40 px-3 my-24 bg-teal-400">
+            <section className="md:flex features md:p-48 md:my-32 py-40 px-3 my-24 bg-teal-400">
                 <div className="mb-12 self-center text-white container">
 
                     {/* Features Title and description */}

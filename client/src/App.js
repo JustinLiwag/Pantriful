@@ -16,6 +16,7 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import CreateFoodProfile from "./components/on-boarding/create-pantry/onBoardingContainer";
 import CreateShoppingList from "./components/on-boarding/create-shopping-list/shoppingListContainer";
+import DeliveryDetails from "./components/on-boarding/delivery-details/deliveryDetailsContainer";
 
 import "./css/App.css";
 import "./css/LandingPage.css";
@@ -66,6 +67,11 @@ class App extends Component {
                   exact
                   path="/create-shopping-list"
                   component = {CreateShoppingList}
+                />
+                <PrivateRoute
+                  exact
+                  path="/delivery-details"
+                  component={DeliveryDetails}
                 />
               </Switch>
             </div>

@@ -18,6 +18,7 @@ const INTOLERANCES = [
     {name: "tree nuts"},
     {name: "eggs"},
     {name: "gelatin"},
+    {name: "none"}
 ]
 
 class StepTwo extends Component {

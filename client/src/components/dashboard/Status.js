@@ -10,7 +10,7 @@ class Status extends Component {
            return (
                <div>
                <p className="pt-2 text-gray-700 leading-relaxed">You only have one <span className="text-orange-base font-bold">last step</span> to complete. Your delivery information! Be sure to also check out your new profile!</p>
-                  <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full " to="/dashboard">Enter Delivery Details</Link>
+                  <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full " to="/delivery-details">Enter Delivery Details</Link>
                </div> 
            )
        }

@@ -6,6 +6,33 @@ const profileSchema = mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: "users"
   },
+  street: {
+    type: String
+  },
+  city: {
+    type: String
+  },
+  state: {
+    type: String
+  },
+  country: {
+    type: String
+  },
+  zipcode: {
+    type: Number
+  },
+  aptOrBldgNumber: {
+    type: String
+  },
+  deliveryDay: {
+    type: String
+  },
+  deliveryTime: {
+    type: String
+  },
+  phoneNumber: {
+    type: String
+  },
   username: {
     type: String,
     required: true

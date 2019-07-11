@@ -124,6 +124,40 @@ router.post(
   }
 );
 
+// @route   POST api/profile/food-profile/delivery-details
+// @desc    update delivery details
+// @access  Private
+router.post(
+  "/food-profile/delivery-details",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndUpdate(
+      { user: req.user.id },
+      {
+        $push: {
+          "street": req.body.street,
+          "city": req.body.city,
+          "state": req.body.state,
+          "country": req.body.country,
+          "zipcode": req.body.zipcode,
+          "aptOrBldgNumber": req.body.aptOrBldgNumber,
+          "deliveryDay": req.body.deliveryDay,
+          "deliveryTime": req.body.deliveryTime,
+          "phoneNumber": req.body.phoneNumber
+        }
+      },
+      { safe: true, upsert: true },
+      function (err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc)
+        }
+      }
+    )
+  }
+);
+
 // @route   GET api/profile/
 // @desc    Get current users profile
 // @access  Private

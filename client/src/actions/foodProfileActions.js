@@ -37,6 +37,14 @@ export const sendShoppingLists = (userData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
+// Send in delivery details to API
+export const sendDeliveryDetails = (userData, history) => dispatch => {
+  axios
+    .post("/api/profile/food-profile/delivery-details", userData)
+    .then(res => history.push("/dashboard"))
+    .catch(err => console.log(err));
+};
+
 //  Profile loading
 export const setFoodProfileLoading = () => {
   return {

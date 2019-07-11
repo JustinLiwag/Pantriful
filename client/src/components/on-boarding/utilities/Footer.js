@@ -18,7 +18,7 @@ class Footer extends Component {
             ? <Link to="/" className="px-8 sm:px-12 py-2 rounded-full bg-white border border-gray-border text-gray-600">Back</Link>
             : <button className="px-8 sm:px-12 py-2 rounded-full bg-white border border-gray-border text-gray-600" onClick={this.props.back}>Back</button>}
             {last
-            ? <button className="px-8 sm:px-12 py-2 rounded-full bg-green-button text-white font-bold" onClick={this.props.submit}>Sumbit</button> 
+            ? <button className="px-8 sm:px-12 py-2 rounded-full bg-green-button text-white font-bold" onClick={this.props.submit}>Submit</button> 
             : <button className="px-8 sm:px-12 py-2 rounded-full bg-green-button text-white font-bold" onClick={this.props.continue}>Continue</button>}
         </div>
       </div>
