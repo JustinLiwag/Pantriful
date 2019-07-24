@@ -36,7 +36,7 @@ class Fruits extends Component {
                         checked={this.props.values.checkedItems.get(item.name)}
                         onChange={this.props.handleCheckboxChange}
                     />
-                    <label className="block text-gray-500 py-2 md:py-4 border-2 rounded border-gray-500 hover:bg-orange-200 hover:border-orange-base hover:text-orange-600 font-bold capitalize text-sm" htmlFor={item.name}>{item.name}</label>
+                    <label className="block text-gray-500 py-2 md:py-4 border-2 rounded border-gray-500 md:hover:bg-orange-200 md:hover:border-orange-base md:hover:text-orange-600 font-bold capitalize text-sm" htmlFor={item.name}>{item.name}</label>
                 </li>
             )
         )

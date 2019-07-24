@@ -28,6 +28,12 @@
     }
 }
 
+@media screen and (max-width: 500px) {
+    .hero {
+        height: 600px;
+    }
+}
+
 .features {
     position: relative;
     overflow: hidden;

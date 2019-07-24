@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../../actions/profileActions";
 
 class Lists extends Component {
@@ -23,8 +24,12 @@ class Lists extends Component {
                             ? <div>
                                 <img className="mx-auto mb-2" src="/images/dashboard/loading.gif" alt="loading"></img>
                                 <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Your <span className="text-orange-base font-bold">first customized grocery</span> list is being created! We are pairing you with a member from our team who will assist you shortly.</p>
+                              </div>
+                            : <div>
+                                <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Welcome to <span className="text-orange-base font-bold">Pantriful!</span> Go ahead and create your example shopping lists and we can get you started.</p>
+                                <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full" to="/create-shopping-list">Create Shopping List</Link>
                             </div>
-                            : <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Welcome to <span className="text-orange-base font-bold">Pantriful!</span> Go ahead and create your example shopping lists and we can get you started.</p>}
+                        }
                     </div>
                     {/* Individual Lists */}
                     {/*<div className="flex justify-around py-4 border-b-2 border-gray-300 hover:bg-gray-100">

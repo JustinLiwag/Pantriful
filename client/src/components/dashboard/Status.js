@@ -5,6 +5,13 @@ import { getCurrentProfile } from "../../actions/profileActions";
 
 class Status extends Component {
     statusText = () => {
+      if (this.props.profile.profile.street) {
+        return (
+          <div>
+            <p className="pt-2 text-gray-700 leading-relaxed">You are all set. We will be having a <span className="text-orange-base font-bold">Pantriful Assistant</span> reach out to you shortly. Go explore your profile!</p>
+          </div> 
+        )
+      }
       if (this.props.profile.profile.shoppingListOne.length > 0 &&
             this.props.profile.profile.shoppingListTwo.length > 0) {
            return (
@@ -23,6 +30,7 @@ class Status extends Component {
     }
 
     render () { 
+        console.log(this.props.profile.profile)
         return (
             <div className="md:flex md:w-3/4 container items-center mt-4 md:mt-0 mb-8 md:mb-16">
 
@@ -35,10 +43,27 @@ class Status extends Component {
                 </div>
               </div>
 
-              <div className="hidden md:block w-1/2">
-                <div className="shadow-lg rounded-lg max-w-sm">
-                  <h3 className="bg-green-button rounded-t-lg py-2 text-xl text-white font-bold">What do I do next? ({this.props.profile.profile.shoppingListOne.length > 0 &&
-            this.props.profile.profile.shoppingListTwo.length > 0 ? "2" : "1"}/3)</h3>
+              <div className="md:block md:w-1/2">
+                {this.props.profile.profile.street
+                ? <div className="shadow-lg rounded-lg max-w-sm">
+                    <div className="bg-green-button flex items-center rounded-t-lg px-8 py-2 md:py-4 mx-auto mt-4 md:mt-0 mx-auto">
+                      <img className="w-1/4 h-full mx-auto" src="./images/dashboard/assistant/profileImg.png" alt=""></img>
+                      <div className="w-3/4 text-left ml-4">
+                        <h3 className="text-white text-2xl font-bold md:tracking-wider">Julie Evans</h3>
+                        <div className="md:flex text-xs text-white font-bold tracking-wider">
+                          <p className="hidden md:block">Pasadena, Ca</p>
+                          <p className="hidden md:block md:ml-4">(626) 658-7775</p>
+                        </div>
+                      <p className="hidden md:block text-green-700 italic">"French food fanatic</p>
+                      </div>
+                    </div>
+                    <div className="py-6 px-8 text-gray-700 md:text-left">
+                    <p className="font-bold text-lg mb-2">Hi {this.props.profile.profile.user.name}, I am your <span className="text-orange-base">Pantriful Assistant</span>.</p>
+                      <p className="leading-relaxed">I will be taking care of your account and making sure things run smoothly. I will be in touch shortly to get you going!</p>
+                    </div>
+                  </div>
+                : <div className="shadow-lg rounded-lg max-w-sm">
+                  <h3 className="bg-green-button rounded-t-lg py-2 text-xl text-white font-bold">What do I do next? ({this.props.profile.profile.shoppingListOne.length > 0 && this.props.profile.profile.shoppingListTwo.length > 0 ? "2" : "1"}/3)</h3>
                   <ul className="text-left">
                     <li className="ml-4 mt-4">
                       <Link to="/dashboard">
@@ -87,8 +112,8 @@ class Status extends Component {
                     </li>
                   </ul>
                 </div>
+              }
               </div>
-
             </div>
         )
 };

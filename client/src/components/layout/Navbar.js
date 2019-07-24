@@ -18,14 +18,14 @@ class Navbar extends Component {
 
     const authLinks = (
       <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-        <li><Link to="/" className="py-3 pr-12 inline-block text-gray-600 xl:text-xl" onClick={this.onLogoutClick.bind(this)}>Logout</Link></li>
+        <li className="text-right"><Link to="/" className="py-3 md:pr-12 inline-block text-gray-600 xl:text-xl" onClick={this.onLogoutClick.bind(this)}>Logout</Link></li>
       </ul>
     );
 
     const guestLinks = (
       <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-        <li><Link to="/login" className="py-3 pr-12 inline-block text-gray-600 xl:text-xl">Login</Link></li>
-        <li><Link to="/register" className="inline-block lg:font-bold text-gray-600 md:text-white text-weight-bold md:bg-orange-base py-3 md:py-3 md:px-8 md:rounded-full lg:shadow-md xl:text-xl">Sign Up</Link></li>
+        <li className="text-right"><Link to="/login" className="py-3 md:pr-12 inline-block text-gray-600 xl:text-xl">Login</Link></li>
+        <li className="text-right"><Link to="/register" className="inline-block lg:font-bold text-gray-600 md:text-white text-weight-bold md:bg-orange-base py-3 md:py-3 md:px-8 md:rounded-full lg:shadow-md xl:text-xl">Sign Up</Link></li>
       </ul>
     );
 

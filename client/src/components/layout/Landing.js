@@ -22,7 +22,7 @@ class Landing extends Component {
             <div className="hero">
                 <div className="container flex mx-auto">
                     <div className="lg:w-1/3 hidden lg:block"></div>
-                    <div className="lg:w-2/3 pt-20 mx-auto">
+                    <div className="lg:w-2/3 pt-12 sm:pt-20 mx-auto">
                         <div className="w-3/4 mx-auto text-center">
 
                             <div className="text-sm py-2 px-3 bg-indigo-800 items-center text-indigo-100 leading-none rounded-full flex inline-flex" role="alert">
@@ -44,7 +44,7 @@ class Landing extends Component {
 
                 <div className="text-center">
                     <p className="text-xl text-gray-500">How it works</p>
-                    <h3 className="font-extrabold md:text-4xl text-3xl text-gray-700 w-2/3 mx-auto xl:text-4xl">It's grocery shopping made <span className="italic text-orange-base">effortless</span>.</h3>
+                    <h3 className="font-extrabold md:text-4xl text-3xl text-gray-700 sm:w-2/3 mx-auto xl:text-4xl">It's grocery shopping made <span className="italic text-orange-base">effortless</span>.</h3>
                 </div>
 
                 <div className="md:flex justify-around mt-24 px-6 text-center md:text-left md:flex-row-reverse md:mx-auto">

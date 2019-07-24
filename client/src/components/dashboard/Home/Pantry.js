@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { PieChart, Pie, Cell, Tooltip } from "recharts"
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../actions/profileActions";
 
@@ -133,6 +134,7 @@ class Pantry extends Component {
     }
 
     render() {
+        const profile = this.props.profile.profile
         const pantry = this.pantryLogic()
         let data = [
             { name: 'Protein', value: Number(pantry[0].value) },
@@ -146,17 +148,25 @@ class Pantry extends Component {
         const COLORS = ['#3182CE', '#744210', '#E53E3E', '#38A169', "#81E6D9", "#D69E2E"];
 
         return (
-                <div className="">
-                    <div className="flex justify-between border-b-2 border-gray-300 py-4 mt-12 mb-4 ">
-                        <h3 className="text-gray-700 font-bold tracking-wide">My Pantry</h3>
-                        <button onClick={(e) => this.props.changeTab("Pantry", e)} className="text-orange-base">More details</button>
+            <div>
+                <div className="flex justify-between border-b-2 border-gray-300 py-4 mt-12 mb-4 ">
+                    <h3 className="text-gray-700 font-bold tracking-wide">My Pantry</h3>
+                    <button onClick={(e) => this.props.changeTab("Pantry", e)} className="text-orange-base">More details</button>
+                </div>
+                {profile.shoppingListOne.length === 0 && profile.shoppingListTwo.length === 0
+                ? <div className="lg:p-8 lg:shadow-lg justify-between mb-4 pb-8">
+                    <div className="my-24">
+                        <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl ">This is your <span className="text-orange-base font-bold">Pantry</span>. Once your create some example shoppings lists for us we will be able to start creating a customized experience for you.</p>
+                        <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full" to="/create-shopping-list">Create Shopping List</Link>
                     </div>
+                  </div>
+                : <div>
 
                     {/* Pantry Content */}
                     <div className="lg:p-8 lg:flex lg:shadow-lg justify-between mb-4 pb-8 ">
                         {/* Left Pantry */}
                         <div className="lg:w-2/6 lg:mx-4">
-                            
+
                             {/* Mobile Pic Chart */}
                             <div className="mx-auto xs:hidden">
                                 {/* PIE CHART */}
@@ -179,7 +189,7 @@ class Pantry extends Component {
                                     <Tooltip />
                                 </PieChart>
                             </div>
-                            
+
                             {/* Regular Pie Chart */}
                             <div className="hidden xs:block mx-auto">
                                 {/* PIE CHART */}
@@ -206,7 +216,7 @@ class Pantry extends Component {
                             <div className="shadow-lg rounded-lg mx-2">
                                 <h3 className="bg-green-button py-2 font-bold text-white text-xl rounded-t-lg">Diet Breakdown</h3>
                                 <ul className="flex justify-around py-2 lg:py-4 px-4 mx-auto flex-wrap text-center lg:text-left">
-                                    <li className="py-2 w-1/2"><div className="inline-block mr-2 h-4 w-4 bg-blue-600 rounded-full"></div>Protein <span className="text-green-500 font-bold"><br className="lg:hidden"/>{pantry[0].value}%</span></li>
+                                    <li className="py-2 w-1/2"><div className="inline-block mr-2 h-4 w-4 bg-blue-600 rounded-full"></div>Protein <span className="text-green-500 font-bold"><br className="lg:hidden" />{pantry[0].value}%</span></li>
                                     <li className="py-2 w-1/2"><div className="inline-block mr-2 h-4 w-4 bg-yellow-900 rounded-full"></div>Alt. Protein <span className="text-green-500 font-bold"><br className="lg:hidden" />{pantry[1].value}%</span></li>
                                     <li className="py-2 w-1/2"><div className="inline-block mr-2 h-4 w-4 bg-red-600 rounded-full"></div>Vegetables <span className="text-green-500 font-bold"><br className="lg:hidden" />{pantry[2].value}%</span></li>
                                     <li className="py-2 w-1/2"><div className="inline-block mr-2 h-4 w-4 bg-green-600 rounded-full"></div>Fruits <span className="text-green-500 font-bold"><br className="lg:hidden" />{pantry[3].value}%</span></li>
@@ -229,9 +239,9 @@ class Pantry extends Component {
                                         <div className="px-4 py-1">
                                             <p>
                                                 <span className="text-6xl text-green-button leading-snug">78</span>/
-                                                <span className="font-bold text-gray-600">100</span>
+                                            <span className="font-bold text-gray-600">100</span>
                                             </p>
-                                            <p className="leading-relaxed text-gray-600 ">This score is based on your health profile as compared to our other users. <br/>Looks pretty good!</p>
+                                            <p className="leading-relaxed text-gray-600 ">This score is based on your health profile as compared to our other users. <br />Looks pretty good!</p>
                                         </div>
                                     </div>
                                 </div>
@@ -243,13 +253,13 @@ class Pantry extends Component {
                                         <h3 className="bg-green-400 text-white font-bold py-2 text-xl rounded-t-lg">Est. Average Spending</h3>
                                         <div className="px-2 py-2 mx-auto">
                                             <ul className="flex justify-around py-4 px-4 mx-auto flex-wrap text-center lg:text-left">
-                                            <li className="py-2 w-1/2 text-gray-600 font-bold">Protein: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[0].value) * .01)).toFixed(2)}</span></li>
-                                            <li className="py-2 w-1/2 text-gray-600 font-bold">Alt. Protein: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[1].value) * .01)).toFixed(2)}</span></li>
-                                            <li className="py-2 w-1/2 text-gray-600 font-bold">Vegetables: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[2].value) * .01)).toFixed(2)}</span></li>
-                                            <li className="py-2 w-1/2 text-gray-600 font-bold">Fruits: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[3].value) * .01)).toFixed(2)}</span></li>
-                                            <li className="py-2 w-1/2 text-gray-600 font-bold">Grains: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[4].value) * .01)).toFixed(2)}</span></li>
-                                            <li className="py-2 w-1/2 text-gray-600 font-bold">Dairy: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[5].value) * .01)).toFixed(2)}</span></li>
-                                            </ul> 
+                                                <li className="py-2 w-1/2 text-gray-600 font-bold">Protein: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[0].value) * .01)).toFixed(2)}</span></li>
+                                                <li className="py-2 w-1/2 text-gray-600 font-bold">Alt. Protein: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[1].value) * .01)).toFixed(2)}</span></li>
+                                                <li className="py-2 w-1/2 text-gray-600 font-bold">Vegetables: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[2].value) * .01)).toFixed(2)}</span></li>
+                                                <li className="py-2 w-1/2 text-gray-600 font-bold">Fruits: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[3].value) * .01)).toFixed(2)}</span></li>
+                                                <li className="py-2 w-1/2 text-gray-600 font-bold">Grains: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[4].value) * .01)).toFixed(2)}</span></li>
+                                                <li className="py-2 w-1/2 text-gray-600 font-bold">Dairy: <span className="text-green-500 font-bold"><br className="md:hidden" />${(pantry[6].total * ((pantry[5].value) * .01)).toFixed(2)}</span></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
@@ -304,6 +314,8 @@ class Pantry extends Component {
                     {/* /Pantry Content */}
 
                 </div>
+                }
+            </div>
         )
     };
 }
