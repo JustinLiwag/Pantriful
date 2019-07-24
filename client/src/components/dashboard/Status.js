@@ -29,8 +29,7 @@ class Status extends Component {
        )
     }
 
-    render () { 
-        console.log(this.props.profile.profile)
+    render () {
         return (
             <div className="md:flex md:w-3/4 container items-center mt-4 md:mt-0 mb-8 md:mb-16">
 
@@ -47,18 +46,19 @@ class Status extends Component {
                 {this.props.profile.profile.street
                 ? <div className="shadow-lg rounded-lg max-w-sm">
                     <div className="bg-green-button flex items-center rounded-t-lg px-8 py-2 md:py-4 mx-auto mt-4 md:mt-0 mx-auto">
-                      <img className="w-1/4 h-full mx-auto" src="./images/dashboard/assistant/profileImg.png" alt=""></img>
-                      <div className="w-3/4 text-left ml-4">
+                      <img className="hidden md:block w-1/4 h-full mx-auto" src="./images/dashboard/assistant/profileImg.png" alt=""></img>
+                      <div className="w-3/4 md:text-left md:ml-4 mx-auto">
                         <h3 className="text-white text-2xl font-bold md:tracking-wider">Julie Evans</h3>
                         <div className="md:flex text-xs text-white font-bold tracking-wider">
-                          <p className="hidden md:block">Pasadena, Ca</p>
+                          <p className="hidden md:block">{this.props.profile.profile.city}, {this.props.profile.profile.state}</p>
                           <p className="hidden md:block md:ml-4">(626) 658-7775</p>
                         </div>
                       <p className="hidden md:block text-green-700 italic">"French food fanatic</p>
                       </div>
                     </div>
                     <div className="py-6 px-8 text-gray-700 md:text-left">
-                    <p className="font-bold text-lg mb-2">Hi {this.props.profile.profile.user.name}, I am your <span className="text-orange-base">Pantriful Assistant</span>.</p>
+                      <img className="md:hidden w-1/4 h-full mx-auto" src="./images/dashboard/assistant/profileImg.png" alt=""></img>
+                      <p className="font-bold text-lg mb-2">Hi {this.props.profile.profile.user.name}, I am your <span className="text-orange-base">Pantriful Assistant</span>.</p>
                       <p className="leading-relaxed">I will be taking care of your account and making sure things run smoothly. I will be in touch shortly to get you going!</p>
                     </div>
                   </div>
