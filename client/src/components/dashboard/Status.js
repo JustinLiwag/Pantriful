@@ -100,7 +100,7 @@ class Status extends Component {
                       }
                     </li>
                     <li className="ml-4 py-4">
-                      <Link to="/dashboard">
+                      <Link to="/delivery-details">
                         <div className="flex items-center px-4">
                           <img className="h-8 w-9" src="./images/dashboard/empty-checkmark.png" alt=""></img>
                           <div className="px-5">
