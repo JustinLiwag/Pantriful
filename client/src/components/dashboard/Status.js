@@ -42,7 +42,7 @@ class Status extends Component {
                 </div>
               </div>
 
-              <div className="md:block md:w-1/2">
+            <div className="mt-4 md:mt-0 md:block md:w-1/2">
                 {this.props.profile.profile.street
                 ? <div className="shadow-lg rounded-lg max-w-sm">
                     <div className="bg-green-button flex items-center rounded-t-lg px-8 py-2 md:py-4 mx-auto mt-4 md:mt-0 mx-auto">
