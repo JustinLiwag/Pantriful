@@ -42,7 +42,7 @@ class Landing extends Component {
 
             <section className="container">
 
-                <div className="text-center">
+                <div className="text-center mt-12 sm:mt-0">
                     <p className="text-xl text-gray-500">How it works</p>
                     <h3 className="font-extrabold md:text-4xl text-3xl text-gray-700 sm:w-2/3 mx-auto xl:text-4xl">It's grocery shopping made <span className="italic text-orange-base">effortless</span>.</h3>
                 </div>
