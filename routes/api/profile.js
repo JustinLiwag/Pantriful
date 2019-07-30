@@ -168,11 +168,10 @@ router.get(
   }),
   (req, res) => {
     const errors = {};
-
     Profile.findOne({
         user: req.user.id
       })
-      .populate("user", ["name", "lastName"])
+      .populate("user", ["name", "lastName", "email"])
       .then(profile => {
         if (!profile) {
           errors.noprofile = "There is no profile for this user";

@@ -8,6 +8,7 @@ const sslRedirect = require("heroku-ssl-redirect");
 const users = require("./routes/api/users");
 const profile = require("./routes/api/profile");
 const masterFoodProfile = require("./routes/api/masterFoodProfile");
+const lists = require("./routes/api/lists");
 
 const app = express();
 
@@ -37,6 +38,7 @@ require("./config/passport")(passport);
 app.use("/api/users", users);
 app.use("/api/profile", profile);
 app.use("/api/master-food-profile", masterFoodProfile);
+app.use("/api/lists", lists);
 
 if (process.env.NODE_ENV === "production") {
   // Set static folder

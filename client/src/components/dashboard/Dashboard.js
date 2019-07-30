@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
+import { getLists } from "../../actions/listActions";
 import Spinner from "../common/Spinner";
 import DashboardContent from "./DashboardContent";
 import Navbar from "../layout/Navbar"
@@ -11,10 +12,10 @@ import Navbar from "../layout/Navbar"
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
+    this.props.getLists();
   }
 
   render() {
-    // const { user } = this.props.auth;
     const { profile, loading } = this.props.profile;
 
     let dashboardContent;
@@ -55,10 +56,11 @@ Dashboard.proptypes = {
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  lists: state.lists
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile, getLists }
 )(Dashboard);
