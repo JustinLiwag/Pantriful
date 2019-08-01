@@ -16,7 +16,7 @@ const validateProfileInput = require("../../validation/profile");
 // ----------------------------------
 
 // @route   POST api/lists/
-// @desc    Create/Update Master Food Profile
+// @desc    Add grocery list to list db
 // @access  Private (Admin)
 router.post(
   "/",
@@ -66,5 +66,33 @@ router.get(
       .catch(err => res.status(404).json(err));
   }
 );
+
+// @route   POST api/lists/update
+// @desc    Update grocery list states (Awaiting Approval -> Approved)
+// @access  Private
+router.post(
+  "/update",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Lists.findOneAndUpdate(
+      { email: req.body.email, deliveryDate: req.body.deliveryDate },
+      {
+        $set: {
+          "status": req.body.status     
+        }
+      },
+      { safe: true, upsert: true },
+      function (err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc)
+        }
+      }
+    )
+  }
+);
+
+
 
 module.exports = router;
