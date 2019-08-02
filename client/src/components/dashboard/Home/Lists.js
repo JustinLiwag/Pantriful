@@ -74,7 +74,7 @@ class Lists extends Component {
                         <p className="w-2/12">{lists[i].list[shoppingListCount].measurementUnit}</p>
                         <p className="w-1/12">of</p>
                         <p className="w-5/12">{lists[i].list[shoppingListCount].name}</p>
-                        <p className="w-3/12 text-right">${lists[i].list[shoppingListCount].lowPrice}- ${lists[i].list[shoppingListCount].upperPrice}</p>
+                        <p className="w-3/12 text-right">${lists[i].list[shoppingListCount].lowPrice.toFixed(2)}- ${lists[i].list[shoppingListCount].upperPrice.toFixed(2)}</p>
                     </li>
                 )
                 shoppingListCount++
@@ -114,12 +114,12 @@ class Lists extends Component {
                      
                     {this.state.openNote === props.lists.lists[i].deliveryDate
                     ? <div className="border-b-2 border-gray-300">
-                        <div className="md:flex items-center p-12">
+                        <div className="md:flex p-12">
                             <div className="md:w-1/3">
                                 <p className="text-gray-600 font-bold">{formatedDate}</p>
                                 <p className="mt-4">{renderStatus()}</p>
                             </div>
-                            <div className="md:w-2/3 md:border-l-2">
+                                <div className="md:w-2/3 md:border-l-2 items-center">
                                 <p className="md:w-2/3 border-b-2 mx-auto pb-4 mb-4 text-gray-600 font-bold">Grocery List</p>
                                 <ul>{shoppingList}</ul>
                                 <p className="md:w-2/3 mx-auto mt-4 pt-4 border-t-2 text-right text-xl font-bold text-gray-700">Total: </p>

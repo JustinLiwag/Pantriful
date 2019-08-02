@@ -58,8 +58,8 @@ class Status extends Component {
                     </div>
                     <div className="py-6 px-8 text-gray-700 md:text-left">
                       <img className="md:hidden w-1/4 h-full mx-auto" src="./images/dashboard/assistant/profileImg.png" alt=""></img>
-                      <p className="font-bold text-lg mb-2">Hi {this.props.profile.profile.user.name}, I am your <span className="text-orange-base">Pantriful Assistant</span>.</p>
-                      <p className="leading-relaxed">I will be taking care of your account and making sure things run smoothly. I will be in touch shortly to get you going!</p>
+                      <p className="font-bold text-lg mb-1 text-gray-600">Hi {this.props.profile.profile.user.name}, I am your <span className="text-orange-base">Pantriful Assistant</span>.</p>
+                      <p className="leading-relaxed text-gray-600">I will be taking care of your account and making sure things run smoothly. I will be in touch shortly to get you going!</p>
                     </div>
                   </div>
                 : <div className="shadow-lg rounded-lg max-w-sm">
