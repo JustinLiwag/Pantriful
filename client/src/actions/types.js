@@ -8,4 +8,5 @@ export const GET_PROFILES = "GET_PROFILES";
 export const GET_FOOD_PROFILE = "GET_FOOD_PROFILE";
 export const FOOD_PROFILE_LOADING = "FOOD_PROFILE_LOADING";
 export const GET_LISTS = "GET_LISTS";
+export const UPDATE_LISTS = "UPDATE_LISTS";
 export const LISTS_LOADING = "LISTS_LOADING";

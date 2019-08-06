@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../../actions/profileActions";
-import { getLists } from "../../../actions/listActions";
+import { getLists, updateList } from "../../../actions/listActions";
 
 class Lists extends Component {
     state = {
         openNote: "",
+        currentStatus: ""
     };
 
     toggleNotes = (e) => {
+        this.setState({
+            currentStatus: e.target.name
+        })
         const item = e.target.value;
         if (this.state.openNote !== item) {
             this.setState({
@@ -20,14 +24,22 @@ class Lists extends Component {
                 openNote: ""
             })
         }
-        this.forceUpdate();
-        console.log("UPDATED")
+    }
+
+    approveOnClick = (e, date) => {
+        const payload = {
+            email: this.props.profile.profile.user.email,
+            deliveryDate: date
+        }
+        this.props.updateList(payload, this.props.history)
+        this.setState({
+            currentStatus: "Approved"
+        })
     }
 
     renderLists = (props) => {
         let renderedList = []
         const rawLists = props.lists.lists
-        console.log(rawLists)
 
         // Sort List by date
         var lists = rawLists.sort(function (a, b) {
@@ -66,15 +78,14 @@ class Lists extends Component {
             // Create Shopping list items
             let shoppingList = []
             let shoppingListCount = 0
-            console.log(lists[i].list[shoppingListCount])
             while (shoppingListCount < lists[i].list.length) {
                 shoppingList.push(
-                    <li className="flex justify-around text-left mx-auto md:w-3/4 py-4 px-4 my-2 shadow-md text-gray-700 text-lg border-l-4 border-orange-base">
-                        <p className="w-1/12">{lists[i].list[shoppingListCount].amount}x</p>
-                        <p className="w-2/12">{lists[i].list[shoppingListCount].measurementUnit}</p>
-                        <p className="w-1/12">of</p>
-                        <p className="w-5/12">{lists[i].list[shoppingListCount].name}</p>
-                        <p className="w-3/12 text-right">${lists[i].list[shoppingListCount].lowPrice.toFixed(2)}- ${lists[i].list[shoppingListCount].upperPrice.toFixed(2)}</p>
+                    <li key={"listItem" + shoppingListCount} className="flex justify-around flex-wrap text-left mx-auto md:w-3/4 py-2 md:py-4 px-4 my-2 text-gray-700 text-lg border-b-2 border-gray-200">
+                        <p className="md:w-1/12 w-2/12 text-green-button font-bold">{lists[i].list[shoppingListCount].amount} x</p>
+                        <p className="md:w-2/12 w-10/12 text-gray-600 font-bold">{lists[i].list[shoppingListCount].measurementUnit} <span className="md:hidden">of</span></p>
+                        <p className="hidden md:block md:w-1/12 w-4/12 text-gray-500">of</p>
+                        <p className="md:w-5/12 w-6/12 text-orange-base font-bold tracking-wide">{lists[i].list[shoppingListCount].name}</p>
+                        <p className="md:w-3/12 w-6/12 text-right md:text-right text-gray-600 font-bold tracking-wide">$ {lists[i].list[shoppingListCount].lowPrice.toFixed(2)} - $ {lists[i].list[shoppingListCount].upperPrice.toFixed(2)}</p>
                     </li>
                 )
                 shoppingListCount++
@@ -82,47 +93,90 @@ class Lists extends Component {
 
             // Render status pill
             const renderStatus = () => {
+                if (lists[i].status === "Approved") {
+                    return <span className="bg-green-button py-2 px-4 font-bold rounded-full text-white">Approved</span>
+                }
+                if (lists[i].status === "Awaiting Approval" && this.state.currentStatus === "Approved") {
+                    return <span className="bg-green-button py-2 px-4 font-bold rounded-full text-white">Approved</span>
+                }
                 if (lists[i].status === "Awaiting Approval") {
                     return <span className="bg-red-400 py-2 px-4 font-bold rounded-full text-white">Awaiting Approval</span>
                 }
                 if (lists[i].status === "Out for Delivery") {
                     return <span className="bg-yellow-500 py-2 px-4 font-bold rounded-full text-white">Out for Delivery</span>
                 }
-                return <span className="bg-green-button py-2 px-4 font-bold rounded-full text-white">Delivered</span>
+                return <span className="bg-orange-base py-2 px-4 font-bold rounded-full text-white">Delivered</span>
+            }
+
+            const renderTotal = () => {
+                let lower = 0;
+                let upper = 0;
+                for (var totalI = 0; totalI < lists[i].list.length; totalI++) {
+                    lower += lists[i].list[totalI].amount * lists[i].list[totalI].lowPrice;
+                    upper += lists[i].list[totalI].amount * lists[i].list[totalI].upperPrice;
+                }
+                const result = `$${lower.toFixed(2)} - $${upper.toFixed(2)}`
+                return result
             }
 
             renderedList.push(
-                <div>
+                <div key={i}>
                     {/* Checkbox for toggling details on list item */}
                     <label
                         className="notesCheckbox text-orange-base font-bold text-md self-center cursor-pointer">
-                        <input className="hidden " type="checkbox" value={props.lists.lists[i].deliveryDate} onClick={this.toggleNotes} />
+                        <input className="hidden " type="checkbox" value={props.lists.lists[i].deliveryDate} name={props.lists.lists[i].status} onClick={this.toggleNotes} />
                         <div key={i}
                             // Remove bottom border of list item
                             className={
                                 this.state.openNote === props.lists.lists[i].deliveryDate
-                                    ? `md:flex justify-around items-center py-6 cursor-pointer`
-                                    : `md:flex justify-around items-center py-6 border-b-2 border-gray-300 hover:bg-gray-100 cursor-pointer`
+                                    ? `md:flex justify-around items-center py-2 md:py-6 cursor-pointer`
+                                    : `md:flex justify-around items-center py-2 md:py-6 border-b-2 border-gray-300 hover:bg-gray-100 cursor-pointer`
                             }
                         >
-                            <p className="md:w-3/12 py-1 md:py-0 text-gray-600 font-bold">{formatedDate}</p>
-                            <p className="md:w-5/12 py-1 md:py-0 text-gray-600">{summary} . . .</p>
+                            <p className="md:w-3/12 py-1 mb-1 md:py-0 text-gray-600 font-bold text-xl md:text-base">{formatedDate}</p>
+                            <p className="hidden md:block md:w-5/12 py-1 md:py-0 text-gray-600">{summary} . . .</p>
                             <p className="md:w-4/12 py-1 md:py-0">{renderStatus()}</p>
-                            <p className="md:w-3/12 py-1 md:py-0 text-orange-base tracking-wide">Details</p>
+                            <p className="md:w-3/12 py-1 mt-2 md:py-0 text-orange-base tracking-wide">
+                                {this.state.openNote === props.lists.lists[i].deliveryDate
+                                ? "Close"
+                                : "Details"
+                                }
+                            </p>
                         </div>
                     </label>
                      
                     {this.state.openNote === props.lists.lists[i].deliveryDate
                     ? <div className="border-b-2 border-gray-300">
-                        <div className="md:flex p-12">
-                            <div className="md:w-1/3">
-                                <p className="text-gray-600 font-bold">{formatedDate}</p>
-                                <p className="mt-4">{renderStatus()}</p>
+                            <div className="md:flex flex-row-reverse md:flex-row md:p-12">
+                            <div className="md:w-1/3 mx-4 md:mx-0 text-left">
+                                <h2 className="border-b-2 border-gray-300 p-2 md:p-4 text-2xl text-gray-700 font-bold text-center">Delivery Details</h2>
+                                <div className="p-2 md:p-4 text-center">
+                                    <p className="text-xl text-gray-700 tracking-wide font-bold">Delivery Date:</p>
+                                    <p className="text-xl text-orange-base">{formatedDate}</p>
+                                    <p className="mt-2 md:mt-4 text-xl text-gray-700 tracking-wide font-bold">Delivery Time:</p>
+                                    <p className="text-xl text-orange-base">{this.props.profile.profile.deliveryTime}</p>
+                                    <p className="mt-2 md:mt-4 text-xl text-gray-700 tracking-wide font-bold">Status:</p>
+                                    <p className="mt-4">{renderStatus()}</p>
+                                    {this.state.currentStatus === "Approved"
+                                    ? <p className="p-4 text-lg text-orange-base leading-relaxed">This list has been approved! Your shopper has been notified.</p>
+                                    : null
+                                    }
+                                </div>
+                                {lists[i].status === "Awaiting Approval" && this.state.currentStatus !== "Approved"
+                                ? <div className="mb-8 md:mb-0">
+                                    <h2 className="border-b-2 border-gray-300 mt-8 p-2 md:p-4 text-2xl text-gray-700 font-bold text-center">Approve Delivery</h2>
+                                    <div className="px-4 md:px-8 mx-auto mt-2 md:mt-4 md:pb-8">
+                                        <p className="leading-loose text-gray-700 text-lg text-center">Please approve your grocery list. If you would like to change anything you can text your Pantriful Assistant, <span className="text-orange-base font-bold">Julie</span> at <span className="text-orange-base font-bold">(626) 658-7775</span>.</p>
+                                        <p onClick={(e) => this.approveOnClick(e, lists[i].deliveryDate)} className="mt-2 py-2 px-4 bg-green-button hover:bg-green-500 text-white font-bold tracking-wide text-center rounded-full cursor-pointer">Approve your Grocery List</p>
+                                    </div>
+                                  </div> 
+                                : null
+                                }
                             </div>
-                                <div className="md:w-2/3 md:border-l-2 items-center">
-                                <p className="md:w-2/3 border-b-2 mx-auto pb-4 mb-4 text-gray-600 font-bold">Grocery List</p>
+                                <div className="md:w-2/3 md:border-l-2 items-center mb-16 md:mb-0">
+                                <p className="p-4 mx-4 md:mx-0 mb-2 text-gray-700 font-bold text-2xl border-b-2 border-gray-300 md:border-none">Grocery List</p>
                                 <ul>{shoppingList}</ul>
-                                <p className="md:w-2/3 mx-auto mt-4 pt-4 border-t-2 text-right text-xl font-bold text-gray-700">Total: </p>
+                                <p className="md:w-2/3 mx-auto pt-4 text-xl font-bold text-gray-600 tracking-wide">Est. Total: <span className="text-green-button">{renderTotal()}</span></p>
                             </div>
                         </div>
                       </div>
@@ -185,5 +239,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getCurrentProfile, getLists }
+    { getCurrentProfile, getLists, updateList }
 )(Lists);

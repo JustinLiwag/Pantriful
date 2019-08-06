@@ -45,7 +45,7 @@ class DashboardContent extends Component {
               </ul>
             </div>
 
-            {this.state.openTab === "Home" ? <Home changeTab={this.changeTab}/> : null}
+            {this.state.openTab === "Home" ? <Home history={this.props.history} changeTab={this.changeTab}/> : null}
             {this.state.openTab === "Lists" ? <Lists changeTab={this.changeTab}/> : null}
             {this.state.openTab === "Pantry" ? <Pantry changeTab={this.changeTab}/> : null}
             {this.state.openTab === "Apps" ? <Apps changeTab={this.changeTab}/> : null}

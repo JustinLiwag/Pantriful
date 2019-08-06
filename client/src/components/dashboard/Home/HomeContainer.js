@@ -4,11 +4,11 @@ import Pantry from "./Pantry"
 import Apps from "./Apps"
 
 class Home extends Component {
-    render () {        
+    render () {  
         return (
             <div className="container">
 
-                <Lists changeTab={this.props.changeTab}/>
+                <Lists changeTab={this.props.changeTab} history={this.props.history}/>
                 <Pantry changeTab={this.props.changeTab}/>
                 <Apps changeTab={this.props.changeTab}/>
 

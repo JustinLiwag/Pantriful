@@ -78,7 +78,7 @@ router.post(
       { email: req.body.email, deliveryDate: req.body.deliveryDate },
       {
         $set: {
-          "status": req.body.status     
+          "status": "Approved"     
         }
       },
       { safe: true, upsert: true },

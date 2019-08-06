@@ -2,7 +2,7 @@ import axios from "axios";
 
 import { GET_LISTS, LISTS_LOADING } from "./types";
 
-// Get current profile
+// Get all grocery lists for profile
 export const getLists = () => dispatch => {
     dispatch(setListsLoading());
     axios
@@ -19,6 +19,14 @@ export const getLists = () => dispatch => {
                 payload: {}
             })
         );
+};
+
+// Update status of grocery list
+export const updateList = (userData, history) => dispatch => {
+    axios
+        .post("/api/lists/update", userData)
+        .then(res => history.push("/dashboard"))
+        .catch(err => console.log(err));
 };
 
 //  Lists loading
