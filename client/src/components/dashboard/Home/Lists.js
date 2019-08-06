@@ -11,9 +11,11 @@ class Lists extends Component {
     };
 
     toggleNotes = (e) => {
-        this.setState({
-            currentStatus: e.target.name
-        })
+        if (this.currentStatus === "Awaiting Approval") {
+            this.setState({
+                currentStatus: e.target.name
+            })
+        }
         const item = e.target.value;
         if (this.state.openNote !== item) {
             this.setState({
@@ -93,7 +95,7 @@ class Lists extends Component {
 
             // Render status pill
             const renderStatus = () => {
-                if (lists[i].status === "Approved") {
+                if (lists[i].status === "Approved" ) {
                     return <span className="bg-green-button py-2 px-4 font-bold rounded-full text-white">Approved</span>
                 }
                 if (lists[i].status === "Awaiting Approval" && this.state.currentStatus === "Approved") {
