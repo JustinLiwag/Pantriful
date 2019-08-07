@@ -87,7 +87,7 @@ class Lists extends Component {
                         <p className="md:w-2/12 w-10/12 text-gray-600 font-bold">{lists[i].list[shoppingListCount].measurementUnit} <span className="md:hidden">of</span></p>
                         <p className="hidden md:block md:w-1/12 w-4/12 text-gray-500">of</p>
                         <p className="md:w-5/12 w-6/12 text-orange-base font-bold tracking-wide">{lists[i].list[shoppingListCount].name}</p>
-                        <p className="md:w-3/12 w-6/12 text-right md:text-right text-gray-600 font-bold tracking-wide">$ {lists[i].list[shoppingListCount].lowPrice.toFixed(2)} - $ {lists[i].list[shoppingListCount].upperPrice.toFixed(2)}</p>
+                        <p className="md:w-3/12 w-6/12 text-right md:text-right text-gray-600 font-bold tracking-wide">$ {(lists[i].list[shoppingListCount].lowPrice * lists[i].list[shoppingListCount].amount).toFixed(2)} - $ {(lists[i].list[shoppingListCount].upperPrice * lists[i].list[shoppingListCount].amount).toFixed(2)}</p>
                     </li>
                 )
                 shoppingListCount++

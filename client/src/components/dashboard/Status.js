@@ -2,13 +2,21 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
+import { getLists } from "../../actions/listActions";
 
 class Status extends Component {
     statusText = () => {
+      if (this.props.lists.lists.length > 0) {
+        return (
+          <div>
+            <p className="pt-2 text-gray-700 leading-relaxed text-lg">Your <span className="text-orange-base font-bold">grocery list</span> for this week has been created by your Pantriful Assistant. Go and check it out!</p>
+          </div>
+        )
+      }
       if (this.props.profile.profile.street) {
         return (
           <div>
-            <p className="pt-2 text-gray-700 leading-relaxed">You are all set. We will be having a <span className="text-orange-base font-bold">Pantriful Assistant</span> reach out to you shortly. Go explore your profile!</p>
+            <p className="pt-2 text-gray-700 leading-relaxed text-lg">You are all set. We will be having a <span className="text-orange-base font-bold">Pantriful Assistant</span> reach out to you shortly. Go explore your profile!</p>
           </div> 
         )
       }
@@ -16,20 +24,32 @@ class Status extends Component {
             this.props.profile.profile.shoppingListTwo.length > 0) {
            return (
                <div>
-               <p className="pt-2 text-gray-700 leading-relaxed">You only have one <span className="text-orange-base font-bold">last step</span> to complete. Your delivery information! Be sure to also check out your new profile!</p>
+               <p className="pt-2 text-gray-700 leading-relaxed text-lg">You only have one <span className="text-orange-base font-bold">last step</span> to complete. Your delivery information! Be sure to also check out your new profile!</p>
                   <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full " to="/delivery-details">Enter Delivery Details</Link>
                </div> 
            )
        }
        return (
            <div>
-              <p className="pt-2 text-gray-700 leading-relaxed">You haven't set up your <span className="text-orange-base font-bold">shopping lists</span> yet. Go ahead and do that next!</p>
+              <p className="pt-2 text-gray-700 leading-relaxed text-lg">You haven't set up your <span className="text-orange-base font-bold">shopping lists</span> yet. Go ahead and do that next!</p>
               <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full " to="/create-shopping-list">Create Shopping List</Link>
            </div>
        )
     }
 
+    assistantText = () => {
+      if (this.props.lists.lists.length > 0) {
+        return (
+          <p className="leading-relaxed text-gray-700">Your grocery list for this week is ready for your approval. Let me know if you want to change anything or add any notes for your driver!</p>
+        )
+      }
+      return (
+        <p className="leading-relaxed text-gray-700">I will be taking care of your account and making sure things run smoothly. I will be in touch shortly to get you going!</p>
+      )
+    }
+
     render () {
+      console.log(this.props)
         return (
             <div className="md:flex md:w-3/4 container items-center mt-4 md:mt-0 mb-8 md:mb-16">
 
@@ -59,7 +79,7 @@ class Status extends Component {
                     <div className="py-6 px-8 text-gray-700 md:text-left">
                       <img className="md:hidden w-1/4 h-full mx-auto" src="./images/dashboard/assistant/profileImg.png" alt=""></img>
                       <p className="font-bold text-lg mb-1 text-gray-600">Hi {this.props.profile.profile.user.name}, I am your <span className="text-orange-base">Pantriful Assistant</span>.</p>
-                      <p className="leading-relaxed text-gray-600">I will be taking care of your account and making sure things run smoothly. I will be in touch shortly to get you going!</p>
+                      {this.assistantText()}
                     </div>
                   </div>
                 : <div className="shadow-lg rounded-lg max-w-sm">
@@ -121,10 +141,11 @@ class Status extends Component {
 
 const mapStateToProps = state => ({
   profile: state.profile,
-  auth: state.auth
+  auth: state.auth,
+  lists: state.lists
 });
 
 export default connect(
   mapStateToProps,
-  { getCurrentProfile }
+  { getCurrentProfile, getLists }
 )(Status);

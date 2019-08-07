@@ -4,16 +4,18 @@ import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../../actions/profileActions";
 import { getLists, updateList } from "../../../actions/listActions";
 
-class Lists extends Component {
+class ListsContainer extends Component {
     state = {
         openNote: "",
         currentStatus: ""
     };
 
     toggleNotes = (e) => {
-        this.setState({
-            currentStatus: e.target.name
-        })
+        if (this.currentStatus === "Awaiting Approval") {
+            this.setState({
+                currentStatus: e.target.name
+            })
+        }
         const item = e.target.value;
         if (this.state.openNote !== item) {
             this.setState({
@@ -81,7 +83,7 @@ class Lists extends Component {
                         <p className="md:w-2/12 w-10/12 text-gray-600 font-bold">{lists[i].list[shoppingListCount].measurementUnit} <span className="md:hidden">of</span></p>
                         <p className="hidden md:block md:w-1/12 w-4/12 text-gray-500">of</p>
                         <p className="md:w-5/12 w-6/12 text-orange-base font-bold tracking-wide">{lists[i].list[shoppingListCount].name}</p>
-                        <p className="md:w-3/12 w-6/12 text-right md:text-right text-gray-600 font-bold tracking-wide">$ {lists[i].list[shoppingListCount].lowPrice.toFixed(2)} - $ {lists[i].list[shoppingListCount].upperPrice.toFixed(2)}</p>
+                        <p className="md:w-3/12 w-6/12 text-right md:text-right text-gray-600 font-bold tracking-wide">$ {(lists[i].list[shoppingListCount].lowPrice * lists[i].list[shoppingListCount].amount).toFixed(2)} - $ {(lists[i].list[shoppingListCount].upperPrice * lists[i].list[shoppingListCount].amount).toFixed(2)}</p>
                     </li>
                 )
                 shoppingListCount++
@@ -190,8 +192,7 @@ class Lists extends Component {
         return (
             <div className="container mb-48">
                 <div className="flex justify-between border-b-2 border-gray-300 py-4 mb-4">
-                    <h3 className="text-gray-700 font-bold tracking-wide">Upcoming Grocery Lists</h3>
-                    <button onClick={(e) => this.props.changeTab("Lists", e)} className="text-orange-base">View All</button>
+                    <h3 className="text-gray-700 font-bold tracking-wide">All Grocery Lists</h3>
                 </div>
                 <div className="min-h-64 h-auto min-h-full bg-white shadow-lg mb-4">
                     <div className="rounded-t-lg flex justify-around bg-orange-base py-6 md:py-4 text-center text-white font-bold text-xl">
@@ -236,4 +237,4 @@ const mapStateToProps = state => ({
 export default connect(
     mapStateToProps,
     { getCurrentProfile, getLists, updateList }
-)(Lists);
+)(ListsContainer);
