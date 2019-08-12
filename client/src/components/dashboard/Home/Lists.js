@@ -194,9 +194,6 @@ class Lists extends Component {
     }
 
     render() {
-        if (this.props.lists.loading) {
-            <Spinner />;
-        }
         return (
             <div>
                 <div className="flex justify-between border-b-2 border-gray-300 py-4 mb-4">
@@ -214,6 +211,10 @@ class Lists extends Component {
                         {this.props.profile.profile.shoppingListOne.length > 0 &&
                             this.props.profile.profile.shoppingListTwo.length > 0
                             ? <div>
+                                {this.props.lists.lists == null
+                                ? <Spinner />
+                                : null
+                                }
                                 {this.props.lists.lists.length > 0
                                     ? <div>
                                         {this.renderLists(this.props)}

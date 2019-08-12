@@ -7,6 +7,9 @@ import Spinner from "../common/Spinner";
 
 class Status extends Component {
     statusText = () => {
+      if (this.props.lists.lists == null) {
+        return <Spinner />
+      }
       if (this.props.lists.lists.length > 0) {
         return (
           <div>
@@ -50,9 +53,6 @@ class Status extends Component {
     }
 
     render () {
-        if (this.props.lists.loading) {
-          <Spinner />;
-        }
         return (
             <div className="md:flex md:w-3/4 container items-center mt-4 md:mt-0 mb-8 md:mb-16">
 
