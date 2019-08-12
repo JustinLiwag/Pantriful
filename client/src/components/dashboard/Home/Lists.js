@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../../actions/profileActions";
 import { getLists, updateList } from "../../../actions/listActions";
+import Spinner from "../../common/Spinner";
 
 class Lists extends Component {
     state = {
@@ -193,6 +194,9 @@ class Lists extends Component {
     }
 
     render() {
+        if (this.props.lists.loading) {
+            <Spinner />;
+        }
         return (
             <div>
                 <div className="flex justify-between border-b-2 border-gray-300 py-4 mb-4">

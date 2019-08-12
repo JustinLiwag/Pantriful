@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import { getLists } from "../../actions/listActions";
+import Spinner from "../common/Spinner";
 
 class Status extends Component {
     statusText = () => {
@@ -49,7 +50,9 @@ class Status extends Component {
     }
 
     render () {
-      console.log(this.props)
+        if (this.props.lists.loading) {
+          <Spinner />;
+        }
         return (
             <div className="md:flex md:w-3/4 container items-center mt-4 md:mt-0 mb-8 md:mb-16">
 
