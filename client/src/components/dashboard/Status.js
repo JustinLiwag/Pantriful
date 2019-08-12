@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 import { getLists } from "../../actions/listActions";
-import Spinner from "../common/Spinner";
 
 class Status extends Component {
     statusText = () => {
-      if (this.props.lists.lists == null) {
-        return <Spinner />
-      }
       if (this.props.lists.lists.length > 0) {
         return (
           <div>

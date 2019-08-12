@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { getCurrentProfile } from "../../../actions/profileActions";
 import { getLists, updateList } from "../../../actions/listActions";
-import Spinner from "../../common/Spinner";
 
 class Lists extends Component {
     state = {
@@ -211,10 +210,6 @@ class Lists extends Component {
                         {this.props.profile.profile.shoppingListOne.length > 0 &&
                             this.props.profile.profile.shoppingListTwo.length > 0
                             ? <div>
-                                {this.props.lists.lists == null
-                                ? <Spinner />
-                                : null
-                                }
                                 {this.props.lists.lists.length > 0
                                     ? <div>
                                         {this.renderLists(this.props)}

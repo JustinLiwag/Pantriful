@@ -3,7 +3,7 @@ import {
 } from "../actions/types";
 
 const initialState = {
-    lists: null,
+    lists: [],
     loading: false
 };
 
