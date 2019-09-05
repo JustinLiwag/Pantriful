@@ -84,10 +84,7 @@ router.post(
         }
         var profileData = {
           user: req.user.id,
-          username: req.body.username,
-          age: req.body.age,
-          height: req.body.height,
-          weight: req.body.weight,
+          email: req.user.email,
           foodProfile: req.body.foodProfile,
           dietProfile: req.body.dietProfile,
           dietaryRestrictions: req.body.dietaryRestrictions

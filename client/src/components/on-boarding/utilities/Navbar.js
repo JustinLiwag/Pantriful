@@ -7,10 +7,9 @@ class Navbar extends Component {
   render() {
 
     return (
-      <header className="md:px-16 px-6 bg-white flex flex-wrap items-center md:py-10 py-6">
-        <div className="flex-1 flex justify-between items-center">
+      <header>
           <Link to="/">
-            <svg width="172" height="35" viewBox="0 0 172 35" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg className="mt-8 mb-4 mx-auto w-full" width="172" height="35" viewBox="0 0 172 35" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0 4.17614C0 1.86972 1.86972 0 4.17614 0H30.8239C33.1303 0 35 1.86972 35 4.17614V30.8239C35 33.1303 33.1303 35 30.8239 35H4.17614C1.86972 35 0 33.1303 0 30.8239V4.17614Z" fill="#EE9986" />
               <path d="M5.17041 26.1009C5.17041 24.9202 6.12753 23.9631 7.30819 23.9631H14.865C16.0457 23.9631 17.0028 24.9202 17.0028 26.1009V27.294C17.0028 28.4747 16.0457 29.4318 14.865 29.4318H7.30819C6.12753 29.4318 5.17041 28.4747 5.17041 27.294V26.1009Z" fill="white" />
               <path fillRule="evenodd" clipRule="evenodd" d="M14.865 24.4602H7.30819C6.4021 24.4602 5.66757 25.1948 5.66757 26.1009V27.294C5.66757 28.2001 6.4021 28.9347 7.30819 28.9347H14.865C15.7711 28.9347 16.5056 28.2001 16.5056 27.294V26.1009C16.5056 25.1948 15.7711 24.4602 14.865 24.4602ZM7.30819 23.9631C6.12753 23.9631 5.17041 24.9202 5.17041 26.1009V27.294C5.17041 28.4747 6.12753 29.4318 7.30819 29.4318H14.865C16.0457 29.4318 17.0028 28.4747 17.0028 27.294V26.1009C17.0028 24.9202 16.0457 23.9631 14.865 23.9631H7.30819Z" fill="white" />
@@ -30,9 +29,8 @@ class Navbar extends Component {
               <path d="M163.741 29.1924L166.892 3.26271H171.627L168.459 29.1924H163.741Z" fill="#EE9986" />
             </svg>
           </Link>
-        </div>
 
-        <div className=" md:flex md:items-center md:w-auto" id="menu">
+        {/* <div className=" md:flex md:items-center md:w-auto" id="menu">
           <nav>
             <Link to="/dashboard">
                 <svg width="35" height="35" viewBox="0 0 35 35" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,7 +39,7 @@ class Navbar extends Component {
                 </svg>
             </Link>
           </nav>
-        </div>
+        </div> */}
 
       </header>    
     );

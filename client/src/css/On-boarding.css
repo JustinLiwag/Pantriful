@@ -230,16 +230,22 @@
 }  */
 
 /* .grid li input[type=checkbox]:checked ~ label */
-.checkbox-click li input[type=checkbox]:checked~label {
-  border: solid 2px #EE9986;
-  color: #EE9986;
-  transition: all 205ms ease-in-out;
+.green-checkbox-click div input[type=checkbox]:checked~label {
+  border: solid 2px #68d391;
+  color: #48bb78;
+  transition: all 100ms ease-in-out;
 }
 
-.radio-click li input[type=radio]:checked~label {
-  border: solid 2px #EE9986;
-  color: #EE9986;
-  transition: all 205ms ease-in-out;
+.red-checkbox-click div input[type=checkbox]:checked~label {
+  border: solid 2px #fc8181;
+  color: #fc8181;
+  transition: all 100ms ease-in-out;
+}
+
+.radio-click div input[type=radio]:checked~label {
+  border: solid 2px #68d391;
+  color: #48bb78;
+  transition: all 100ms ease-in-out;
 }
 /* STEP ONE */
 /* .stepOne img{

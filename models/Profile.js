@@ -33,20 +33,8 @@ const profileSchema = mongoose.Schema({
   phoneNumber: {
     type: String
   },
-  username: {
+  email: {
     type: String,
-    required: true
-  },
-  age: {
-    type: Number,
-    required: true
-  },
-  height: {
-    type: String,
-    required: true
-  },
-  weight: {
-    type: Number,
     required: true
   },
   dietProfile: [],

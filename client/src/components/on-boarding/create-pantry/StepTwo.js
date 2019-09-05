@@ -6,29 +6,30 @@ import Navbar from "../utilities/Navbar"
 import Footer from "../utilities/Footer"
 
 const INTOLERANCES = [
-    {name: "peanuts"},
-    {name: "gluten"},
-    {name: "milk and dairy"},
-    {name: "wheat"},
-    {name: "shellfish"},
-    {name: "fish"},
-    {name: "soy"},
-    {name: "seeds"},
-    {name: "stone fruit"},
-    {name: "tree nuts"},
-    {name: "eggs"},
-    {name: "gelatin"},
-    {name: "none"}
+    {name: "Peanuts"},
+    {name: "Gluten"},
+    {name: "Milk and dairy"},
+    {name: "Wheat"},
+    {name: "Shellfish"},
+    {name: "Fish"},
+    {name: "Soy"},
+    {name: "Seeds"},
+    {name: "Stone fruit"},
+    {name: "Tree nuts"},
+    {name: "Eggs"},
+    {name: "Gelatin"},
+    {name: "None"}
 ]
 
 class StepTwo extends Component {
+
     componentDidMount() {
         window.scrollTo(0, 0);
     }
 
     continue = e => {
         e.preventDefault();
-        this.props.nextStep();
+        return this.props.nextStep();
     };
 
     back = e => {
@@ -40,8 +41,14 @@ class StepTwo extends Component {
         const results = []
         for (let i = 0; i < array.length; i++) {
             results.push(
-                <li key={array[i].name} className="mt-2 mx-1 w-2/3 md:w-1/4">
-                    <input 
+                <div key={array[i].name}
+                    className=
+                    {
+                        "w-1/2 " +
+                        (i === array.length - 1 ? "w-full" : "sm:w-1/4")
+                    }
+                >
+                    <input
                         className="hidden"
                         id={array[i].name}
                         type="checkbox"
@@ -50,29 +57,39 @@ class StepTwo extends Component {
                         checked={this.props.values.dietaryRestrictions.get(array[i].name)}
                         onChange={this.props.handleChange}
                     />
-                    <label className="block text-gray-500 py-2 md:py-4 border-2 rounded border-gray-500 md:hover:bg-orange-200 md:hover:border-orange-base md:hover:text-orange-600 font-bold capitalize text-sm" htmlFor={array[i].name}>{array[i].name}</label>
-                </li>
+                    <label className=
+                        {
+                            "mr-2 block py-2 sm:py-4 border-2 border-gray-400 rounded-lg md:text-lg text-gray-500 font-bold md:hover:text-gray-600 md:hover:border-gray-500 " +
+                            (i === 0 ? 'mt-0 mt-2 ' : 'mt-2 ')
+                        }
+                        htmlFor={array[i].name}>{array[i].name}</label>
+                </div>
             )
         }
         return results
     }
 
     render() {
-    return (
-        <div className="mb-48">
-        <Navbar/>
+        return (
+            <div>
+                <Navbar />
+                <div className="text-center mx-8 mt-8 sm:mt-12 max-w-xl sm:mx-auto mb-32">
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-700">Do you have any <span className="text-orange-base">allergies or intolerances?</span></h3>
+                    <p className="text-md sm:text-lg text-gray-600">Let us know if there are any foods you should avoid or substitute for.</p>
+                    <div className="border-b border-gray-300 mb-4 pb-4">
+                        <div className="inline-block mx-auto h-2 w-10 sm:w-16 bg-orange-base rounded-full"></div>
+                        <div className="inline-block ml-1 mx-auto h-2 w-10 sm:w-16 bg-gray-300 rounded-full"></div>
+                        <div className="inline-block ml-1 mx-auto h-2 w-10 sm:w-16 bg-gray-300 rounded-full"></div>
+                        <div className="inline-block ml-1 mx-auto h-2 w-10 sm:w-16 bg-gray-300 rounded-full"></div>
+                    </div>
+                    <div className="sm:-mr-2 flex flex-1 flex-wrap items-center red-checkbox-click select-none">
+                        {this.generateCheckboxes(INTOLERANCES)}
+                    </div>
+                </div>
 
-        <div className="container">
-            <h3 className="text-2xl md:text-3xl mt-4 md:mt-0 font-bold text-gray-600">Do you have any <span className="text-orange-base">allergies</span> or <span className="text-orange-base">intolerances</span>?</h3>
-            <ul className="flex mx-auto justify-center content-center flex-wrap checkbox-click md:max-w-xl mt-4">
-                {this.generateCheckboxes(INTOLERANCES)}
-            </ul>
-        </div>
-        
-
-        <Footer continue={this.continue} back={this.back} />
-        </div>
-    );
+                <Footer continue={this.continue} back={this.back} />
+            </div>
+        );
     }
 }
 

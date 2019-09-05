@@ -1,7 +1,7 @@
 import { GET_FOOD_PROFILE, FOOD_PROFILE_LOADING } from "../actions/types";
 
 const initialState = {
-  foodProfile: null,
+  foodProfile: [],
   loading: false
 };
 

@@ -8,8 +8,6 @@ import Spinner from '../../common/Spinner';
 
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
-import StepThree from "./StepThree";
-import StepFour from "./StepFour";
 
 // Pantry
 import Chicken from "./pantry/Chicken";
@@ -17,8 +15,6 @@ import Beef from "./pantry/Beef";
 import Pork from "./pantry/Pork";
 import Lamb from "./pantry/Lamb";
 import Seafood from "./pantry/Seafood";
-
-import Checkup from "./pantry/Checkup";
 
 import Vegetables from "./pantry/Vegetables";
 import Fruits from "./pantry/Fruits";
@@ -31,11 +27,6 @@ import Complete from "./Complete";
 class CreateProfile extends Component {
   state = {
     step: 1,
-    username: "",
-    gender: "",
-    age: "",
-    height: "",
-    weight: "",
     dietProfile: new Map(),
     dietaryRestrictions: new Map(),
     checkedItems: new Map()
@@ -45,15 +36,22 @@ class CreateProfile extends Component {
     this.props.getFoodProfile();
   };
 
-  shouldComponentUpdate = () => {
-    if (this.getByValue(this.state.checkedItems, true)) {
-      return true;
-    }
-  };
+  // shouldComponentUpdate = () => {
+  //   if (this.getByValue(this.state.checkedItems, true)) {
+  //     return true;
+  //   }
+  // };
 
   // Proceed to the next step
   nextStep = () => {
     const { step } = this.state;
+    // Skip over protein if vegan/vegetarian
+    if (this.state.dietProfile.get("Vegan") === true ||
+        this.state.dietProfile.get("Vegetarian") === true) {
+      if (step === 2) {
+        return this.setState({step: 8})
+      }
+    }
     this.setState({
       step: step + 1
     });
@@ -62,28 +60,16 @@ class CreateProfile extends Component {
   // Proceed to the previous step
   prevStep = () => {
     const { step } = this.state;
+    // Skip over protein if vegan/vegetarian
+    if (this.state.dietProfile.get("Vegan") === true ||
+        this.state.dietProfile.get("Vegetarian") === true) {
+      if (step === 8) {
+        return this.setState({ step: 2 })
+      }
+    }
     this.setState({
       step: step - 1
     });
-  };
-
-  // Handle text fields change
-  handleChange = input => e => {
-    this.setState({ [input]: e.target.value });
-  };
-
-  // Handle checkbox fields change for Dietary Restrictions
-  handleDietaryRestrictionsCheckboxChange = e => {
-    const item = e.target.name;
-    const isChecked = e.target.checked;
-    if (!isChecked) {
-      this.setState(prevState => ({
-        dietaryRestrictions: prevState.dietaryRestrictions.set(item, false)
-      }));
-    }
-    this.setState(prevState => ({
-      dietaryRestrictions: prevState.dietaryRestrictions.set(item, isChecked)
-    }));
   };
 
   // Handle checkbox fields change for Diet Profile
@@ -100,7 +86,22 @@ class CreateProfile extends Component {
     }));
   };
 
-  // Handle checkbox fields change for Pantry
+  // Handle checkbox fields change for Dietary Restrictions
+  handleDietaryRestrictionsCheckboxChange = e => {
+    const item = e.target.name;
+    const isChecked = e.target.checked;
+    if (!isChecked) {
+      this.setState(prevState => ({
+        dietaryRestrictions: prevState.dietaryRestrictions.set(item, false)
+      }));
+    }
+    this.setState(prevState => ({
+      dietaryRestrictions: prevState.dietaryRestrictions.set(item, isChecked)
+    }));
+  };
+
+
+  // Handle checkbox fields change for Pantry Categories (Chicken, Beef, etc..)
   handleCheckboxChange = e => {
     const item = e.target.name;
     const isChecked = e.target.checked;
@@ -131,37 +132,18 @@ class CreateProfile extends Component {
     return result;
   };
 
-  getNameItem = (array, item_id) => {
-    const result = array.filter(item => item.item_id.indexOf(item_id) !== -1);
-    return result;
-  };
-
-  getNotesItem = (array, value) => {
-    const result = array.filter(item => item.item_ids.indexOf(value) !== -1);
-    return result;
-  };
-
-  // Create pantry of selected items
-  createPantry = (masterFoodProfile, checkedItems) => {
-    const result = [];
-    checkedItems.map(e => {
-      const object = masterFoodProfile.filter(item => item.item_id === e);
-      return result.push(object);
-    });
-    return result;
-  };
-
-  // Create Checkbox Items
-  createCheckboxItems = array => {
-    let result = [];
-    for (var i = 0; i < array.length; i++) {
-      result.push({
-        name: array[i].item_id,
-        label: array[i].name
-      });
+  // Alphebatize array list by name (Ex. Sort fruits by name (apple, bannana))
+  dynamicSort = (property) => {
+    var sortOrder = 1;
+    if (property[0] === "-") {
+      sortOrder = -1;
+      property = property.substr(1);
     }
-    return result;
-  };
+    return function (a, b) {
+      var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+      return result * sortOrder;
+    }
+  }
 
   // Create payload for API when submitted   
   createSubmit = () => {
@@ -169,46 +151,26 @@ class CreateProfile extends Component {
     const dietaryRestrictionsItems = this.getByValue(this.state.dietaryRestrictions, true);
     const checkedItems = this.getByValue(this.state.checkedItems, true);
 
+    console.log(this.props)
+
     const payload = {
-      username: this.state.username,
-      age: this.state.age,
-      height: this.state.height,
-      weight: this.state.weight,
+      email: this.props.auth.user.email,
       foodProfile: checkedItems,
       dietProfile: dietProfileItems,
       dietaryRestrictions: dietaryRestrictionsItems
     };
-    console.log(payload)
     this.props.sendFoodProfile(payload, this.props.history);
   };
-
-    // Create New Functions
-
-    // Filters through Master food profile for food items in a category
-    getCategoryItems = (array, value) => {
-        const result = array.filter(item => item.category.indexOf(value) !== -1);
-        return result;
-    }; 
 
   render() {
     const { foodProfile, loading } = this.props.foodProfile;
     const { step } = this.state;
     const {
-      username,
-      gender,
-      age,
-      height,
-      weight,
       dietProfile,
       dietaryRestrictions,
       checkedItems
     } = this.state;
     const values = {
-      username,
-      gender,
-      age,
-      height,
-      weight,
       dietProfile,
       dietaryRestrictions,
       checkedItems
@@ -224,7 +186,8 @@ class CreateProfile extends Component {
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
-              handleChange={this.handleChange}
+              getByValue={this.getByValue}
+              handleChange={this.handleDietProfileCheckboxChange}
             />
           );
         case 2:
@@ -238,23 +201,6 @@ class CreateProfile extends Component {
           );
         case 3:
           return (
-            <StepThree
-              nextStep={this.nextStep}
-              prevStep={this.prevStep}
-              values={values}
-              getByValue={this.getByValue}
-              handleChange={this.handleDietProfileCheckboxChange}
-            />            
-          );
-        case 4:
-          return (
-            <StepFour
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-            />            
-          );
-        case 5:
-          return (
             // Chicken
             <Chicken
                 nextStep={this.nextStep}
@@ -263,9 +209,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 6:
+        case 4:
           return (
             // Beef
             <Beef
@@ -275,9 +222,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 7:
+        case 5:
           return (
             // Pork
             <Pork
@@ -287,9 +235,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 8:
+        case 6:
           return (
             // Lamb
             <Lamb
@@ -299,9 +248,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 9:
+        case 7:
           return (
             // Seafood
             <Seafood
@@ -311,21 +261,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 10:
-          return (
-            // Pork
-            <Checkup
-                nextStep={this.nextStep}
-                prevStep={this.prevStep}
-                values={values}
-                getCategoryItems={this.getCategoryItems}
-                foodProfile={foodProfile}
-                handleCheckboxChange={this.handleCheckboxChange}
-            />            
-          );
-        case 11:
+        case 8:
           return (
             // Vegetables
             <Vegetables
@@ -335,9 +274,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 12:
+        case 9:
           return (
             // Fruits
             <Fruits
@@ -347,9 +287,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 13:
+        case 10:
           return (
             // AlternativeProteins
             <AlternativeProteins
@@ -359,9 +300,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 14:
+        case 11:
           return (
             // Grains
             <Grains
@@ -371,9 +313,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 15:
+        case 12:
           return (
             // Dairy
             <Dairy
@@ -383,9 +326,10 @@ class CreateProfile extends Component {
                 getCategoryItems={this.getCategoryItems}
                 foodProfile={foodProfile}
                 handleCheckboxChange={this.handleCheckboxChange}
+                dynamicSort={this.dynamicSort}
             />            
           );
-        case 16:
+        case 13:
           return (
             // Complete
             <Complete
