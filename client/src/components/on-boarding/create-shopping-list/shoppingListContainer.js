@@ -11,7 +11,7 @@ import StepFour from "./StepFour";
 
 class CreateProfile extends Component {
   state = {
-    step: 1,
+    step: 2,
     shoppingListOne: [],
     shoppingListTwo: []
   };
