@@ -9,7 +9,7 @@ class Footer extends Component {
       <div className="fixed z-20 bottom-0 w-full py-4 border-t-2 border-gray-200 bg-white">
         {modal 
             ? <div>
-                <div onClick={this.props.open} className="absolute shopping-cart-button">
+                <div onClick={this.props.open} className="md:hidden absolute shopping-cart-button">
 
                   <svg width="78" height="78" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle className="fill-current text-green-400 shadow-lg" cx="39" cy="29" r="24" filter="url(#filter0_dd)" />
@@ -36,7 +36,7 @@ class Footer extends Component {
 
                   {/* <img onClick={this.props.open} className="shadow-xl h-12 w-12 block md:hidden p-3" src="/images/on-boarding/modalButton.png" alt=""></img> */}
                 </div>
-                <div className="h-6 w-6 block absolute shopping-cart-button-quantity text-white leading-loose text-center rounded-full bg-red-500 font-bold text-xs">{this.props.length}</div>
+                <div className="md:hidden h-6 w-6 block absolute shopping-cart-button-quantity text-white leading-loose text-center rounded-full bg-red-500 font-bold text-xs">{this.props.length}</div>
               </div>
             : ""}
 

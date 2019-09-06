@@ -56,7 +56,7 @@ class StepTwo extends Component {
     // Creates Check boxes
     for (let i = 0; i < items.length; i++) {
       result.push(
-        <li className="w-1/2 mt-6 sm:w-1/3" key={items[i].name}>
+        <div className="w-1/2 mt-6 sm:w-1/3 md:w-1/2 lg:w-1/3" key={items[i].name}>
           <input
             className="hidden"
             id={items[i].name}
@@ -69,7 +69,7 @@ class StepTwo extends Component {
             onChange={this.props.handleCheckboxChangeShoppingListOne}
           />
           <label className="text-xs sm:text-sm text-gray-700" htmlFor={items[i].name}>{items[i].name}</label>
-        </li>
+        </div>
       );
     }
     return result
@@ -93,88 +93,86 @@ class StepTwo extends Component {
 
     for (let i = 0; i < selectedPantryItems.length; i++) {
       result.push(
-        <li key={selectedPantryItems[i].name}>
-          {/* Container Div */}
-          <div className="flex shadow-md px-4 py-2 border-l-4 border-orange-base mt-2">
-            {/* Button Flex */}
-            <div className="w-2/12 justify-between self-center mr-4">
-              <button className="focus:outline-none md:text-2xl font-bold text-orange-base" name={selectedPantryItems[i].name} onClick={this.props.handleAmountDecrease}>-</button>
-              <input className="w-1/2 text-center outline-none text-2xl" 
-                key={i}
-                type="number" 
-                name={selectedPantryItems[i].name}
-                onChange={this.props.handleShoppingCartAmountChange(selectedPantryItems[i].name)}
-                value={this.props.getNameItem(this.props.values.shoppingListOne, selectedPantryItems[i].name)[0].amount} 
-              />
-              <button className="focus:outline-none text-2xl font-bold text-orange-base" name={selectedPantryItems[i].name} onClick={this.props.handleAmountIncrease}>+</button>
+        <div className="mx-4 border-b border-gray-200 pb-3 mt-3 sm:max-w-lg sm:mx-auto md:px-2">
+
+          <div className="px-4 block lg:hidden">
+
+            <div className="flex items-center">
+              {/* Item Name */}
+              <p className="w-9/12 sm:w-10/12 md:w-9/12 text-sm sm:text-lg font-bold text-orange-base md:text-base">{selectedPantryItems[i].name}</p>
+              {/* Quantity */}
+              <p className="flex w-3/12 sm:w-2/12 md:w-3/12">
+                <button className="focus:outline-none w-3/12 sm:w-3/12 bg-green-300 text-green-600 rounded leading-none" onClick={this.props.handleAmountDecrease} name={selectedPantryItems[i].name}>-</button>
+                <input className="w-6/12 sm:w-6/12 text-center outline-none text-sm sm:text-base font-bold"
+                  key={i}
+                  type="number"
+                  name={selectedPantryItems[i].name}
+                  onChange={this.props.handleShoppingCartAmountChange(selectedPantryItems[i].name)}
+                  value={this.props.getNameItem(this.props.values.shoppingListOne, selectedPantryItems[i].name)[0].amount}
+                />
+                <button className="focus:outline-none w-3/12 sm:w-3/12 md:w-3/12 bg-green-300 text-green-600 rounded leading-none" name={selectedPantryItems[i].name} onClick={this.props.handleAmountIncrease}>+</button>
+              </p>
             </div>
-            {/* Info Flex */}
-            <div className="w-10/12">
-              {/* Top Row */}
-              <div className="flex justify-between">
-                <p className="text-xs text-gray-500 font-bold self-center tracking-wider">{selectedPantryItems[i].measurementUnit} of</p>
-                <p className="italic text-md text-gray-600 font-bold">
-                  ${" "}
-                  {(
-                    selectedPantryItems[i].lowPrice *
-                    selectedPantryItems[i].amount
-                  ).toFixed(2)}{" "}
-                  - ${" "}
-                  {(
-                    selectedPantryItems[i].upperPrice *
-                    selectedPantryItems[i].amount
-                  ).toFixed(2)}
-                </p>
-              </div>
-              {/* Bottom Row */}
-              <div className="flex justify-between">
-                <p className="text-orange-base font-bold md:text-xl">{selectedPantryItems[i].name}</p>
-                { this.props.getNameItem(
-                  this.props.values.shoppingListOne,
-                  selectedPantryItems[i].name
-                  )[0].notes
-                  ? <label 
-                      className="notesCheckbox text-green-button font-bold text-md self-center">
-                      <input className="hidden " type="checkbox" value={selectedPantryItems[i].item_id} onClick={this.toggleNotes}/>
-                      Notes 
-                    </label>
-                  :
-                    <label 
-                      className="notesCheckbox text-orange-base opacity-75 font-bold text-md self-center">
-                      <input className="hidden " type="checkbox" value={selectedPantryItems[i].item_id} onClick={this.toggleNotes}/>
-                      Notes 
-                    </label>
-                }
-              </div>
+
+            <div className="flex justify-between items-center mt-1 sm:mt-2 md:mt-1">
+              {/* Measurement Unit */}
+              <p className="text-xs sm:text-sm text-gray-500 font-bold">{selectedPantryItems[i].measurementUnit}</p>
+              {/* Price */}
+              <p className="text-xs sm:text-sm text-gray-700 font-bold tracking-wider">${" "}
+                {(
+                  selectedPantryItems[i].lowPrice *
+                  selectedPantryItems[i].amount
+                ).toFixed(2)}{" "}
+                - ${" "}
+                {(
+                  selectedPantryItems[i].upperPrice *
+                  selectedPantryItems[i].amount
+                ).toFixed(2)}</p>
             </div>
           </div>
-          { this.state.openNote === selectedPantryItems[i].item_id
-          ? <div className="shadow-lg">
-              <input className="w-full outline-none p-4 text-orange-base font-bold border-l-4 border-orange-base" type="text" placeholder="Leave us a note. (ex. I want fuji apples)" name={selectedPantryItems[i].name}
-              onChange={this.props.handleShoppingCartNotesChange(
-                selectedPantryItems[i].name
-              )}
-              value={
-                this.props.getNameItem(
-                  this.props.values.shoppingListOne,
-                  selectedPantryItems[i].name
-                )[0].notes
-              }/>
+            
+          {/* Large screen layout  */}
+          <div className="lg:flex px-4 hidden lg:block">
+
+            <div className="items-center lg:w-6/12">
+              {/* Item Name */}
+              <p className="text-sm sm:text-lg font-bold text-orange-base md:text-base">{selectedPantryItems[i].name}</p>
+              {/* Measurement Unit */}
+              <p className="text-xs sm:text-sm text-gray-500 font-bold">
+                {selectedPantryItems[i].measurementUnit === "" ? "Count" : selectedPantryItems[i].measurementUnit}
+              </p>
             </div>
-          : <div className="hidden shadow-lg">
-              <input className="w-full outline-none px-2" type="text" placeholder="Leave us a note. (ex. I want fuji apples)" name={selectedPantryItems[i].name}
-              onChange={this.props.handleShoppingCartNotesChange(
-                selectedPantryItems[i].name
-              )}
-              value={
-                this.props.getNameItem(
-                  this.props.values.shoppingListOne,
-                  selectedPantryItems[i].name
-                )[0].notes
-              }/>
+
+            {/* Quantity */}
+            <div className="flex w-3/12 lg:w-2/12 lg:leading-none lg:self-center">
+              <button className="focus:outline-none w-3/12 sm:w-3/12 bg-green-300 text-green-600 rounded leading-none" onClick={this.props.handleAmountDecrease} name={selectedPantryItems[i].name}>-</button>
+              <input className="w-6/12 sm:w-6/12 text-center outline-none text-sm sm:text-base lg:text-lg font-bold"
+                key={i}
+                type="number"
+                name={selectedPantryItems[i].name}
+                onChange={this.props.handleShoppingCartAmountChange(selectedPantryItems[i].name)}
+                value={this.props.getNameItem(this.props.values.shoppingListOne, selectedPantryItems[i].name)[0].amount}
+              />
+              <button className="focus:outline-none w-3/12 sm:w-3/12 md:w-3/12 bg-green-300 text-green-600 rounded leading-none" name={selectedPantryItems[i].name} onClick={this.props.handleAmountIncrease}>+</button>
             </div>
-          }
-        </li>
+
+            <div className="flex justify-end items-center mt-1 sm:mt-2 md:mt-1 lg:w-4/12">
+              {/* Price */}
+              <p className="text-xs sm:text-base text-gray-700 font-bold tracking-wider">${" "}
+                {(
+                  selectedPantryItems[i].lowPrice *
+                  selectedPantryItems[i].amount
+                ).toFixed(2)}{" "}
+                - ${" "}
+                {(
+                  selectedPantryItems[i].upperPrice *
+                  selectedPantryItems[i].amount
+                ).toFixed(2)}</p>
+            </div>
+
+          </div>
+
+        </div>
       );
     }
     return result;
@@ -260,9 +258,9 @@ class StepTwo extends Component {
             checked={this.state.selectedOption === category}
             onChange={this.handleOptionChange}
           />
-          <span className="px-3 py-2 sm:px-4 sm:py-2 shadow-md rounded-full bg-white leading-none flex items-center">
+          <span className="px-3 py-2 sm:px-4 sm:py-2 md:px-3 shadow-md rounded-full bg-white leading-none flex items-center">
             <img className="mr-2 w-3 h-3 sm:w-6 sm:h-6" src={url} alt=""></img>
-            <p className="font-bold text-sm sm:text-lg">{label}</p>
+            <p className="font-bold text-sm sm:text-lg md:text-sm">{label}</p>
           </span>
         </label>
       </div>
@@ -274,12 +272,12 @@ class StepTwo extends Component {
     return (
       <div>
         <Navbar/>
-        <h3 className="mx-12 mt-8 text-lg font-bold text-gray-700 text-center">Create your <span className="text-orange-base">first</span> example shopping list.</h3>
+        <h3 className="mx-12 mt-8 text-lg font-bold text-gray-700 text-center md:text-2xl">Create your <span className="text-orange-base">first</span> example shopping list.</h3>
         {this.state.error ? <div className="text-center text-md md:text-xl mb-8 text-red-400">{this.state.error}</div> : null}
         {this.renderModal()}
-        <div className="md:container mx-auto flex justify-between md:w-3/4 mb-48">
-          <div className="pantry-container w-full md:w-1/2 md:mr-8 mx-1 md:mx-0">
-            <div className="mt-4 flex flex-wrap justify-center pantry-categories sm:max-w-lg sm:mx-auto">
+        <div className="mx-auto flex justify-between mb-48 md:border-t md:border-gray-200 md:max-w-3xl md:mt-4 lg:max-w-5xl lg:mx-8 lg:mx-auto">
+          <div className="w-full md:w-1/2 mx-1 md:border-r md:border-gray-200">
+            <div className="mt-4 flex flex-wrap justify-center pantry-categories sm:max-w-lg sm:mx-auto md:mx-5">
               {this.renderCategories("Chicken", "Chicken", "Chicken")}
               {this.renderCategories("Beef", "Beef", "Beef")}
               {this.renderCategories("Pork", "Pork", "Pork")}
@@ -291,20 +289,22 @@ class StepTwo extends Component {
               {this.renderCategories("Grain", "Grains", "Grain")}
               {this.renderCategories("Dairy", "Dairy", "Dairy")}
             </div>
-            <ul className="mx-6 mt-4 flex flex-wrap justify-start pantry__checkboxContainer border-t border-gray-200 sm:max-w-lg sm:mx-auto">
+            <div className="mx-6 mt-4 flex flex-wrap justify-start pantry__checkboxContainer border-t border-gray-200 sm:max-w-lg sm:mx-auto md:px-8">
               {this.createCategoryItems(this.state.selectedOption)} 
-            </ul>
+            </div>
           </div>
           <div className="hidden md:block w-1/2">
-            <ul >
+            <div>
               {this.props.values.shoppingListOne.length === 0 
-              ? <div className="mb-8">
-                  <img className="mt-8 block mx-auto" src="/images/on-boarding/category-items/empty-cart.png" alt=""></img>
-                  <p className="mt-2 text-lg text-gray-400 text-center w-1/2 mx-auto font-bold">Add items from your pantry to your shopping list.</p>
+              ? <div className="md:border-b md:border-gray-200 md:py-6">
+                  <svg className="block mx-auto"width="19" height="19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18.2826 11.56h-6.984v7.416H7.68059V11.56H.732594V8.266H7.68059V.885998h3.61801V8.266h6.984v3.294z" fill="#CBD5E0" />
+                  </svg>
+                  <p className="mt-2 text-lg text-gray-400 w-2/3 text-center mx-auto font-bold">Add items from your pantry to your shopping list.</p>
                 </div>
               : this.buildShoppingList(this.props.values.shoppingListOne)}
-            </ul>
-              <p className="container text-right border-t-2 border-gray-200 text-gray-500 mt-4 pt-4 font-bold">Est. Total: <span className="text-green-button">{this.props.getTotal("shoppingListOne")}</span></p>
+            </div>
+              <p className="container text-right border-t-2 border-gray-200 md:border-none text-gray-500 mt-4 pt-4 md:pt-2 md:mt-2 font-bold">Est. Total: <span className="text-green-button">{this.props.getTotal("shoppingListOne")}</span></p>
           </div>
         </div>
         <Footer continue={this.continue} back={this.back} modal={true} open={this.toggleModal} length={this.props.values.shoppingListOne.length}/>
