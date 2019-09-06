@@ -439,6 +439,24 @@
   transform: rotate(45deg);
 }
 
+@media only screen and (min-width: 640px) {
+  .pantry__checkboxContainer input[type="checkbox"]+label:before {
+      width: 24px;
+      height: 24px;
+      border: 3px solid #EE9986;
+      left: 8px;
+      top: -3px;
+  }
+
+  .pantry__checkboxContainer input[type="checkbox"]:checked+label:before {
+    width: 12px;
+    border-radius: 2px;
+    border: 3px solid #68d391;
+    border-top-color: transparent;
+    border-left-color: transparent;
+  }
+}
+
 /* --------------------------- */
 /* SHOPPING LIST */
 /* --------------------------- */

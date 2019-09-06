@@ -101,7 +101,7 @@ class CreateProfile extends Component {
     const { name } = e.target;
     var data = [...this.state.shoppingListOne];
     var index = data.findIndex(obj => obj.name === name);
-    data[index].amount += 1
+    data[index].amount += .5
     this.setState({data})
   }
 
@@ -112,7 +112,7 @@ class CreateProfile extends Component {
     if (data[index].amount === 1) {
       return this.setState({data})
     }
-    data[index].amount -= 1
+    data[index].amount -= .5
     this.setState({data})
   }
 
