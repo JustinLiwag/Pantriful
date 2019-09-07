@@ -68,7 +68,6 @@ class CreateProfile extends Component {
         name: rawData[0].name,
         category: rawData[0].category,
         measurementUnit: rawData[0].measurementUnit,
-        notes: "",
         basePrice: rawData[0].basePrice,
         lowPrice: rawData[0].lowPrice,
         upperPrice: rawData[0].upperPrice,
@@ -116,14 +115,6 @@ class CreateProfile extends Component {
     this.setState({data})
   }
 
-  handleShoppingCartNotesChangeOne = input => e => {
-    const { name, value } = e.target;
-    var data = [...this.state.shoppingListOne];
-    var index = data.findIndex(obj => obj.name === name);
-    data[index].notes = value;
-    this.setState({ data });
-  };
-
   handleCheckboxChangeShoppingListTwo = e => {
     if (e.target.checked) {
       const rawData = this.getNameItem(
@@ -135,7 +126,6 @@ class CreateProfile extends Component {
         name: rawData[0].name,
         category: rawData[0].category,
         measurementUnit: rawData[0].measurementUnit,
-        notes: "",
         basePrice: rawData[0].basePrice,
         lowPrice: rawData[0].lowPrice,
         upperPrice: rawData[0].upperPrice,
@@ -183,14 +173,6 @@ class CreateProfile extends Component {
     this.setState({data})
   }
 
-  handleShoppingCartNotesChangeTwo = input => e => {
-    const { name, value } = e.target;
-    var data = [...this.state.shoppingListTwo];
-    var index = data.findIndex(obj => obj.name === name);
-    data[index].notes = value;
-    this.setState({ data });
-  };
-
   getTotal = list => {
     let lower = 0;
     let upper = 0;
@@ -201,6 +183,12 @@ class CreateProfile extends Component {
     const result = `$ ${lower.toFixed(2)} - $ ${upper.toFixed(2)}`
     return result
   };
+
+  clearShoppingList = () => {
+    this.setState({
+      shoppingListOne: []
+    });
+  }
 
   // Create submit for API
   createSubmit = () => {
@@ -250,6 +238,7 @@ class CreateProfile extends Component {
               handleShoppingCartNotesChange={
                 this.handleShoppingCartNotesChangeOne
               }
+              clearShoppingList={this.clearShoppingList}
               getTotal={this.getTotal}
             />
           );
