@@ -194,40 +194,71 @@ class Lists extends Component {
 
     render() {
         return (
-            <div>
-                <div className="flex justify-between border-b-2 border-gray-300 py-4 mb-4">
-                    <h3 className="text-gray-700 font-bold tracking-wide">Upcoming Grocery Lists</h3>
-                    <button onClick={(e) => this.props.changeTab("Lists", e)} className="text-orange-base">View All</button>
-                </div>
-                <div className="min-h-64 h-auto min-h-full bg-white shadow-lg mb-4">
-                    <div className="rounded-t-lg flex justify-around bg-orange-base py-6 md:py-4 text-center text-white font-bold text-xl">
-                            <h3 className="w-3/12 hidden md:block">Est. Delivery Date</h3>
-                            <h3 className="w-5/12 hidden md:block">Summary</h3>
-                            <h3 className="w-4/12 hidden md:block">Status</h3>
-                            <div className="w-3/12"></div>
+            <div className="mt-8 mx-4">
+                
+                {/* Toggle grocery delivery 
+                    Hidden when no groceries are available for that user
+                */}
+                <div className={"flex items-center flex-row-reverse " + (Object.keys(this.props.lists.lists).length === 0 ? "hidden" : "block")}>
+                    <div className="flex">
+                        <p className="text-gray-400">Pause</p>
+                        <svg className="ml-1" width="43" height="22" viewBox="0 0 43 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="1" y="1" width="41" height="20" rx="10" fill="white" stroke="#E2E8F0" stroke-width="2" />
+                            <circle cx="11" cy="11" r="7" fill="#E2E8F0" />
+                        </svg>
                     </div>
-                    <div>
-                        {this.props.profile.profile.shoppingListOne.length > 0 &&
-                            this.props.profile.profile.shoppingListTwo.length > 0
-                            ? <div>
-                                {this.props.lists.lists.length > 0
-                                    ? <div>
-                                        {this.renderLists(this.props)}
-                                      </div>
-                                    : <div className="py-12 mx-auto">
-                                        <img className="mx-auto mb-2" src="/images/dashboard/loading.gif" alt="loading"></img>
-                                        <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Your <span className="text-orange-base font-bold">first customized grocery</span> list is being created! We are pairing you with a member from our team who will assist you shortly.</p>
-                                      </div>
-                                }
-                              </div>
-                            : <div>
-                                <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Welcome to <span className="text-orange-base font-bold">Pantriful!</span> Go ahead and create your example shopping lists and we can get you started.</p>
-                                <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full" to="/create-shopping-list">Create Shopping List</Link>
-                            </div>
-                        }
+                </div>
+
+
+                <div className="mt-4 flex items-center justify-between">
+                    <p className="font-bold text-gray-700">Next Grocery Delivery</p>
+                    <p className="text-sm text-orange-base">View All</p>
+                </div>
+
+                <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
+                    <p className="text-gray-600 text-center">Setup your example shopping lists to get your first customized grocery list!</p>
+                    <div className="text-center w-full">
+                        <Link to="/create-shopping-list" className="text-center inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500 mx-auto">Setup Shopping List</Link>
                     </div>
                 </div>
             </div>
+
+
+            // REPLACEMENT CODE
+            // <div>
+            //     <div className="flex justify-between border-b-2 border-gray-300 py-4 mb-4">
+            //         <h3 className="text-gray-700 font-bold tracking-wide">Upcoming Grocery Lists</h3>
+            //         <button onClick={(e) => this.props.changeTab("Lists", e)} className="text-orange-base">View All</button>
+            //     </div>
+            //     <div className="min-h-64 h-auto min-h-full bg-white shadow-lg mb-4">
+            //         <div className="rounded-t-lg flex justify-around bg-orange-base py-6 md:py-4 text-center text-white font-bold text-xl">
+            //                 <h3 className="w-3/12 hidden md:block">Est. Delivery Date</h3>
+            //                 <h3 className="w-5/12 hidden md:block">Summary</h3>
+            //                 <h3 className="w-4/12 hidden md:block">Status</h3>
+            //                 <div className="w-3/12"></div>
+            //         </div>
+            //         <div>
+            //             {this.props.profile.profile.shoppingListOne.length > 0 &&
+            //                 this.props.profile.profile.shoppingListTwo.length > 0
+            //                 ? <div>
+            //                     {this.props.lists.lists.length > 0
+            //                         ? <div>
+            //                             {this.renderLists(this.props)}
+            //                           </div>
+            //                         : <div className="py-12 mx-auto">
+            //                             <img className="mx-auto mb-2" src="/images/dashboard/loading.gif" alt="loading"></img>
+            //                             <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Your <span className="text-orange-base font-bold">first customized grocery</span> list is being created! We are pairing you with a member from our team who will assist you shortly.</p>
+            //                           </div>
+            //                     }
+            //                   </div>
+            //                 : <div>
+            //                     <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Welcome to <span className="text-orange-base font-bold">Pantriful!</span> Go ahead and create your example shopping lists and we can get you started.</p>
+            //                     <Link className="inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full" to="/create-shopping-list">Create Shopping List</Link>
+            //                 </div>
+            //             }
+            //         </div>
+            //     </div>
+            // </div>
         )
     };
 }
