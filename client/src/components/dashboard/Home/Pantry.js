@@ -1,5 +1,8 @@
 import React, { Component } from "react";
-import { PieChart, Pie, Cell, Tooltip } from "recharts"
+// Need to uninstall recharts possibly
+// import { PieChart, Pie, Cell, Tooltip } from "recharts"
+import PieChart from 'react-minimal-pie-chart';
+import { VictoryPie, VictoryTheme } from 'victory';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../actions/profileActions";
@@ -134,16 +137,17 @@ class Pantry extends Component {
     }
 
     render() {
+        console.log(this.props.profile.profile)
         const profile = this.props.profile.profile
         const pantry = this.pantryLogic()
-        let data = [
-            { name: 'Protein', value: Number(pantry[0].value) },
-            { name: 'Alt. Protein', value: Number(pantry[1].value) },
-            { name: 'Vegetables', value: Number(pantry[2].value) },
-            { name: 'Fruits', value: Number(pantry[3].value) },
-            { name: 'Grains', value: Number(pantry[4].value) },
-            { name: 'Dairy', value: Number(pantry[5].value) }
-        ];
+        // let data = [
+        //     { title: 'Protein', value: Number(pantry[0].value), color: COLORS[0] },
+        //     { title: 'Alt. Protein', value: Number(pantry[1].value), color: COLORS[1] },
+        //     { title: 'Vegetables', value: Number(pantry[2].value), color: COLORS[2] },
+        //     { title: 'Fruits', value: Number(pantry[3].value), color: COLORS[3] },
+        //     { title: 'Grains', value: Number(pantry[4].value), color: COLORS[4] },
+        //     { title: 'Dairy', value: Number(pantry[5].value), color: COLORS[5] }
+        // ];
         // Protein: #3182CE, Alt. Protein: #744210, Veg: #E53E3E, Fruit: #38A169, Grains: #81E6D9, Dairy: #D69E2E
         const COLORS = ['#3182CE', '#744210', '#E53E3E', '#38A169', "#81E6D9", "#D69E2E"];
 
@@ -155,12 +159,93 @@ class Pantry extends Component {
                     <p className="text-sm text-orange-base">View my Pantry</p>
                 </div>
 
-                <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
-                    <p className="text-gray-600 text-center">After you set up your example shopping lists we will be able to process your pantry.</p>
-                    <div className="text-center w-full">
-                        <Link to="/create-shopping-list" className="text-center inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500 mx-auto">Setup Shopping List</Link>
+                {this.props.profile.profile.shoppingListOne.length === 0 
+                ?
+                    <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
+                        <p className="text-gray-600 text-center">After you set up your example shopping lists we will be able to process your pantry.</p>
+                        <div className="text-center w-full">
+                            <Link to="/create-shopping-list" className="text-center inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500 mx-auto">Setup Shopping List</Link>
+                        </div>
+                    </div> 
+                :
+                    <div className="mt-4 w-full px-4 py-8 bg-white shadow-md border border-gray-100">
+                        <PieChart 
+                            className="h-48 w-48 mx-auto"
+                            data={[
+                                { title: 'Protein', value: Number(pantry[0].value), color: COLORS[0] },
+                                { title: 'Alt. Protein', value: Number(pantry[1].value), color: COLORS[1] },
+                                { title: 'Vegetables', value: Number(pantry[2].value), color: COLORS[2] },
+                                { title: 'Fruits', value: Number(pantry[3].value), color: COLORS[3] },
+                                { title: 'Grains', value: Number(pantry[4].value), color: COLORS[4] },
+                                { title: 'Dairy', value: Number(pantry[5].value), color: COLORS[5] }
+                            ]}
+                       />
+
+                       {/* Diet Breakdown */}
+                        <div className="mt-4 shadow-md rounded">
+                            <p className="py-2 text-center text-white font-bold bg-green-400 rounded-t">Diet Breakdown</p>
+                            <div className="flex justify-around items-center flex-wrap px-4 py-2">
+                                <div className="mt-2 text-center w-full">
+                                    <div className="inline-block mr-2 h-4 w-4 bg-blue-600 rounded-full"></div>
+                                    <span className="text-gray-700">
+                                        Protein:  
+                                    </span>
+                                    <span className="text-green-500 font-bold"> {pantry[0].value}%</span>
+                                </div>
+                                <div className="mt-2 text-center w-full">
+                                    <div className="inline-block mr-2 h-4 w-4 bg-yellow-900 rounded-full"></div>
+                                    <span className="text-gray-700">
+                                        Alt. Protein: 
+                                    </span>
+                                    <span className="text-green-500 font-bold"> {pantry[1].value}%</span>
+                                </div>
+                                <div className="mt-2 text-center w-full">
+                                    <div className="inline-block mr-2 h-4 w-4 bg-red-600 rounded-full"></div>
+                                    <span className="text-gray-700">
+                                        Vegetables:
+                                    </span>
+                                    <span className="text-green-500 font-bold"> {pantry[2].value}%</span>
+                                </div>
+                                <div className="mt-2 text-center w-full">
+                                    <div className="inline-block mr-2 h-4 w-4 bg-green-600 rounded-full"></div>
+                                    <span className="text-gray-700">
+                                        Fruits:
+                                    </span> 
+                                    <span className="text-green-500 font-bold"> {pantry[3].value}%</span>
+                                </div>
+                                <div className="mt-2 text-center w-full">
+                                    <div className="inline-block mr-2 h-4 w-4 bg-teal-300 rounded-full"></div>
+                                    <span className="text-gray-700">
+                                        Grains:
+                                    </span>  
+                                    <span className="text-green-500 font-bold"> {pantry[4].value}%</span>
+                                </div>
+                                <div className="my-2 text-center w-full">
+                                    <div className="inline-block mr-2 h-4 w-4 bg-yellow-600 rounded-full"></div>
+                                    <span className="text-gray-700">
+                                        Dairy:
+                                    </span>  
+                                    <span className="text-green-500 font-bold"> {pantry[5].value}%</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Pantriful Score */}
+                        <div className="mt-4 shadow-md rounded">
+                            <p className="py-2 text-center text-white font-bold bg-orange-base rounded-t">Pantriful Score</p>
+                            <p className="mt-4 font-bold text-gray-600 text-center">Your Pantriful Score is:</p>
+                            <p className="text-center text-5xl font-bold text-green-400">78<span className="text-sm text-gray-500">/100</span></p>
+                            <p className="px-4 text-center text-gray-500 pb-4">This score is based on your health profile as compared to our other users. Looks pretty good!</p>
+                        </div>
+
+                        {/* Recommendations */}
+                        <div className="mt-4 shadow-md rounded">
+                            <p className="py-2 text-center text-white font-bold bg-orange-400 rounded-t">Recommendations</p>
+                            <p className="p-4 text-gray-500 text-center">As you use Pantriful more we will provide customized recommendations for you.</p>
+                        </div>
                     </div>
-                </div>
+                }
+                
 
             </div>
         //     <div>
