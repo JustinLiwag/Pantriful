@@ -45,6 +45,13 @@ export const sendDeliveryDetails = (userData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
+// Pause Grocery Delivery
+export const pause = (userData) => dispatch => {
+  axios
+    .post("api/profile/food-profile/pause", userData)
+    .catch(err => console.log(err))
+}
+
 //  Profile loading
 export const setFoodProfileLoading = () => {
   return {

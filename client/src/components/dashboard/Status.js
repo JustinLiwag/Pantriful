@@ -22,9 +22,9 @@ class Status extends Component {
 
       // Pantriful Assistant
       return(
-       <div className="mt-6 bg-green-500 rounded-lg">
+       <div className="mt-6 bg-green-500 rounded-lg sm:max-w-sm sm:mx-auto">
           <div className="flex items-center justify-around px-6">
-            <svg className="h-24 w-24" width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+            <svg className="h-24 w-24 py-4" width="71" height="71" viewBox="0 0 71 71" fill="none" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
               <path d="M36 64.623C52.0163 64.623 65 51.7237 65 35.8115C65 19.8994 52.0163 7 36 7C19.9837 7 7 19.8994 7 35.8115C7 51.7237 19.9837 64.623 36 64.623Z" fill="#9AE6B4" />
               <mask id="mask0" mask-type="alpha" maskUnits="userSpaceOnUse" x="7" y="7" width="58" height="58">
                 <path d="M36 64.623C52.0163 64.623 65 51.7237 65 35.8115C65 19.8994 52.0163 7 36 7C19.9837 7 7 19.8994 7 35.8115C7 51.7237 19.9837 64.623 36 64.623Z" fill="#C6F6D5" />
@@ -52,7 +52,7 @@ class Status extends Component {
                   <rect x="56.4336" y="45.3503" width="3.74963" height="3.72525" fill="#EE9986" />
                 </g>
               </g>
-              <circle cx="35.5" cy="35.5" r="34" stroke="#9AE6B4" stroke-width="3" />
+              <circle cx="35.5" cy="35.5" r="34" stroke="#9AE6B4" strokeWidth="3" />
               <defs>
                 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
                   <use href="#image0" transform="scale(0.00284091)" />
@@ -77,7 +77,7 @@ class Status extends Component {
                 <image id="image2" width="31" height="31" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAfCAYAAAAfrhY5AAAAAXNSR0IArs4c6QAAAhhJREFUSA3Fl79O3EAQxmfGSEcbHUkRBFWegYKOiEikSZkyBSehVDwAf6STgDxAKhooUqakSaRESUeRZ6A6BAUQ0XIS9jDfoL04jnMsur2zG9vr2e+3s38/M0VeV5vvZ/Oi/4Y5e0VazBPTcyVtM/FvUjonlp5q/i2T1tHM3v5ZjCw/FHS58W5JaWqHVBeVDPnAZQFKzMdMt9tPP3z6OSz8v2IX3c4LutGPyvp6mMCwb6z8haZ5/Vn34KQurhZ+tbW6XOT02br1SV2lx5TZsFxLRm9ndg+/V+tJteBio7Na5Po1BRja0IEedKusvzK/zxhgyqqBo74bKJeMV8o9MID7GPf1V6qM6xqLIaAWL4Q58KfbMbkSjHEdNJS5vnHCu2eO5VRo9iMUjvsunL/EMvTMfR2Pm1jSDzzGzlUU/dOYDaRUf6RH624Vac1NYcs0pcHEG0k1sjISBVd8r46slDIMXPFDIqVqrJYdToLTKTY+aZxxxdZeO6lopBi44udxZIWUYeDamJsRaOIyro259JpggyuwPk3AwRV4Luw4k2wAeOCKmz3zXJOEw+OB6wcLzN4k4YHncBxvbvYm0AJwgqt1uDPNZbrTGGMDXN84ATGAw9rAZdpkyMPHlHfoQj9YKGgP4Hhxc8eylroBrme6ZfMInpX/ezXm29EUb6G5zFEnodc3nWrGId3azMNH3Bv5Vys3AM/j+Eu9A0wL6ms/KEIqAAAAAElFTkSuQmCC" />
               </defs>
             </svg>
-            <p className="ml-4 text-lg font-bold text-white leading-snug">Meet your Pantriful assistant.</p>
+            <p className="ml-4 text-xl font-bold text-white leading-snug">Meet your Pantriful assistant.</p>
           </div>
           <div className="group bg-green-700 sm:hover:bg-green-800 rounded-b-lg cursor-pointer">
             <button className="block mx-auto text-green-400 text-center py-1 font-bold sm:group-hover:text-green-300">Learn more about me</button>

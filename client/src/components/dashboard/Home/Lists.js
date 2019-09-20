@@ -1,15 +1,26 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { pause } from "../../../actions/foodProfileActions";
 import { getCurrentProfile } from "../../../actions/profileActions";
 import { getLists, updateList } from "../../../actions/listActions";
 
 class Lists extends Component {
     state = {
+        paused: false,
         listOpen: false,
         currentStatus: "",
-        changeTabOpen: false,
+        changeTabOpen: false
     };
+
+    componentDidMount = () => {
+        if (this.props.profile.profile.paused === true) {
+            this.setState({
+                paused: true
+            })
+        }
+        
+    }
 
     toggleListOpen = () => {
         this.setState({
@@ -49,6 +60,17 @@ class Lists extends Component {
         this.props.updateList(payload, this.props.history)
         this.setState({
             currentStatus: "Approved"
+        })
+    }
+
+    pauseOnClick = () => {
+        const payload = {
+            paused: !this.state.paused
+        }
+        this.props.pause(payload)
+        this.setState({
+            paused: !this.state.paused,
+            listOpen: false
         })
     }
 
@@ -107,11 +129,29 @@ class Lists extends Component {
         let shoppingListCount = 0
         while (shoppingListCount < lists[0].list.length) {
             shoppingList.push(
-                <div className="border-t border-gray-300 py-2 text-sm">
-                    <p className="text-orange-base font-bold">{lists[0].list[shoppingListCount].name}</p>
+                <div key={"item" + lists[0].list[shoppingListCount].name} className="border-t border-gray-300 py-2 text-sm">
+                    <p className="text-orange-base font-bold">
+                        {lists[0].list[shoppingListCount].name}
+                    </p>
                     <div className="flex justify-between">
-                        <p className="inline-block font-bold"><span className="text-green-400">{lists[0].list[shoppingListCount].amount} x</span> <span className="text-gray-500">{lists[0].list[shoppingListCount].measurementUnit}</span></p>
-                        <p className="">$ <span className="text-green-400 font-bold">{(lists[0].list[shoppingListCount].lowPrice * lists[0].list[shoppingListCount].amount).toFixed(2)}</span> - $ <span className="text-green-400 font-bold">{(lists[0].list[shoppingListCount].upperPrice * lists[0].list[shoppingListCount].amount).toFixed(2)}</span></p>
+                        <p className="inline-block font-bold">
+                            <span className="text-green-400">{lists[0].list[shoppingListCount].amount} 
+                                {" "} x {" "}
+                            </span> 
+                            <span className="text-gray-500">
+                                {lists[0].list[shoppingListCount].measurementUnit}
+                            </span>
+                        </p>
+                        <p>
+                            $ 
+                            <span className="text-green-400 font-bold">
+                                {(lists[0].list[shoppingListCount].lowPrice * lists[0].list[shoppingListCount].amount).toFixed(2)}
+                            </span> 
+                            - $ 
+                            <span className="text-green-400 font-bold">
+                                {(lists[0].list[shoppingListCount].upperPrice * lists[0].list[shoppingListCount].amount).toFixed(2)}
+                            </span>
+                        </p>
                     </div>
                 </div>
             )
@@ -130,17 +170,17 @@ class Lists extends Component {
             }
 
         renderedList.push(
-            <div className="mt-4 rounded bg-white w-full shadow">
+            <div key={"itm" + 1} className="mt-4 rounded bg-white w-full shadow">
                 <p onClick={this.toggleListOpen} className={"font-bold py-2 text-center rounded-t " + (this.state.currentStatus || lists[0].status === "Approved" ? "bg-green-400 text-white" : "bg-red-400 text-red-100" )}>{formatedDate}</p>
-                <div onClick={this.toggleListOpen} className={this.state.listOpen === false ? "block" : "hidden"}>
+                <div onClick={this.toggleListOpen} className={"sm:justify-around sm:items-center sm:mx-8 sm:flex-row-reverse " + (this.state.listOpen === false ? "block sm:flex" : "hidden")}>
                     <div className="block mt-6 text-center">{renderStatus()}</div>
                     <p className="mt-4 text-sm text-gray-600 px-4 text-center">{summary}...</p>
                 </div>
-                <div className={"mx-4 " + (this.state.listOpen === true ? "block" : "hidden")}>
+                <div className={"mx-4 sm:max-w-md sm:mx-auto " + (this.state.listOpen === true ? "block" : "hidden")}>
 
                     {/* Shopping List */}
                     <p className="pb-2 mt-4 text-gray-600 font-bold text-center">Shopping List</p>
-                    <p>{shoppingList}</p>
+                    <div>{shoppingList}</div>
                     <p className="border-t border-gray-300 pt-4 text-sm text-gray-600 font-bold text-right">Est. Total: {renderTotal()}</p>
                     
                     {/* Change or Add Box */}
@@ -165,7 +205,7 @@ class Lists extends Component {
                 </div>
                 
                 <div onClick={this.toggleListOpen} className="mt-4 bg-gray-100 sm:hover:bg-gray-200 text-gray-400 sm:hover:text-gray-500">
-                    <button className="block mx-auto py-1 font-bold">{this.state.listOpen === true ? "Close" : "Details"}</button>
+                    <button className="focus:outline-none block mx-auto py-1 font-bold">{this.state.listOpen === true ? "Close" : "Details"}</button>
                 </div>
             </div>
         )
@@ -175,27 +215,39 @@ class Lists extends Component {
     }
 
     render() {
-        console.log(this.props.lists.lists[0])
         return (
-            <div className="mt-8 mx-4">
+            <div className="mt-8 mx-4 lg:max-w-2xl lg:mx-auto">
                 
                 {/* Toggle grocery delivery 
                     Hidden when no groceries are available for that user
                 */}
                 <div className={"flex items-center flex-row-reverse " + (Object.keys(this.props.lists.lists).length === 0 ? "hidden" : "block")}>
-                    <div className="flex">
-                        <p className="text-gray-400">Pause</p>
-                        <svg className="ml-1" width="43" height="22" viewBox="0 0 43 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="1" y="1" width="41" height="20" rx="10" fill="white" stroke="#E2E8F0" stroke-width="2" />
-                            <circle cx="11" cy="11" r="7" fill="#E2E8F0" />
-                        </svg>
+                    <div onClick={this.pauseOnClick} className="flex items-center">
+                        <p className={this.state.paused === false ? "text-gray-400" : "text-red-400"}>
+                            {this.state.paused === true 
+                            ? "Delivery paused"
+                            : "Pause delivery"
+                            }
+                        </p>
+                        {this.state.paused === false
+                        ?
+                            <svg className="ml-1" width="43" height="22" viewBox="0 0 43 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="1" y="1" width="41" height="20" rx="10" fill="white" stroke="#E2E8F0" strokeWidth="2" />
+                                <circle cx="11" cy="11" r="7" fill="#E2E8F0" />
+                            </svg>
+                        :
+                            <svg className="ml-1" width="43" height="22" viewBox="0 0 43 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="42" y="21" width="41" height="20" rx="10" transform="rotate(-180 42 21)" fill="white" stroke="#FC8181" strokeWidth="2" />
+                                <circle cx="32" cy="11" r="7" transform="rotate(-180 32 11)" fill="#FC8181" />
+                            </svg>
+                        }
                     </div>
                 </div>
 
 
                 <div className="mt-4 flex items-center justify-between">
                     <p className="font-bold text-gray-700">Next Grocery Delivery</p>
-                    <p className="text-sm text-orange-base">View All</p>
+                    <p onClick={(e) => this.props.changeTab("Lists", e)} className="text-sm text-orange-base">View All</p>
                 </div>
 
 
@@ -208,7 +260,10 @@ class Lists extends Component {
                             <Link to="/create-shopping-list" className="text-center inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500 mx-auto">Setup Shopping List</Link>
                         </div>
                     </div>  
-                :  <div>{this.renderLists(this.props)}</div>
+                :  <div>
+                        {this.state.paused === true ? <p className="text-red-500 text-center font-bold text-md sm:text-lg mt-3">Your grocery list for this week has been put on pause.</p> : null}               
+                        <div className={this.state.paused === true ? "opacity-50 pointer-events-none" : ""}>{this.renderLists(this.props)}</div>
+                    </div>
                 }
             </div>
         )
@@ -224,5 +279,5 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { getCurrentProfile, getLists, updateList }
+    { getCurrentProfile, getLists, updateList, pause }
 )(Lists);

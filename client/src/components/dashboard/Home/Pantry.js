@@ -2,7 +2,7 @@ import React, { Component } from "react";
 // Need to uninstall recharts possibly
 // import { PieChart, Pie, Cell, Tooltip } from "recharts"
 import PieChart from 'react-minimal-pie-chart';
-import { VictoryPie, VictoryTheme } from 'victory';
+// import { VictoryPie, VictoryTheme } from 'victory';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../actions/profileActions";
@@ -137,8 +137,7 @@ class Pantry extends Component {
     }
 
     render() {
-        console.log(this.props.profile.profile)
-        const profile = this.props.profile.profile
+        // const profile = this.props.profile.profile
         const pantry = this.pantryLogic()
         // let data = [
         //     { title: 'Protein', value: Number(pantry[0].value), color: COLORS[0] },
@@ -152,11 +151,11 @@ class Pantry extends Component {
         const COLORS = ['#3182CE', '#744210', '#E53E3E', '#38A169', "#81E6D9", "#D69E2E"];
 
         return (
-            <div className="mt-8 mx-4 mb-32">
+            <div className="mt-8 mx-4 mb-32 lg:max-w-2xl lg:mx-auto">
 
                 <div className="mt-4 flex items-center justify-between">
                     <p className="font-bold text-gray-700">Your Pantry</p>
-                    <p className="text-sm text-orange-base">View my Pantry</p>
+                    <p onClick={(e) => this.props.changeTab("Pantry", e)} className="text-sm text-orange-base">View my Pantry</p>
                 </div>
 
                 {this.props.profile.profile.shoppingListOne.length === 0 
@@ -184,43 +183,43 @@ class Pantry extends Component {
                        {/* Diet Breakdown */}
                         <div className="mt-4 shadow-md rounded">
                             <p className="py-2 text-center text-white font-bold bg-green-400 rounded-t">Diet Breakdown</p>
-                            <div className="flex justify-around items-center flex-wrap px-4 py-2">
-                                <div className="mt-2 text-center w-full">
+                            <div className="flex justify-around items-center flex-wrap px-4 py-2 sm:max-w-md sm:mx-auto sm:py-4">
+                                <div className="mt-2 text-center w-full sm:w-1/2 sm:text-left">
                                     <div className="inline-block mr-2 h-4 w-4 bg-blue-600 rounded-full"></div>
                                     <span className="text-gray-700">
                                         Protein:  
                                     </span>
                                     <span className="text-green-500 font-bold"> {pantry[0].value}%</span>
                                 </div>
-                                <div className="mt-2 text-center w-full">
+                                <div className="mt-2 text-center w-full sm:w-1/2 sm:text-left">
                                     <div className="inline-block mr-2 h-4 w-4 bg-yellow-900 rounded-full"></div>
                                     <span className="text-gray-700">
                                         Alt. Protein: 
                                     </span>
                                     <span className="text-green-500 font-bold"> {pantry[1].value}%</span>
                                 </div>
-                                <div className="mt-2 text-center w-full">
+                                <div className="mt-2 text-center w-full sm:w-1/2 sm:text-left">
                                     <div className="inline-block mr-2 h-4 w-4 bg-red-600 rounded-full"></div>
                                     <span className="text-gray-700">
                                         Vegetables:
                                     </span>
                                     <span className="text-green-500 font-bold"> {pantry[2].value}%</span>
                                 </div>
-                                <div className="mt-2 text-center w-full">
+                                <div className="mt-2 text-center w-full sm:w-1/2 sm:text-left">
                                     <div className="inline-block mr-2 h-4 w-4 bg-green-600 rounded-full"></div>
                                     <span className="text-gray-700">
                                         Fruits:
                                     </span> 
                                     <span className="text-green-500 font-bold"> {pantry[3].value}%</span>
                                 </div>
-                                <div className="mt-2 text-center w-full">
+                                <div className="mt-2 text-center w-full sm:w-1/2 sm:text-left">
                                     <div className="inline-block mr-2 h-4 w-4 bg-teal-300 rounded-full"></div>
                                     <span className="text-gray-700">
                                         Grains:
                                     </span>  
                                     <span className="text-green-500 font-bold"> {pantry[4].value}%</span>
                                 </div>
-                                <div className="my-2 text-center w-full">
+                                <div className="my-2 text-center w-full sm:w-1/2 sm:text-left">
                                     <div className="inline-block mr-2 h-4 w-4 bg-yellow-600 rounded-full"></div>
                                     <span className="text-gray-700">
                                         Dairy:

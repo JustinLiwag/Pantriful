@@ -22,10 +22,9 @@ export const getLists = () => dispatch => {
 };
 
 // Update status of grocery list
-export const updateList = (userData, history) => dispatch => {
+export const updateList = (userData) => dispatch => {
     axios
         .post("/api/lists/update", userData)
-        .then(res => history.push("/dashboard"))
         .catch(err => console.log(err));
 };
 
@@ -35,4 +34,5 @@ export const setListsLoading = () => {
         type: LISTS_LOADING
     };
 };
+
 
