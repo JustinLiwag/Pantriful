@@ -213,7 +213,7 @@ class DashboardContent extends Component {
                 </div>
 
                 {/* Responsive Backgrounds */}
-                <div className="pointer-events-none w-full absolute top-0 block">
+                <div className="pointer-events-none absolute top-0 block">
 
                   {/* 320px */}
                   <img className="h-64 w-full sm:hidden" src="./images/dashboard/bg/bg-320.png" alt=""></img>

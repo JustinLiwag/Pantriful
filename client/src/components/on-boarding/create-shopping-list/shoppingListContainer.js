@@ -6,14 +6,29 @@ import Spinner from '../../common/Spinner';
 
 import StepOne from "./StepOne"
 import StepTwo from "./StepTwo"
-import StepThree from "./StepThree";
-import StepFour from "./StepFour";
+import StepThree from "./StepThree"
+import StepFour from "./StepFour"
+import StepFive from "./StepFive"
+import StepSix from "./StepSix"
+import StepSeven from "./StepSeven"
+import StepEight from "./StepEight"
+import Complete from "./Complete"
+
 
 class CreateProfile extends Component {
   state = {
-    step: 2,
+    step: 1,
     shoppingListOne: [],
-    shoppingListTwo: []
+    shoppingListTwo: [],
+    street: "",
+    city: "",
+    state: "",
+    country: "",
+    zipcode: "",
+    aptOrBldgNumber: "",
+    deliveryDay: "",
+    deliveryTime: "",
+    phoneNumber: ""
   };
 
   componentWillMount = () => {
@@ -34,6 +49,18 @@ class CreateProfile extends Component {
     const { step } = this.state;
     this.setState({
       step: step - 1
+    });
+  };
+
+  // Handle text fields change
+  handleChange = input => e => {
+    this.setState({ [input]: e.target.value });
+  };
+
+  // Handle checkbox change
+  handleOptionChange = changeEvent => {
+    this.setState({
+        [changeEvent.target.name]: changeEvent.target.value
     });
   };
 
@@ -194,17 +221,47 @@ class CreateProfile extends Component {
   createSubmit = () => {
     const payload = {
       shoppingListOne: this.state.shoppingListOne,
-      shoppingListTwo: this.state.shoppingListTwo
+      shoppingListTwo: this.state.shoppingListTwo,
+      street: this.state.street,
+      city: this.state.city,
+      state: this.state.state,
+      country: this.state.country,
+      zipcode: this.state.zipcode,
+      aptOrBldgNumber: this.state.aptOrBldgNumber,
+      deliveryDay: this.state.deliveryDay,
+      deliveryTime: this.state.deliveryTime,
+      phoneNumber: this.state.phoneNumber
     };
     this.props.sendShoppingLists(payload, this.props.history);
     console.log("SHOPPING LIST FUNCTION SUBMIT HIT")
   };
 
   render() {
-    const { shoppingListOne, shoppingListTwo } = this.state;
+    const { 
+      shoppingListOne, 
+      shoppingListTwo,
+      street,
+      city,
+      state,
+      country,
+      zipcode,
+      aptOrBldgNumber,
+      deliveryDay,
+      deliveryTime,
+      phoneNumber
+    } = this.state;
     const values = {
       shoppingListOne,
-      shoppingListTwo
+      shoppingListTwo,
+      street,
+      city,
+      state,
+      country,
+      zipcode,
+      aptOrBldgNumber,
+      deliveryDay,
+      deliveryTime,
+      phoneNumber
     };
     if (
       this.props.foodProfile.foodProfile === null ||
@@ -216,8 +273,14 @@ class CreateProfile extends Component {
         case 1:
           return <StepOne nextStep={this.nextStep} prevStep={this.prevStep} />;
         case 2:
+          return <StepTwo nextStep={this.nextStep} prevStep={this.prevStep} />;
+        case 3:
+          return <StepThree nextStep={this.nextStep} prevStep={this.prevStep} />;
+        case 4:
+          return <StepFour nextStep={this.nextStep} prevStep={this.prevStep} />;
+        case 5:
           return (
-            <StepTwo 
+            <StepFive
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
@@ -242,9 +305,9 @@ class CreateProfile extends Component {
               getTotal={this.getTotal}
             />
           );
-        case 3:
+        case 6:
           return (
-            <StepThree
+            <StepSix
               nextStep={this.nextStep}
               prevStep={this.prevStep}
               values={values}
@@ -268,12 +331,29 @@ class CreateProfile extends Component {
               getTotal={this.getTotal}
             />
           );
-        case 4:
+        case 7:
           return (
-            <StepFour
+            <StepSeven
               nextStep={this.nextStep}
               prevStep={this.prevStep}
-              createSubmit={this.createSubmit}
+              values={values}
+              handleChange={this.handleChange}
+            />
+          );
+        case 8:
+          return (
+            <StepEight
+              nextStep={this.nextStep}
+              prevStep={this.prevStep}
+              values={values}
+              handleChange={this.handleOptionChange}
+            />
+          );
+        case 9:
+          return (
+            <Complete
+              prevStep={this.prevStep}
+              submit={this.createSubmit}
             />
           );
         default:
