@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 // import Navbar from "../layout/Navbar"
 // import Footer from "../layout/Footer"
 
@@ -69,6 +70,7 @@ class DashboardContent extends Component {
               <div className="hidden lg:block lg:w-3/12 xl:w-2/12 lg:h-full lg:z-40">
                 <div className="lg:fixed lg:w-3/12 xl:w-2/12 lg:bg-white lg:h-full lg:shadow-lg">
                   <div className="lg:py-6 lg:border-b lg:border-gray-200">
+                    <Link to="/">
                     <svg className="lg:block lg:mx-auto lg:w-full" width="172" height="36" viewBox="0 0 172 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M0 4.97346C0 2.68203 1.86972 0.824463 4.17614 0.824463H30.8239C33.1303 0.824463 35 2.68203 35 4.97346V31.448C35 33.7394 33.1303 35.597 30.8239 35.597H4.17614C1.86972 35.597 0 33.7394 0 31.448V4.97346Z" fill="#EE9986" />
                       <path d="M5.17041 26.7557C5.17041 25.5827 6.12753 24.6318 7.30819 24.6318H14.865C16.0457 24.6318 17.0028 25.5827 17.0028 26.7557V27.9412C17.0028 29.1141 16.0457 30.065 14.865 30.065H7.30819C6.12753 30.065 5.17041 29.1141 5.17041 27.9412V26.7557Z" fill="white" />
@@ -88,6 +90,7 @@ class DashboardContent extends Component {
                       <path d="M162.143 12.2625L159.967 30.1924H157.53C156.393 30.1924 155.825 29.6533 155.825 28.5751L155.877 26.9577C154.995 28.1403 154.032 29.0214 152.987 29.6011C151.954 30.1692 150.881 30.4533 149.767 30.4533C149.013 30.4533 148.334 30.3025 147.73 30.0011C147.127 29.6997 146.628 29.2591 146.233 28.6794C145.839 28.0997 145.56 27.3925 145.398 26.5577C145.235 25.7114 145.224 24.7433 145.363 23.6535L146.703 12.2625H151.508L150.15 23.6535C150.022 24.7317 150.074 25.4969 150.306 25.949C150.55 26.3896 150.985 26.6099 151.612 26.6099C152.03 26.6099 152.459 26.494 152.9 26.2621C153.353 26.0186 153.782 25.6766 154.188 25.236C154.606 24.7955 154.989 24.2679 155.337 23.6535C155.697 23.0274 155.993 22.3318 156.225 21.5666L157.356 12.2625H162.143Z" fill="#EE9986" />
                       <path d="M163.741 30.1924L166.892 4.26275H171.627L168.459 30.1924H163.741Z" fill="#EE9986" />
                     </svg>
+                    </Link>
                   </div>
                   <div className="lg:text-xl text-gray-400 lg:mt-12">
                     <div onClick={(e) => this.changeTab("Home", e)} className={"flex items-center cursor-pointer lg:pl-6 xl:pl-8 py-3 " + (this.state.openTab === "Home" ? "border-l-8 border-orange-base text-orange-base" : "border-l-8 border-transparent")}>

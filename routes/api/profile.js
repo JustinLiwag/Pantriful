@@ -131,6 +131,32 @@ router.post(
 );
 
 // @route   POST api/profile/food-profile/delivery-details
+// @desc    Update active status
+// @access  Private
+router.post(
+  "/food-profile/pause",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOneAndUpdate(
+      { user: req.user.id },
+      {
+        $set: {
+          "active": req.body.active     
+        }
+      },
+      { safe: true, upsert: true },
+      function (err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc)
+        }
+      }
+    )
+  }
+);
+
+// @route   POST api/profile/food-profile/delivery-details
 // @desc    update delivery details
 // @access  Private
 router.post(

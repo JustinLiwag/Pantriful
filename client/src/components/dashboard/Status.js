@@ -13,7 +13,7 @@ class Status extends Component {
           <div className="max-w-lg mt-6 bg-white shadow-lg mx-auto rounded-lg">
             <h3 className="bg-green-400 py-2 text-white text-lg font-bold text-center rounded-t-lg">Pantriful Setup</h3>
             <div className="px-2 pt-2 pb-4 text-center mx-auto">
-              <p className="">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo, feugiat viverra luctus tellus quam massa cursus. </p>
+              <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo, feugiat viverra luctus tellus quam massa cursus. </p>
               <Link to="/create-shopping-list" className="inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500">Setup Shopping List</Link>
             </div>
           </div>

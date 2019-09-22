@@ -7,16 +7,16 @@ import { getLists, updateList } from "../../../actions/listActions";
 
 class Lists extends Component {
     state = {
-        paused: false,
+        active: true,
         listOpen: false,
         currentStatus: "",
         changeTabOpen: false
     };
 
     componentDidMount = () => {
-        if (this.props.profile.profile.paused === true) {
+        if (this.props.profile.profile.active === false) {
             this.setState({
-                paused: true
+                active: false
             })
         }
         
@@ -65,11 +65,11 @@ class Lists extends Component {
 
     pauseOnClick = () => {
         const payload = {
-            paused: !this.state.paused
+            active: !this.state.active
         }
         this.props.pause(payload)
         this.setState({
-            paused: !this.state.paused,
+            active: !this.state.active,
             listOpen: false
         })
     }
@@ -170,7 +170,7 @@ class Lists extends Component {
             }
 
         renderedList.push(
-            <div key={"itm" + 1} className="mt-4 rounded bg-white w-full shadow">
+            <div key={"itm" + 1} className={"mt-4 rounded bg-white w-full shadow " + (this.state.active === false ? " opacity-50 pointer-events-none" : null )}>
                 <p onClick={this.toggleListOpen} className={"font-bold py-2 text-center rounded-t " + (this.state.currentStatus || lists[0].status === "Approved" ? "bg-green-400 text-white" : "bg-red-400 text-red-100" )}>{formatedDate}</p>
                 <div onClick={this.toggleListOpen} className={"sm:justify-around sm:items-center sm:mx-8 sm:flex-row-reverse " + (this.state.listOpen === false ? "block sm:flex" : "hidden")}>
                     <div className="block mt-6 text-center">{renderStatus()}</div>
@@ -185,7 +185,7 @@ class Lists extends Component {
                     
                     {/* Change or Add Box */}
                     <div className="mt-4 bg-white rounded shadow-md">
-                        <p onClick={this.toggleChangeOpen} className={"text-red-600 font-bold bg-red-200 py-2 text-center " + (this.state.changeTabOpen === true ? "rounded-t" : "rounded")}>Want to change / add something?</p>
+                        <p onClick={this.toggleChangeOpen} className={"text-red-600 font-bold bg-red-200 py-2 text-center cursor-pointer " + (this.state.changeTabOpen === true ? "rounded-t" : "rounded")}>Want to change / add something?</p>
                         <p className={"p-4 text-gray-600 text-center " + (this.state.changeTabOpen === true ? "block" : "hidden")}>Text your pantriful assistant at: <br></br> <a href="sms:6266587775" className="text-orange-base font-bold border-b border-orange-base">(626) 658-7775</a> <br></br>with any changes or additions you would like to make.</p>
                     </div>
                     
@@ -221,15 +221,15 @@ class Lists extends Component {
                 {/* Toggle grocery delivery 
                     Hidden when no groceries are available for that user
                 */}
-                <div className={"flex items-center flex-row-reverse " + (Object.keys(this.props.lists.lists).length === 0 ? "hidden" : "block")}>
+                <div className={"flex items-center flex-row-reverse " + (Object.keys(this.props.lists.lists).length === 0 ? "hidden" : "block") }>
                     <div onClick={this.pauseOnClick} className="flex items-center">
-                        <p className={this.state.paused === false ? "text-gray-400" : "text-red-400"}>
-                            {this.state.paused === true 
-                            ? "Delivery paused"
+                        <p className={this.state.active === true ? "text-gray-400" : "text-red-400"}>
+                            {this.state.active === false 
+                            ? "Delivery Paused"
                             : "Pause delivery"
                             }
                         </p>
-                        {this.state.paused === false
+                        {this.state.active === true
                         ?
                             <svg className="ml-1" width="43" height="22" viewBox="0 0 43 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <rect x="1" y="1" width="41" height="20" rx="10" fill="white" stroke="#E2E8F0" strokeWidth="2" />
@@ -247,24 +247,32 @@ class Lists extends Component {
 
                 <div className="mt-4 flex items-center justify-between">
                     <p className="font-bold text-gray-700">Next Grocery Delivery</p>
-                    <p onClick={(e) => this.props.changeTab("Lists", e)} className="text-sm text-orange-base">View All</p>
+                    <p onClick={(e) => this.props.changeTab("Lists", e)} className="text-sm text-orange-base cursor-pointer">View All</p>
                 </div>
 
 
                 {/* Render List Content */}
-                {this.props.lists.lists.length === 0 ||  this.props.lists.lists.length === undefined
-                ?   
-                    <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
-                        <p className="text-gray-600 text-center">Setup your example shopping lists to get your first customized grocery list!</p>
-                        <div className="text-center w-full">
-                            <Link to="/create-shopping-list" className="text-center inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500 mx-auto">Setup Shopping List</Link>
-                        </div>
-                    </div>  
-                :  <div>
-                        {this.state.paused === true ? <p className="text-red-500 text-center font-bold text-md sm:text-lg mt-3">Your grocery list for this week has been put on pause.</p> : null}               
-                        <div className={this.state.paused === true ? "opacity-50 pointer-events-none" : ""}>{this.renderLists(this.props)}</div>
+                {this.props.profile.profile.shoppingListOne.length > 0 &&
+                    this.props.profile.profile.shoppingListTwo.length > 0
+                    ? <div>
+                        {this.props.lists.lists.length > 0
+                            ? <div>
+                                {this.state.active === false 
+                                 ? <p className="text-center mt-4 text-red-400 text-md font-bold">Your deliveries have been paused for this week.</p> 
+                                 : null }
+                                {this.renderLists(this.props)}
+                              </div>
+                            : <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
+                                <p className="text-center mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Your <span className="text-orange-base font-bold">first customized grocery</span> list is being created! We are pairing you with a member from our team who will assist you shortly.</p>
+                              </div>
+                        }
+                    </div>
+                    : <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
+                        <p className="mx-auto max-w-xl text-gray-600 px-4 md:px-0 text-xl md:text-2xl">Welcome to <span className="text-orange-base font-bold">Pantriful!</span> Go ahead and create your example shopping lists and we can get you started.</p>
+                        <Link className="text-center inline-block bg-green-button py-2 px-8 text-white mt-4 font-bold rounded-full" to="/create-shopping-list">Create Shopping List</Link>
                     </div>
                 }
+
             </div>
         )
     };

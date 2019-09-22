@@ -47,6 +47,10 @@ const profileSchema = mongoose.Schema({
   dateCreated: {
     type: Date,
     default: Date.now
+  },
+  active: {
+    type: Boolean,
+    default: true
   }
 });
 
