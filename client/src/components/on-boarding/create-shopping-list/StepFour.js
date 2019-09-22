@@ -23,7 +23,7 @@ class StepFour extends Component {
       <div className="mb-48">
         <Navbar />
         <div className="container px-8 md:px-0">
-            <img className="mx-auto mt-12" src="./images/on-boarding/on-boarding-2-step-four.png"></img>
+            <img className="mx-auto mt-12" src="./images/on-boarding/on-boarding-2-step-four.png" alt=""></img>
           <h3 className="mt-8 text-2xl md:text-3xl font-bold text-gray-700">You can adjust the quantities of any item.</h3>
           <p className="mt-1 text-md md:text-lg leading-loose max-w-xl mx-auto text-gray-600">This should help you get close to what quantities you usually get.</p>
         </div>

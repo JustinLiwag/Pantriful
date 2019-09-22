@@ -5,7 +5,64 @@ import { getCurrentProfile } from "../../actions/profileActions";
 import { getLists } from "../../actions/listActions";
 
 class Status extends Component {   
-    statusBoxText = () => {
+    state = {
+      boxOpen: false
+    }
+
+    toggleBox = () => {
+      this.setState({
+        boxOpen: !this.state.boxOpen
+      })
+    }
+
+    statusText = () => {
+      let newestGroceryList = []
+
+      if (Object.keys(this.props.lists.lists).length === 0) {
+        return newestGroceryList
+      } else {
+        newestGroceryList = this.props.lists.lists.sort(function (a, b) {
+          if (a.deliveryDate > b.deliveryDate) { return -1; }
+          if (a.deliveryDate < b.deliveryDate) { return 1; }
+          return 0;
+        })
+      }
+
+      if (this.props.lists.lists === {} ) {
+        if (this.props.profile.profile.shoppingListOne.length === 0) {
+          return (
+            <p className="mt-2 max-w-sm mx-auto lg:text-lg text-white">Go ahead an create your example grocery lists</p> 
+          )
+        }
+  
+        if (this.props.profile.profile.shoppingListOne.length > 0 && this.props.lists.lists.length === 0 ) {
+          return (
+            <p className="mt-2 max-w-sm mx-auto lg:text-lg text-white">Your first list is being generated. Go and explore your dashboard while we work on it for you!</p>
+          )
+        }
+      } else {
+      
+        if (newestGroceryList[0].status === "Awaiting Approval") {
+          return (
+            <p className="mt-2 max-w-sm mx-auto lg:text-lg text-white">Your grocery lists is ready for approval. Go check it out! </p> 
+          )
+        } 
+  
+        if (newestGroceryList[0].status === "Approved") {
+          return (
+            <p className="mt-2 max-w-sm mx-auto lg:text-lg text-white">Your grocery lists has been approved for delivery. We can't wait to see you then!</p> 
+          )
+        } 
+  
+        if (newestGroceryList[0].status === "Delivered") {
+          return (
+            <p className="mt-2 max-w-sm mx-auto lg:text-lg text-white">Your grocery list has been delivered for this week. Your next list will be ready soon!</p> 
+          )
+        }
+      }
+    }
+
+    statusBoxContent = () => {
       
       // Pantriful Setup 
       if (this.props.profile.profile.shoppingListOne.length === 0) {
@@ -13,8 +70,8 @@ class Status extends Component {
           <div className="max-w-lg mt-6 bg-white shadow-lg mx-auto rounded-lg">
             <h3 className="bg-green-400 py-2 text-white text-lg font-bold text-center rounded-t-lg">Pantriful Setup</h3>
             <div className="px-2 pt-2 pb-4 text-center mx-auto">
-              <p className="text-gray-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo, feugiat viverra luctus tellus quam massa cursus. </p>
-              <Link to="/create-shopping-list" className="inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500">Setup Shopping List</Link>
+              <p className="max-w-sm mx-auto text-gray-600">The next thing you need to setup is some example grocery lists for us. This will give us a good idea of how you eat.</p>
+              <Link to="/create-shopping-list" className="mt-4 inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500">Setup Shopping List</Link>
             </div>
           </div>
         )
@@ -79,8 +136,14 @@ class Status extends Component {
             </svg>
             <p className="ml-4 text-xl font-bold text-white leading-snug">Meet your Pantriful assistant.</p>
           </div>
-          <div className="group bg-green-700 sm:hover:bg-green-800 rounded-b-lg cursor-pointer">
-            <button className="block mx-auto text-green-400 text-center py-1 font-bold sm:group-hover:text-green-300">Learn more about me</button>
+          <div className={"px-8 text-lg text-white leading-relaxed " + (this.state.boxOpen === false ? "hidden" : "block")}>
+            <p className="mt-2">Hi, I am your Pantriful Assistant. I am here to answer any questions, make changes or provide advice about your next grocery list. </p>
+            <br/>
+            <p className="text-center">You can text me at if you have any questions or need any help: </p>
+            <a className="block text-center font-bold underline mb-4" href="sms:6266587775">(626) 658-7775</a>
+          </div>
+          <div onClick={this.toggleBox} className="group bg-green-700 sm:hover:bg-green-800 rounded-b-lg cursor-pointer">
+            <button className="block mx-auto text-green-400 text-center py-1 font-bold sm:group-hover:text-green-300">{this.state.boxOpen === false ? "Learn more about me" : "Close"}</button>
           </div>
        </div>
       )
@@ -88,15 +151,14 @@ class Status extends Component {
 
     render () {
         return (
-            <div className="relative mt-24 mx-4">
+            <div className="relative mt-24 lg:mt-20 mx-4">
               
               <div className="text-center">
-                <p className="text-lg font-bold text-white">Hi, {this.props.auth.user.name}!</p>
-                <p className="text-base text-white">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Commodo.</p>
-                {/* <button className="mt-2 bg-green-400 text-green-100 px-16 py-2 rounded-full font-bold">Approve List</button> */}
+                <p className="text-xl md:text-xl font-bold text-white">Hi, {this.props.auth.user.name}!</p>
+                {this.statusText()}
               </div>
 
-              {this.statusBoxText()}
+              {this.statusBoxContent()}
 
               {/* <div className="md:flex static md:max-w-md text-left md:mr-8 mx-auto">
                 <img className="w-20 h-20 block md:inline-block mx-auto" src="./images/dashboard/profile.placeholder.png" alt="" />

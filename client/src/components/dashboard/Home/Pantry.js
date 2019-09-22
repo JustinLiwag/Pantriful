@@ -155,14 +155,14 @@ class Pantry extends Component {
 
                 <div className="mt-4 flex items-center justify-between">
                     <p className="font-bold text-gray-700">Your Pantry</p>
-                    <p onClick={(e) => this.props.changeTab("Pantry", e)} className="text-sm text-orange-base">View my Pantry</p>
+                    <p onClick={(e) => this.props.changeTab("Pantry", e)} className="text-sm text-orange-base cursor-pointer">View my Pantry</p>
                 </div>
 
                 {this.props.profile.profile.shoppingListOne.length === 0 
                 ?
                     <div className="mt-4 w-full px-6 py-8 bg-white shadow-md border border-gray-100">
-                        <p className="text-gray-600 text-center">After you set up your example shopping lists we will be able to process your pantry.</p>
-                        <div className="text-center w-full">
+                        <p className="max-w-sm mx-auto text-gray-600 text-center">After you set up your example shopping lists we will be able to process your pantry.</p>
+                        <div className="mt-4 text-center w-full">
                             <Link to="/create-shopping-list" className="text-center inline-block mt-2 bg-green-400 text-white px-6 py-2 rounded-full font-bold sm:hover:bg-green-500 mx-auto">Setup Shopping List</Link>
                         </div>
                     </div> 

@@ -5,23 +5,91 @@ import { Link } from "react-router-dom";
 
 import Status from './Status'
 import Home from './Home/HomeContainer'
-import Lists from './Lists/ListsContainer'
+import Lists from './Lists/List'
 import Pantry from './Pantry/PantryContainer'
 import Apps from './Apps/AppsContainer'
 
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import { clearCurrentProfile } from "../../actions/profileActions";
+import { pause } from "../../actions/foodProfileActions";
+import { updateList } from "../../actions/listActions";
 
 class DashboardContent extends Component {
     state = {
       openTab: "Home",
       menuOpen: false,
-      notificationsOpen: false
+      notificationsOpen: false,
+      active: true,
+      changeTabOpen: false,
+      // List Component State
+      listOpen: "",
+      currentStatus: ""
     }
 
     componentDidMount() {
       window.scrollTo(0, 0);
+        if (this.props.profile.active === false) {
+          this.setState({
+              active: false
+          })
+      }
+    }
+
+    toggleListOpen = (e, date) => {
+      let switchValue = date
+      if (this.state.listOpen === date) {
+        switchValue = ""
+      }
+      this.setState({
+          listOpen: switchValue
+      })
+    }
+
+    toggleChangeOpen = () => {
+        this.setState({
+            changeTabOpen: !this.state.changeTabOpen
+        })
+    }
+
+    toggleNotes = (e) => {
+        if (this.currentStatus === "Awaiting Approval") {
+            this.setState({
+                currentStatus: e.target.name
+            })
+        }
+        const item = e.target.value;
+        if (this.state.openNote !== item) {
+            this.setState({
+                openNote: item
+            })
+        } else {
+            this.setState({
+                openNote: ""
+            })
+        }
+    }
+
+    approveOnClick = (e, date) => {
+        const payload = {
+            email: this.props.profile.user.email,
+            deliveryDate: date
+        }
+        this.props.updateList(payload, this.props.history)
+        this.setState({
+            currentStatus: "Approved"
+        })
+    }
+
+    pauseOnClick = () => {
+        const payload = {
+            active: !this.state.active
+        }
+        this.props.pause(payload)
+        this.setState({
+            active: !this.state.active,
+            listOpen: false
+        })
     }
 
     changeTab = (input, e) => {
@@ -74,11 +142,11 @@ class DashboardContent extends Component {
                     <svg className="lg:block lg:mx-auto lg:w-full" width="172" height="36" viewBox="0 0 172 36" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M0 4.97346C0 2.68203 1.86972 0.824463 4.17614 0.824463H30.8239C33.1303 0.824463 35 2.68203 35 4.97346V31.448C35 33.7394 33.1303 35.597 30.8239 35.597H4.17614C1.86972 35.597 0 33.7394 0 31.448V4.97346Z" fill="#EE9986" />
                       <path d="M5.17041 26.7557C5.17041 25.5827 6.12753 24.6318 7.30819 24.6318H14.865C16.0457 24.6318 17.0028 25.5827 17.0028 26.7557V27.9412C17.0028 29.1141 16.0457 30.065 14.865 30.065H7.30819C6.12753 30.065 5.17041 29.1141 5.17041 27.9412V26.7557Z" fill="white" />
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.865 25.1258H7.30819C6.4021 25.1258 5.66757 25.8555 5.66757 26.7557V27.9412C5.66757 28.8414 6.4021 29.5711 7.30819 29.5711H14.865C15.7711 29.5711 16.5056 28.8414 16.5056 27.9412V26.7557C16.5056 25.8555 15.7711 25.1258 14.865 25.1258ZM7.30819 24.6318C6.12753 24.6318 5.17041 25.5827 5.17041 26.7557V27.9412C5.17041 29.1141 6.12753 30.065 7.30819 30.065H14.865C16.0457 30.065 17.0028 29.1141 17.0028 27.9412V26.7557C17.0028 25.5827 16.0457 24.6318 14.865 24.6318H7.30819Z" fill="white" />
+                      <path fillRule="evenodd" clipRule="evenodd" d="M14.865 25.1258H7.30819C6.4021 25.1258 5.66757 25.8555 5.66757 26.7557V27.9412C5.66757 28.8414 6.4021 29.5711 7.30819 29.5711H14.865C15.7711 29.5711 16.5056 28.8414 16.5056 27.9412V26.7557C16.5056 25.8555 15.7711 25.1258 14.865 25.1258ZM7.30819 24.6318C6.12753 24.6318 5.17041 25.5827 5.17041 26.7557V27.9412C5.17041 29.1141 6.12753 30.065 7.30819 30.065H14.865C16.0457 30.065 17.0028 29.1141 17.0028 27.9412V26.7557C17.0028 25.5827 16.0457 24.6318 14.865 24.6318H7.30819Z" fill="white" />
                       <path d="M5.27002 17.6673C5.27002 16.4944 6.22714 15.5435 7.4078 15.5435H27.5925C28.7731 15.5435 29.7302 16.4944 29.7302 17.6673V18.8528C29.7302 20.0258 28.7731 20.9767 27.5925 20.9767H7.4078C6.22714 20.9767 5.27002 20.0258 5.27002 18.8528V17.6673Z" fill="white" />
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M27.5925 16.0374H7.4078C6.50171 16.0374 5.76718 16.7671 5.76718 17.6673V18.8528C5.76718 19.753 6.50171 20.4827 7.4078 20.4827H27.5925C28.4986 20.4827 29.2331 19.753 29.2331 18.8528V17.6673C29.2331 16.7671 28.4986 16.0374 27.5925 16.0374ZM7.4078 15.5435C6.22714 15.5435 5.27002 16.4944 5.27002 17.6673V18.8528C5.27002 20.0258 6.22714 20.9767 7.4078 20.9767H27.5925C28.7731 20.9767 29.7302 20.0258 29.7302 18.8528V17.6673C29.7302 16.4944 28.7731 15.5435 27.5925 15.5435H7.4078Z" fill="white" />
+                      <path fillRule="evenodd" clipRule="evenodd" d="M27.5925 16.0374H7.4078C6.50171 16.0374 5.76718 16.7671 5.76718 17.6673V18.8528C5.76718 19.753 6.50171 20.4827 7.4078 20.4827H27.5925C28.4986 20.4827 29.2331 19.753 29.2331 18.8528V17.6673C29.2331 16.7671 28.4986 16.0374 27.5925 16.0374ZM7.4078 15.5435C6.22714 15.5435 5.27002 16.4944 5.27002 17.6673V18.8528C5.27002 20.0258 6.22714 20.9767 7.4078 20.9767H27.5925C28.7731 20.9767 29.7302 20.0258 29.7302 18.8528V17.6673C29.7302 16.4944 28.7731 15.5435 27.5925 15.5435H7.4078Z" fill="white" />
                       <path d="M5.27002 8.57921C5.27002 7.40622 6.22714 6.45532 7.4078 6.45532H27.5925C28.7731 6.45532 29.7302 7.40622 29.7302 8.57921V9.76464C29.7302 10.9376 28.7731 11.8885 27.5925 11.8885H7.4078C6.22714 11.8885 5.27002 10.9376 5.27002 9.76464V8.57921Z" fill="white" />
-                      <path fill-rule="evenodd" clip-rule="evenodd" d="M27.5925 6.94925H7.4078C6.50171 6.94925 5.76718 7.67901 5.76718 8.57921V9.76464C5.76718 10.6648 6.50171 11.3946 7.4078 11.3946H27.5925C28.4986 11.3946 29.2331 10.6648 29.2331 9.76464V8.57921C29.2331 7.67901 28.4986 6.94925 27.5925 6.94925ZM7.4078 6.45532C6.22714 6.45532 5.27002 7.40622 5.27002 8.57921V9.76464C5.27002 10.9376 6.22714 11.8885 7.4078 11.8885H27.5925C28.7731 11.8885 29.7302 10.9376 29.7302 9.76464V8.57921C29.7302 7.40622 28.7731 6.45532 27.5925 6.45532H7.4078Z" fill="white" />
+                      <path fillRule="evenodd" clipRule="evenodd" d="M27.5925 6.94925H7.4078C6.50171 6.94925 5.76718 7.67901 5.76718 8.57921V9.76464C5.76718 10.6648 6.50171 11.3946 7.4078 11.3946H27.5925C28.4986 11.3946 29.2331 10.6648 29.2331 9.76464V8.57921C29.2331 7.67901 28.4986 6.94925 27.5925 6.94925ZM7.4078 6.45532C6.22714 6.45532 5.27002 7.40622 5.27002 8.57921V9.76464C5.27002 10.9376 6.22714 11.8885 7.4078 11.8885H27.5925C28.7731 11.8885 29.7302 10.9376 29.7302 9.76464V8.57921C29.7302 7.40622 28.7731 6.45532 27.5925 6.45532H7.4078Z" fill="white" />
                       <path d="M26.4987 19.7914C27.3499 19.7914 28.0399 19.1058 28.0399 18.2602C28.0399 17.4145 27.3499 16.729 26.4987 16.729C25.6475 16.729 24.9575 17.4145 24.9575 18.2602C24.9575 19.1058 25.6475 19.7914 26.4987 19.7914Z" fill="#EE9986" />
                       <path d="M52.6174 17.6015C53.4761 17.6015 54.2072 17.4739 54.8106 17.2189C55.4257 16.9638 55.9247 16.6102 56.3077 16.158C56.6906 15.6943 56.9691 15.1494 57.1432 14.5233C57.3289 13.8856 57.4217 13.1842 57.4217 12.419C57.4217 11.8857 57.3463 11.3988 57.1954 10.9582C57.0445 10.506 56.8125 10.1176 56.4991 9.79302C56.1974 9.46839 55.8086 9.21912 55.3329 9.04522C54.8687 8.87131 54.3174 8.78435 53.6792 8.78435H50.7548L49.6582 17.6015H52.6174ZM54.1666 4.95838C55.6288 4.95838 56.8821 5.13809 57.9265 5.4975C58.9709 5.84531 59.8297 6.33225 60.5027 6.95832C61.1874 7.58439 61.6864 8.3264 61.9998 9.18434C62.3247 10.0423 62.4872 10.9756 62.4872 11.9843C62.4872 13.3523 62.2725 14.6161 61.8431 15.7754C61.4253 16.9232 60.7871 17.9203 59.9283 18.7667C59.0812 19.6014 58.0077 20.2565 56.708 20.7318C55.4083 21.2072 53.8823 21.4448 52.13 21.4448H49.1882L48.1089 30.1924H43.0957L46.1767 4.95838H54.1666Z" fill="#EE9986" />
                       <path d="M73.5803 15.3581C73.4759 15.3465 73.3714 15.3407 73.267 15.3407C73.1626 15.3407 73.0581 15.3407 72.9537 15.3407C72.0253 15.3407 71.1724 15.5494 70.3948 15.9667C69.6173 16.3841 68.9443 16.9522 68.3756 17.671C67.8186 18.3899 67.3776 19.2246 67.0527 20.1753C66.7394 21.126 66.5827 22.1289 66.5827 23.1839C66.5827 24.3897 66.7684 25.265 67.1397 25.8099C67.5111 26.3432 67.9985 26.6099 68.6019 26.6099C69.0313 26.6099 69.4549 26.4534 69.8726 26.1404C70.302 25.8273 70.7024 25.3983 71.0737 24.8534C71.4451 24.3085 71.7874 23.6709 72.1007 22.9404C72.4141 22.1984 72.6868 21.4101 72.9189 20.5753L73.5803 15.3581ZM72.3967 26.8186C71.6307 27.9432 70.772 28.8301 69.8204 29.4794C68.8804 30.1286 67.8418 30.4533 66.7045 30.4533C66.0431 30.4533 65.4106 30.3257 64.8072 30.0707C64.2153 29.804 63.6931 29.4098 63.2405 28.8881C62.788 28.3548 62.4282 27.6881 62.1613 26.8882C61.906 26.0766 61.7784 25.1317 61.7784 24.0535C61.7784 22.9752 61.9118 21.9318 62.1787 20.9231C62.4456 19.9029 62.8286 18.9464 63.3276 18.0536C63.8266 17.1609 64.43 16.3435 65.1379 15.6015C65.8574 14.8479 66.6523 14.2045 67.5227 13.6712C68.4046 13.1378 69.3562 12.7263 70.3774 12.4364C71.4103 12.135 72.4953 11.9843 73.6326 11.9843C74.4681 11.9843 75.3036 12.048 76.1392 12.1756C76.9747 12.2915 77.7986 12.5002 78.611 12.8016L76.4525 30.1924H73.8937C73.5919 30.1924 73.3366 30.1518 73.1277 30.0707C72.9305 29.9895 72.768 29.8794 72.6404 29.7402C72.5243 29.6011 72.4431 29.4388 72.3967 29.2533C72.3502 29.0678 72.327 28.8649 72.327 28.6446L72.3967 26.8186Z" fill="#EE9986" />
@@ -234,8 +302,28 @@ class DashboardContent extends Component {
                 <Status />
 
                 {/* Displays selected component */}
-                {this.state.openTab === "Home" ? <Home history={this.props.history} changeTab={this.changeTab} /> : null}
-                {this.state.openTab === "Lists" ? <Lists changeTab={this.changeTab} /> : null}
+                {this.state.openTab === "Home" ? 
+                <Home 
+                  state={this.state}
+                  history={this.props.history} 
+                  changeTab={this.changeTab} 
+                  toggleListOpen={this.toggleListOpen}
+                  toggleChangeOpen={this.toggleChangeOpen}
+                  toggleNotes={this.toggleNotes}
+                  approveOnClick={this.approveOnClick}
+                  pauseOnClick={this.pauseOnClick}
+                /> : null}
+                {this.state.openTab === "Lists" ? 
+                <Lists 
+                  state={this.state}
+                  history={this.props.history} 
+                  changeTab={this.changeTab} 
+                  toggleListOpen={this.toggleListOpen}
+                  toggleChangeOpen={this.toggleChangeOpen}
+                  toggleNotes={this.toggleNotes}
+                  approveOnClick={this.approveOnClick}
+                  pauseOnClick={this.pauseOnClick}
+                /> : null}
                 {this.state.openTab === "Pantry" ? <Pantry changeTab={this.changeTab} /> : null}
                 {this.state.openTab === "Apps" ? <Apps changeTab={this.changeTab} /> : null}
 
@@ -255,4 +343,4 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(DashboardContent);
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile, pause, updateList })(DashboardContent);

@@ -18,10 +18,11 @@ class Dashboard extends Component {
 
   render() {
     const { profile, loading } = this.props.profile;
+    const { lists  } = this.props.lists;
 
     let dashboardContent;
 
-    if (profile === null || loading) {
+    if (profile === null || loading || lists === {} ) {
       dashboardContent = <Spinner />;
     } else {
       // Check if logged in user has profile data

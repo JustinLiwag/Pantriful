@@ -23,7 +23,7 @@ class Complete extends Component {
       <div className="mb-48">
         <Navbar />
         <div className="container px-8 md:px-0">
-            <img className="mx-auto mt-12" src="./images/on-boarding/complete.png"></img>
+            <img className="mx-auto mt-12" src="./images/on-boarding/complete.png" alt=""></img>
           <h3 className="mt-8 text-2xl md:text-3xl font-bold text-gray-700">Awesome! Your profile is all set!</h3>
           <p className="mt-1 text-md md:text-lg leading-loose max-w-xl mx-auto text-gray-600">You can now check out your profile on your dashboard.</p>
         </div>

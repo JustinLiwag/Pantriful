@@ -8,7 +8,16 @@ class Home extends Component {
         return (
             <div>
 
-                <Lists changeTab={this.props.changeTab} history={this.props.history}/>
+                <Lists 
+                    state={this.props.state}
+                    changeTab={this.props.changeTab} 
+                    history={this.props.history}
+                    toggleListOpen={this.props.toggleListOpen}
+                    toggleChangeOpen={this.props.toggleChangeOpen}
+                    toggleNotes={this.props.toggleNotes}
+                    approveOnClick={this.props.approveOnClick}
+                    pauseOnClick={this.props.pauseOnClick}
+                />
                 <Pantry changeTab={this.props.changeTab}/>
                 {/* <Apps changeTab={this.props.changeTab}/> */}
 
