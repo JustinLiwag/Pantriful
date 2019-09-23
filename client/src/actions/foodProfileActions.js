@@ -29,6 +29,13 @@ export const sendFoodProfile = (userData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
+// Update Food Profile to API
+export const updateFoodProfile = (userData) => dispatch => {
+  axios
+    .post("/api/profile/food-profile/foodProfile", userData)
+    .catch(err => console.log(err));
+};
+
 // Send in ShoppingLists to API
 export const sendShoppingLists = (userData, history) => dispatch => {
   axios
@@ -42,6 +49,13 @@ export const sendDeliveryDetails = (userData, history) => dispatch => {
   axios
     .post("/api/profile/food-profile/delivery-details", userData)
     .then(res => history.push("/dashboard"))
+    .catch(err => console.log(err));
+};
+
+// Update delivery details to API
+export const updateDeliveryDetails = (userData) => dispatch => {
+  axios
+    .post("/api/profile/food-profile/delivery-details", userData)
     .catch(err => console.log(err));
 };
 

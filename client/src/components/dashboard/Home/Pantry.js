@@ -151,7 +151,7 @@ class Pantry extends Component {
         const COLORS = ['#3182CE', '#744210', '#E53E3E', '#38A169', "#81E6D9", "#D69E2E"];
 
         return (
-            <div className="mt-8 mx-4 mb-32 lg:max-w-2xl lg:mx-auto">
+            <div className="mt-8 mx-4 mb-32 lg:max-w-2xl lg:mx-auto xl:max-w-3xl">
 
                 <div className="mt-4 flex items-center justify-between">
                     <p className="font-bold text-gray-700">Your Pantry</p>

@@ -149,7 +149,7 @@ class Lists extends Component {
 
     render() {
         return (
-            <div className="mt-8 mx-4 lg:max-w-2xl lg:mx-auto">
+            <div className="mt-8 mx-4 lg:max-w-2xl lg:mx-auto xl:max-w-3xl">
                 
                 {/* Toggle grocery delivery 
                     Hidden when no groceries are available for that user

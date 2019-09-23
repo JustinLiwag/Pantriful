@@ -17,7 +17,7 @@ import { updateList } from "../../actions/listActions";
 
 class DashboardContent extends Component {
     state = {
-      openTab: "Account",
+      openTab: "Home",
       menuOpen: false,
       notificationsOpen: false,
       active: true,
