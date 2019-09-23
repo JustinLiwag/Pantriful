@@ -10,10 +10,10 @@ const heightOptions = ["Select one", "4'5\"", "4'6\"", "4'7\"", "4'8\"", "4'9\""
 
 class Account extends Component {    
     state = {
-        tab: "personnal",
+        tab: "personal",
         updated: false,
 
-        // Personnal
+        // personal
         firstName: "",
         lastName: "",
         email: "",
@@ -37,7 +37,7 @@ class Account extends Component {
     componentDidMount () {
         this.setState({
             updated: false,
-            // Personnal
+            // personal
             firstName: this.props.profile.profile.user.name,
             lastName: this.props.profile.profile.user.lastName,
             email: this.props.profile.profile.user.email,
@@ -114,7 +114,7 @@ class Account extends Component {
                 <div className="-lg bg-white px-4 sm:px-8 py-8 rounded shadow">
 
                     <div className="flex border-b-2 border-gray-200">
-                        <button onClick={(e) => this.changeTabs(e, "personnal")} className={"pb-2 text-gray-700 font-bold outline-none " + (this.state.tab === "personnal" ? "border-b-4 border-orange-base" : null)}>Personnal Information</button>
+                        <button onClick={(e) => this.changeTabs(e, "personal")} className={"pb-2 text-gray-700 font-bold outline-none " + (this.state.tab === "personal" ? "border-b-4 border-orange-base" : null)}>Personal Information</button>
                         <button onClick={(e) => this.changeTabs(e, "delivery")} className={"pb-2 text-gray-700 font-bold outline-none ml-6 " + (this.state.tab === "delivery" ? "border-b-4 border-orange-base" : null)}>Delivery Information</button>
                     </div>
 
@@ -125,9 +125,9 @@ class Account extends Component {
                         : null
                     }
 
-                    {/* Personnal */}
+                    {/* personal */}
                     <div>
-                        <div className={"flex flex-wrap pt-4 pb-6 " + (this.state.tab === "personnal" ? "block" : "hidden")}>
+                        <div className={"flex flex-wrap pt-4 pb-6 " + (this.state.tab === "personal" ? "block" : "hidden")}>
                             <div className="mx-auto w-full sm:w-1/2">
                                 <label className="block text-left w-full mt-3 mb-2 text-gray-600 font-bold pl-2">First Name</label>
                                 <input
@@ -205,7 +205,7 @@ class Account extends Component {
                             </div>
                         </div>
                     </div>
-                    {/* / Personnal */}
+                    {/* / personal */}
 
                     {/* Delivery */}
                     <div>
