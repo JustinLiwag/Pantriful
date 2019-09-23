@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import Status from './Status'
 import Home from './Home/HomeContainer'
 import Lists from './Lists/List'
-import Pantry from './Pantry/PantryContainer'
-import Apps from './Apps/AppsContainer'
+import Pantry from './Pantry/Pantry.js'
+import Account from './Account/Account'
 
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
@@ -17,7 +17,7 @@ import { updateList } from "../../actions/listActions";
 
 class DashboardContent extends Component {
     state = {
-      openTab: "Home",
+      openTab: "Account",
       menuOpen: false,
       notificationsOpen: false,
       active: true,
@@ -299,8 +299,8 @@ class DashboardContent extends Component {
                 {/* / Responsive Backgrounds */}
 
                 {/* Status Component */}
-                <Status />
-
+                {this.state.openTab !== "Account" ? <Status /> : null}
+                
                 {/* Displays selected component */}
                 {this.state.openTab === "Home" ? 
                 <Home 
@@ -325,7 +325,7 @@ class DashboardContent extends Component {
                   pauseOnClick={this.pauseOnClick}
                 /> : null}
                 {this.state.openTab === "Pantry" ? <Pantry changeTab={this.changeTab} /> : null}
-                {this.state.openTab === "Apps" ? <Apps changeTab={this.changeTab} /> : null}
+                {this.state.openTab === "Account" ? <Account /> : null}
 
               </div>
             </div>

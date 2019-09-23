@@ -153,9 +153,8 @@ class Pantry extends Component {
         return (
             <div className="mt-8 mx-4 mb-32 lg:max-w-2xl lg:mx-auto">
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4">
                     <p className="font-bold text-gray-700">Your Pantry</p>
-                    <p onClick={(e) => this.props.changeTab("Pantry", e)} className="text-sm text-orange-base cursor-pointer">View my Pantry</p>
                 </div>
 
                 {this.props.profile.profile.shoppingListOne.length === 0 

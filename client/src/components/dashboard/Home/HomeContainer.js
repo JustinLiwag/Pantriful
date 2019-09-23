@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Lists from "./Lists"
 import Pantry from "./Pantry"
-// import Apps from "./Apps"
 
 class Home extends Component {
     render () {  
