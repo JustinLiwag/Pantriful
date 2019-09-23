@@ -190,6 +190,44 @@ router.post(
   }
 );
 
+// @route   POST api/profile/food-profile/update-account-details
+// @desc    update delivery details from account tab
+// @access  Private
+router.post(
+  "/food-profile/update-account-details",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.update(
+      { user: req.user.id },
+      {
+        $set: {
+          "street": req.body.street,
+          "city": req.body.city,
+          "state": req.body.state,
+          "country": req.body.country,
+          "zipcode": req.body.zipcode,
+          "aptOrBldgNumber": req.body.aptOrBldgNumber,
+          "deliveryDay": req.body.deliveryDay,
+          "deliveryTime": req.body.deliveryTime,
+          "phoneNumber": req.body.phoneNumber,
+          "age": req.body.age,
+          "weight": req.body.weight,
+          "height": req.body.height,
+          "gender": req.body.gender
+        }
+      },
+      { safe: true, upsert: true },
+      function (err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc)
+        }
+      }
+    )
+  }
+);
+
 // @route   GET api/profile/
 // @desc    Get current users profile
 // @access  Private

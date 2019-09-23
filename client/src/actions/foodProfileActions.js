@@ -32,7 +32,7 @@ export const sendFoodProfile = (userData, history) => dispatch => {
 // Update Food Profile to API
 export const updateFoodProfile = (userData) => dispatch => {
   axios
-    .post("/api/profile/food-profile/foodProfile", userData)
+    .post("/food-profile/update-account-details", userData)
     .catch(err => console.log(err));
 };
 
@@ -52,10 +52,10 @@ export const sendDeliveryDetails = (userData, history) => dispatch => {
     .catch(err => console.log(err));
 };
 
-// Update delivery details to API
+// Update delivery details to API via account
 export const updateDeliveryDetails = (userData) => dispatch => {
   axios
-    .post("/api/profile/food-profile/delivery-details", userData)
+    .post("api/profile/food-profile/update-account-details", userData)
     .catch(err => console.log(err));
 };
 

@@ -11,6 +11,7 @@ const heightOptions = ["Select one", "4'5\"", "4'6\"", "4'7\"", "4'8\"", "4'9\""
 class Account extends Component {    
     state = {
         tab: "personnal",
+        updated: false,
 
         // Personnal
         firstName: "",
@@ -35,6 +36,7 @@ class Account extends Component {
 
     componentDidMount () {
         this.setState({
+            updated: false,
             // Personnal
             firstName: this.props.profile.profile.user.name,
             lastName: this.props.profile.profile.user.lastName,
@@ -81,19 +83,11 @@ class Account extends Component {
 
     // Create payload for API when submitted   
     createSubmit = () => {
-        const personnalPayload = {
-            firstName: this.state.name,
-            lastName: this.state.lastName,
-            email: this.state.email,
+        const payload = {
             age: this.state.age,
             gender: this.state.gender,
             weight: this.state.weight,
             height: this.state.height,
-          };
-        console.log(personnalPayload)
-        this.props.updateFoodProfile(personnalPayload, this.props.history);
-
-        const deliveryPayload = {
             deliveryDay: this.state.deliveryDay ,
             deliveryTime: this.state.deliveryTime,
             street: this.state.street,
@@ -103,8 +97,12 @@ class Account extends Component {
             zipcode: this.state.zipCode,
             aptOrBldgNumber: this.state.aptOrBldgNumber,
             phoneNumber: this.state.phoneNumber
-        };
-        this.props.updateDeliveryDetails(deliveryPayload, this.props.history);
+          };
+
+        this.props.updateDeliveryDetails(payload);
+        this.setState({
+            updated: true
+        })
     };
     
     render() {
@@ -119,6 +117,13 @@ class Account extends Component {
                         <button onClick={(e) => this.changeTabs(e, "personnal")} className={"pb-2 text-gray-700 font-bold outline-none " + (this.state.tab === "personnal" ? "border-b-4 border-orange-base" : null)}>Personnal Information</button>
                         <button onClick={(e) => this.changeTabs(e, "delivery")} className={"pb-2 text-gray-700 font-bold outline-none ml-6 " + (this.state.tab === "delivery" ? "border-b-4 border-orange-base" : null)}>Delivery Information</button>
                     </div>
+
+                    {this.state.updated === true 
+                        ? <div className="w-full pl-4 text-white bg-green-400 py-2 font-bold text-lg rounded mt-4">
+                            Updated Successfully
+                        </div> 
+                        : null
+                    }
 
                     {/* Personnal */}
                     <div>
@@ -619,10 +624,11 @@ class Account extends Component {
                                     id="phoneNumber"
                                 />
                             </div>
+                            <button onClick={this.createSubmit} className="mt-8 py-3 px-8 text-white font-bold rounded bg-green-400">Update</button>
                         </div>
                     </div>
                     {/* / Delivery */}
-                    <button onClick={this.createSubmit} className="py-3 px-8 text-white font-bold rounded bg-green-400">Update</button>
+                    
                 </div>
             </div>
         )
