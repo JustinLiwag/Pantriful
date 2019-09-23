@@ -8,6 +8,10 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../../actions/profileActions";
 
 class Pantry extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0);
+    } 
+    
     pantryLogic = () => {
         const { shoppingListOne, shoppingListTwo } = this.props.profile.profile
         let shoppingListOneTotal = 0, shoppingListTwoTotal = 0

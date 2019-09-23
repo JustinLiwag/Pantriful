@@ -31,9 +31,11 @@ class Landing extends Component {
                             </div>
 
                             <h2 className="pt-4 pb-3 font-black text-3xl sm:text-4xl text-orange-base leading-tight mx-auto xl:text-5xl">Your own smart <span className="border-b-8 border-blue-300 border-opacity-50">personal</span> grocery shopper.</h2>
-                            <p className="text-gray-600 max-w-md mx-auto text-xl leading-loose pb-6 xl:text-2xl">We create unique grocery lists tailored to you and deliver them to your doorstep.</p>
+                            <p className="text-gray-600 max-w-md mx-auto text-xl leading-loose pb-6 xl:text-2xl">We create unique grocery lists tailored to you and deliver them to your doorstep for <span className="text-orange-base">$<span className="font-bold text-lg">8</span> a week</span>.</p>
 
-                            <Link to="/register" className="inline-block font-bold text-white text-weight-bold bg-orange-base hover:bg-orange-600 py-3 px-12 rounded-full shadow-md xl:text-xl">Get Started</Link>
+                            <div className="mx-auto">
+                                <Link to="/register" className="block mx-auto max-w-xs text-center font-bold text-white text-weight-bold bg-green-400 hover:bg-green-500 py-3 px-12 rounded-lg shadow-md xl:text-xl">Get Started Today!</Link>
+                            </div>
 
                         </div>
                     </div>
@@ -181,7 +183,9 @@ class Landing extends Component {
 
                             <h3 className='mb-2 mt-4 md:mt-0 text-4xl md:text-2xl max-w-md mx-auto font-extrabold text-gray-700 lg:text-3xl xl:text-4xl'>Ready to forget shopping carts <span className="italic text-orange-base">forever</span>?</h3>
                             <p className="mb-4 text-md max-w-md mx-auto leading-loose text-gray-700 xl:text-xl">Create your unique grocery profile and we will take care of the rest. It takes only a couple of minutes!</p>
-                            <Link to="/register" className="inline-block font-bold text-white text-weight-bold bg-orange-base hover:bg-orange-600 py-3 px-16 rounded-full shadow-md w-60 xl:text-xl">Get Started</Link>
+                            <div className="mx-auto">
+                                <Link to="/register" className="block mx-auto max-w-xs text-center font-bold text-white text-weight-bold bg-green-400 hover:bg-green-500 py-3 px-12 rounded-lg shadow-md xl:text-xl">Get Started Today!</Link>
+                            </div>
                         </div>
                     </div>
                 </div>

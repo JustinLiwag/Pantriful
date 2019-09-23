@@ -24,8 +24,8 @@ class Navbar extends Component {
 
     const guestLinks = (
       <ul className="md:flex items-center justify-between text-base text-gray-700 pt-4 md:pt-0">
-        <li className="text-right"><Link to="/login" className="py-3 md:pr-12 inline-block text-gray-600 xl:text-xl">Login</Link></li>
-        <li className="text-right"><Link to="/register" className="inline-block lg:font-bold text-gray-600 md:text-white text-weight-bold md:bg-orange-base py-3 md:py-3 md:px-8 md:rounded-full lg:shadow-md xl:text-xl">Sign Up</Link></li>
+        <li className="text-right"><Link to="/login" className=" md:pr-12 inline-block text-gray-600 text-lg xl:text-xl">Login</Link></li>
+        <li className="text-right mt-4 md:mt-0"><Link to="/register" className="px-8 py-2 border-2 border-green-400 text-green-400 rounded">Sign Up</Link></li>
       </ul>
     );
 
