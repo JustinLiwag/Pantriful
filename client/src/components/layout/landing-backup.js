@@ -107,7 +107,7 @@ class Landing extends Component {
                 </div>
 
                 {/* Hero Image */}
-                <div className="mt-4 max-w-xs mx-auto sm:max-w-md md:max-w-sm lg:max-w-md xl:max-w-xl">
+                <div className="mt-4 max-w-xs mx-auto sm:max-w-md md:max-w-sm lg:ml-8 lg:max-w-md xl:max-w-xl">
                     <img className="mx-auto" src="images/new-landing-page/heroImage.png"></img>
                 </div>
             </div>
